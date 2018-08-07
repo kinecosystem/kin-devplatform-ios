@@ -272,6 +272,22 @@ public class Kin {
         return true
     }
     
+    public func payToUser(offerJWT: String, completion: @escaping PurchaseCallback) -> Bool {
+        guard let core = core else {
+            logError("Kin not started")
+            completion(nil, KinEcosystemError.client(.notStarted, nil))
+            return false
+        }
+        defer {
+            Flows.nativeSpend(jwt: offerJWT, core: core).then { jwt in
+                completion(jwt, nil)
+                }.error { error in
+                    completion(nil, KinEcosystemError.transform(error))
+            }
+        }
+        return true
+    }
+    
     public func orderConfirmation(for offerID: String, completion: @escaping OrderConfirmationCallback) {
         guard let core = core else {
             logError("Kin not started")

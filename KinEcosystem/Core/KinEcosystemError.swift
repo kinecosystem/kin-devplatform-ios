@@ -18,6 +18,8 @@ public enum KinServiceErrorCode: Int {
     case response               = 5001
     case network                = 5002
     case timeout                = 5003
+    case userNotFound           = 4046
+    case userNotActivated       = 4015
 }
 
 public enum KinBlockchainErrorCode: Int {
@@ -64,6 +66,9 @@ public enum KinEcosystemError: LocalizedError {
                 description = "Network unavailable. Please check that internet is accessible"
             case .timeout:
                 description = "The operation timed out"
+                
+            default:
+                description = "Unknown"
             }
         case let KinEcosystemError.blockchain(errorCode, error):
             underlyingError = error

@@ -62,7 +62,9 @@ class OrdersViewController : KinNavigationChildController {
             if let orderViewModel = this.orderViewModels[order.id] {
                 viewModel = orderViewModel
             } else {
-                viewModel = OrderViewModel(with: order, last: ip.row == (this.tableView.tableSection(for: ip.section)?.objectCount)! - 1)
+                viewModel = OrderViewModel(with: order,
+                                           selfPublicAddress: Kin.shared.publicAddress,
+                                           last: ip.row == (this.tableView.tableSection(for: ip.section)?.objectCount)! - 1)
                 this.orderViewModels[order.id] = viewModel
             }
             

@@ -19,7 +19,7 @@ class OrderViewModel {
     let last: Bool
     let color: UIColor
     
-    init(with model: Order, last: Bool) {
+    init(with model: Order, selfPublicAddress: String? ,last: Bool) {
         self.last = last
         id = model.id
         let details: String
@@ -57,9 +57,18 @@ class OrderViewModel {
             subtitleString = subtitleString + " - " + shortDate
         }
         subtitle = subtitleString.attributed(14.0, weight: .regular, color: .kinBlueGreyTwo)
+        var amountOperator = ""
+        switch (model.offerType) {
+        case .earn:
+            amountOperator = "+"
+        case .pay_to_user:
+            if let address = selfPublicAddress {
+                amountOperator = address == model.blockchain_data!.recipient_address ? "+" : "-"
+            }
+        default: // .spend
+            amountOperator = "-"
+        }
         
-        amount = ((model.offerType == .earn ? "+" : "-") + "\(Decimal(model.amount).currencyString()) ").attributed(16.0, weight: .medium, color: .kinBlueGreyTwo)
-
-        
+        amount = ((amountOperator) + "\(Decimal(model.amount).currencyString()) ").attributed(16.0, weight: .medium, color: .kinBlueGreyTwo)
     }
 }

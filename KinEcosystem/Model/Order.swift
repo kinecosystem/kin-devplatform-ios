@@ -67,7 +67,7 @@ class Order: NSManagedObject, NetworkSyncable {
         case title
         case description
         case call_to_action
-        case content                                                                                                                                                                                                                                                                                                                                                                                                
+        case content
         case amount
         case blockchain_data
         case result

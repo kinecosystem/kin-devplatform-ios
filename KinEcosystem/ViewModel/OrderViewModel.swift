@@ -26,7 +26,15 @@ class OrderViewModel {
         var indicatorColor: UIColor = .kinLightBlueGrey
         var titleColor: UIColor = .kinBlueGrey
         var detailsColor: UIColor = .kinDeepSkyBlue
+        
         switch model.offerType {
+        case .pay_to_user:
+            if let address = selfPublicAddress, address == model.blockchain_data?.recipient_address {
+                image = UIImage(named: "coins", in: Bundle.ecosystem, compatibleWith: nil)
+            } else {
+                image = UIImage(named: "invoice", in: Bundle.ecosystem, compatibleWith: nil)
+            }
+            details = ""
         case .spend:
             image = UIImage(named: "invoice", in: Bundle.ecosystem, compatibleWith: nil)
             switch model.orderStatus {
@@ -50,20 +58,23 @@ class OrderViewModel {
             details = ""
         }
         color = indicatorColor
+        
         title = model.title.attributed(18.0, weight: .regular, color: titleColor) +
                 details.attributed(14.0, weight: .regular, color: detailsColor)
         var subtitleString = model.description_
         if let shortDate = Iso8601DateFormatter.shortString(from: model.completion_date as Date) {
             subtitleString = subtitleString + " - " + shortDate
         }
+        
         subtitle = subtitleString.attributed(14.0, weight: .regular, color: .kinBlueGreyTwo)
+        
         var amountOperator = ""
-        switch (model.offerType) {
+        switch model.offerType {
         case .earn:
             amountOperator = "+"
         case .pay_to_user:
             if let address = selfPublicAddress {
-                amountOperator = address == model.blockchain_data!.recipient_address ? "+" : "-"
+                amountOperator = address == model.blockchain_data?.recipient_address ? "+" : "-"
             }
         default: // .spend
             amountOperator = "-"

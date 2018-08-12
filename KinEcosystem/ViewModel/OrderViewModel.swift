@@ -12,20 +12,20 @@ import Foundation
 class OrderViewModel {
     
     let id: String
-    let title: NSAttributedString
-    let subtitle: NSAttributedString
-    let amount: NSAttributedString
-    let image: UIImage?
-    let last: Bool
-    let color: UIColor
+    var title: NSAttributedString?
+    var subtitle: NSAttributedString?
+    var amount: NSAttributedString?
+    var details: String = ""
+    var image: UIImage?
+    var last: Bool?
+    var color: UIColor?
+    var indicatorColor: UIColor = .kinLightBlueGrey
+    var titleColor: UIColor = .kinBlueGrey
+    var detailsColor: UIColor = .kinDeepSkyBlue
     
     init(with model: Order, selfPublicAddress: String? ,last: Bool) {
         self.last = last
         id = model.id
-        let details: String
-        var indicatorColor: UIColor = .kinLightBlueGrey
-        var titleColor: UIColor = .kinBlueGrey
-        var detailsColor: UIColor = .kinDeepSkyBlue
         
         switch model.offerType {
         case .pay_to_user:
@@ -34,28 +34,12 @@ class OrderViewModel {
             } else {
                 image = UIImage(named: "invoice", in: Bundle.ecosystem, compatibleWith: nil)
             }
-            details = ""
+            checkOrderStatus(model: model)
         case .spend:
             image = UIImage(named: "invoice", in: Bundle.ecosystem, compatibleWith: nil)
-            switch model.orderStatus {
-            case .completed:
-                indicatorColor = .kinDeepSkyBlue
-                titleColor = .kinDeepSkyBlue
-                if let action = model.call_to_action {
-                    details = " - " + action
-                } else {
-                    details =  ""
-                }
-            case .failed:
-                indicatorColor = .kinWatermelon
-                detailsColor = .kinWatermelon
-                details = " - " + (model.error?.error ?? "Transaction failed")
-            default:
-                details = ""
-            }
+            checkOrderStatus(model: model)
         default:
             image = UIImage(named: "coins", in: Bundle.ecosystem, compatibleWith: nil)
-            details = ""
         }
         color = indicatorColor
         
@@ -81,5 +65,24 @@ class OrderViewModel {
         }
         
         amount = ((amountOperator) + "\(Decimal(model.amount).currencyString()) ").attributed(16.0, weight: .medium, color: .kinBlueGreyTwo)
+    }
+    
+    fileprivate func checkOrderStatus(model: Order) {
+        switch model.orderStatus {
+        case .completed:
+            indicatorColor = .kinDeepSkyBlue
+            titleColor = .kinDeepSkyBlue
+            if let action = model.call_to_action {
+                details = " - " + action
+            } else {
+                details =  ""
+            }
+        case .failed:
+            indicatorColor = .kinWatermelon
+            detailsColor = .kinWatermelon
+            details = " - " + (model.error?.error ?? "Transaction failed")
+        default:
+            details = ""
+        }
     }
 }

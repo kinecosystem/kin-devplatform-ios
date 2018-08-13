@@ -80,7 +80,7 @@ public enum Environment {
     public var marketplaceURL: String {
         switch self {
         case .playground:
-            return "https://api-playground.kininfrastructure.com/v1"
+            return "https://api.developers.kinecosystem.com/v1"
         case .production:
             return "https://api.kinmarketplace.com/v1"
         case .custom(let envProps):

@@ -18,6 +18,8 @@ public enum KinServiceErrorCode: Int {
     case response               = 5001
     case network                = 5002
     case timeout                = 5003
+    case userNotFound           = 4046
+    case userNotActivated       = 4015
 }
 
 public enum KinBlockchainErrorCode: Int {
@@ -64,6 +66,12 @@ public enum KinEcosystemError: LocalizedError {
                 description = "Network unavailable. Please check that internet is accessible"
             case .timeout:
                 description = "The operation timed out"
+            case .userNotFound:
+                description = "User not found"
+            case .userNotActivated:
+                description = "User not activated"
+            default:
+                description = "Unknown"
             }
         case let KinEcosystemError.blockchain(errorCode, error):
             underlyingError = error
@@ -96,7 +104,16 @@ public enum KinEcosystemError: LocalizedError {
         } else if case KinError.insufficientFunds = rawError {
             return KinEcosystemError.blockchain(.insufficientFunds, rawError)
         } else if case let EcosystemNetError.service(responseError) = rawError {
-            return KinEcosystemError.service(.response, responseError)
+            switch (Int(responseError.code)) {
+            case KinServiceErrorCode.userNotActivated.rawValue:
+                    return KinEcosystemError.service(.userNotActivated, responseError)
+                
+            case KinServiceErrorCode.userNotFound.rawValue:
+                return KinEcosystemError.service(.userNotFound, responseError)
+                
+            default:
+                return KinEcosystemError.service(.response, responseError)
+            }
         } else if case let EcosystemNetError.network(networkError) = rawError {
             return KinEcosystemError.service(.network, networkError)
         } else {

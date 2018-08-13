@@ -118,6 +118,7 @@ class EcosystemNet {
                 p.signal(EcosystemDataError.decodeError)
                 return
             }
+        
             p.signal(object)
         }.error { error in
             p.signal(error)

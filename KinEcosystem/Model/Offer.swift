@@ -14,6 +14,7 @@ import CoreData
 enum OfferType: String {
     case earn
     case spend
+    case pay_to_user
 }
 
 enum OfferContentType: String {

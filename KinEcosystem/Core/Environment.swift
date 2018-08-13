@@ -47,7 +47,7 @@ public enum Environment {
     public var blockchainURL: String {
         switch self {
         case .playground:
-            return "https://stellar.kinplayground.com"
+            return "https://horizon-playground.kininfrastructure.com"
         case .production:
             return "https://horizon-kin-ecosystem.kininfrastructure.com"
         case .custom(let envProps):
@@ -58,7 +58,7 @@ public enum Environment {
     public var blockchainPassphrase: String {
         switch self {
         case .playground:
-            return "ecosystem playground"
+            return "Kin Playground Network ; June 2018"
         case .production:
             return "Public Global Kin Ecosystem Network ; June 2018"
         case .custom(let envProps):
@@ -69,7 +69,7 @@ public enum Environment {
     public var kinIssuer: String {
         switch self {
         case .playground:
-            return "GDVIWJ2NYBCPHMGTIBO5BBZCP5QCYC4YT4VINTV5PZOSE7BAJCH5JI64"
+            return "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
         case .production:
             return "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
         case .custom(let envProps):
@@ -80,7 +80,7 @@ public enum Environment {
     public var marketplaceURL: String {
         switch self {
         case .playground:
-            return "https://api.kinplayground.com/v1"
+            return "https://api.developers.kinecosystem.com/v1"
         case .production:
             return "https://api.kinmarketplace.com/v1"
         case .custom(let envProps):

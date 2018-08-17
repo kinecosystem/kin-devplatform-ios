@@ -30,15 +30,13 @@ public struct EnvironmentProperties: Codable, Equatable {
 
 public enum Environment {
     case playground
-    case production
     case custom(EnvironmentProperties)
     
     public var name: String {
         switch self {
         case .playground:
             return "playground"
-        case .production:
-            return "production"
+       
         case .custom(_):
             return "custom"
         }
@@ -48,8 +46,7 @@ public enum Environment {
         switch self {
         case .playground:
             return "https://horizon-playground.kininfrastructure.com"
-        case .production:
-            return "https://horizon-kin-ecosystem.kininfrastructure.com"
+       
         case .custom(let envProps):
             return envProps.blockchainURL
         }
@@ -59,8 +56,7 @@ public enum Environment {
         switch self {
         case .playground:
             return "Kin Playground Network ; June 2018"
-        case .production:
-            return "Public Global Kin Ecosystem Network ; June 2018"
+        
         case .custom(let envProps):
             return envProps.blockchainPassphrase
         }
@@ -70,8 +66,7 @@ public enum Environment {
         switch self {
         case .playground:
             return "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
-        case .production:
-            return "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
+        
         case .custom(let envProps):
             return envProps.kinIssuer
         }
@@ -81,8 +76,7 @@ public enum Environment {
         switch self {
         case .playground:
             return "https://api.developers.kinecosystem.com/v1"
-        case .production:
-            return "https://api.kinmarketplace.com/v1"
+       
         case .custom(let envProps):
             return envProps.marketplaceURL
         }
@@ -92,8 +86,7 @@ public enum Environment {
         switch self {
         case .playground:
             return "https://s3.amazonaws.com/assets.kinplayground.com/web-offers/cards-based/index.html"
-        case .production:
-            return "https://cdn.kinmarketplace.com"
+       
         case .custom(let envProps):
             return envProps.webURL
         }
@@ -102,9 +95,8 @@ public enum Environment {
     public var BIURL: String {
         switch self {
         case .playground:
-            return "https://kin-bi.appspot.com/eco_play_"
-        case .production:
-            return "https://kin-bi.appspot.com/eco_"
+            return "https://kin-bi.appspot.com/devp_play_"
+       
         case .custom(let envProps):
             return envProps.BIURL
         }

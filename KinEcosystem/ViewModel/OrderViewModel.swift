@@ -47,7 +47,11 @@ class OrderViewModel {
                 details.attributed(14.0, weight: .regular, color: detailsColor)
         var subtitleString = model.description_
         if let shortDate = Iso8601DateFormatter.shortString(from: model.completion_date as Date) {
-            subtitleString = subtitleString + " - " + shortDate
+            if (subtitleString.isEmpty){
+              subtitleString = shortDate
+            } else{
+                subtitleString = subtitleString + " - " + shortDate
+            }
         }
         
         subtitle = subtitleString.attributed(14.0, weight: .regular, color: .kinBlueGreyTwo)

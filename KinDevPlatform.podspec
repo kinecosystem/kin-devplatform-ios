@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'KinDevPlatform'
-  s.version          = '0.8.9'
+  s.version          = '0.8.10'
   s.summary          = 'Kin Developer Platform SDK for iOS'
   s.description      = <<-DESC
 Kin Developer Platform SDK for iOS
@@ -17,5 +17,5 @@ Kin Developer Platform SDK for iOS
   s.resources = 'KinEcosystem/**/*.{xcassets,xcdatamodeld,storyboard,xib,png,pdf,jpg,json}'
   s.swift_version = '4.1'
   s.dependency 'SimpleCoreDataStack', '0.1.6'
-  s.dependency 'KinCoreSDK', '0.7.6'
+  s.dependency 'KinCoreSDK', '0.7.12'
 end

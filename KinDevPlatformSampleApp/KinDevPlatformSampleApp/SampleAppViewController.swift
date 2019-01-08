@@ -62,6 +62,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         titleLabel.text = "\(version) (\(build))"
+
+        Kin.shared.migrationDelegate = self
     }
     
     func alertConfigIssue() {
@@ -93,8 +95,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        Kin.shared.migrationDelegate = self
-        
         if useJWT {
             do {
                 try jwtLoginWith(lastUser, appId: id)
@@ -111,7 +111,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             } catch {
                 alertStartError(error)
             }
-            
         }
     }
     
@@ -133,7 +132,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
         
         try Kin.shared.start(userId: user, appId: appId, jwt: encoded, environment: environment)
-        
     }
 
     fileprivate func launchMarketplace() {
@@ -206,7 +204,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                     alert.title = "Success"
                     alert.message = "Purchase complete. You can view the confirmation on jwt.io"
                     alert.addAction(UIAlertAction(title: "View on jwt.io", style: .default, handler: { [weak alert] action in
-                        UIApplication.shared.openURL(URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!)
+                        let url = URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!
+                        UIApplication.shared.open(url, options: [:])
                         alert?.dismiss(animated: true, completion: nil)
                     }))
                 } else if let e = error {
@@ -269,7 +268,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                     alert.title = "Pay To User - Success"
                     alert.message = "You sent to: \(receipientUserId)\nAmount: \(amount)\nYou can view the confirmation on jwt.io"
                     alert.addAction(UIAlertAction(title: "View on jwt.io", style: .default, handler: { [weak alert] action in
-                        UIApplication.shared.openURL(URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!)
+                        let url = URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!
+                        UIApplication.shared.open(url, options: [:])
                         alert?.dismiss(animated: true, completion: nil)
                     }))
                 } else if let e = error {
@@ -327,7 +327,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                     alert.title = "Native Earn - Success"
                     alert.message = "Amount: \(amount)\nYou can view the confirmation on jwt.io"
                     alert.addAction(UIAlertAction(title: "View on jwt.io", style: .default, handler: { [weak alert] action in
-                        UIApplication.shared.openURL(URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!)
+                        let url = URL(string:"https://jwt.io/#debugger-io?token=\(confirm)")!
+                        UIApplication.shared.open(url, options: [:])
                         alert?.dismiss(animated: true, completion: nil)
                     }))
                 } else if let e = error {
@@ -346,8 +347,35 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SampleAppViewController: KinMigrationDelegate {
-    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
+    private struct VersionResponse: Codable {
+        let version: KinVersion
+    }
 
+    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
+        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
+//        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
+
+        URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
+            if let error = error {
+                self?.alertStartError(error)
+                callback(nil, error)
+                return
+            }
+
+            guard let data = data else {
+                callback(nil, nil)
+                return
+            }
+
+            do {
+                let response = try JSONDecoder().decode(VersionResponse.self, from: data)
+                callback(response.version, nil)
+            }
+            catch {
+                self?.alertStartError(error)
+                callback(nil, error)
+            }
+        }.resume()
     }
 
     func kinMigrationDidStartMigration() {
@@ -359,6 +387,6 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigration(error: Error) {
-        
+        alertStartError(error)
     }
 }

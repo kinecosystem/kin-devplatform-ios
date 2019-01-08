@@ -89,11 +89,15 @@ class MarketplaceViewController: KinNavigationChildController {
             }
             earnCell.title.attributedText = viewModel.title
             earnCell.imageView.image = nil
-            viewModel.image.then(on: .main) { [weak earnCell] result in
-                earnCell?.imageView.image = result.image
-                }.error { error in
+            viewModel.image
+                .then { [weak earnCell] result in
+                    DispatchQueue.main.async {
+                        earnCell?.imageView.image = result.image
+                    }
+                }
+                .error { error in
                     logWarn("cell image error: \(error)")
-            }
+                }
             earnCell.amount.attributedText = viewModel.amount
             earnCell.subtitle.attributedText = viewModel.subtitle
         }
@@ -116,11 +120,14 @@ class MarketplaceViewController: KinNavigationChildController {
             }
             spendCell.title.attributedText = viewModel.title
             spendCell.imageView.image = nil
-            viewModel.image.then(on: .main) { [weak spendCell] result in
-                spendCell?.imageView.image = result.image
+            viewModel.image
+                .then { [weak spendCell] result in
+                    DispatchQueue.main.async {
+                        spendCell?.imageView.image = result.image
+                    }
                 }.error { error in
                     logWarn("cell image error: \(error)")
-            }
+                }
             spendCell.amount.attributedText = viewModel.amount
             spendCell.subtitle.attributedText = viewModel.subtitle
         }

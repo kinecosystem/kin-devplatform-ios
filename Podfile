@@ -11,11 +11,6 @@ target 'KinDevPlatform' do
 
   pod 'SimpleCoreDataStack'
   pod 'KinMigrationModule', :path => '../kin-migration-module-ios'
-
-  # Fixes the framework tests failing to build
-#   target 'KinDevPlatformSampleApp' do
-#     inherit! :search_paths
-#   end
 end
 
 target 'KinDevPlatformSampleApp' do

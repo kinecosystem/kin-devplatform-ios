@@ -535,6 +535,9 @@ extension Kin: KinMigrationManagerDelegate {
             else if let error = error {
                 promise.signal(error)
             }
+            else {
+                promise.signal(KinEcosystemError.client(.internalInconsistency, nil))
+            }
         }
 
         return promise
@@ -546,7 +549,7 @@ extension Kin: KinMigrationManagerDelegate {
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
         do {
-            if let account = try core?.blockchain.startAccount(with: client) {
+            if let account = try startData?.blockchain.startAccount(with: client) {
                 try `continue`(with: account)
             }
         }

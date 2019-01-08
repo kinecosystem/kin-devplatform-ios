@@ -38,17 +38,13 @@ class WelcomeViewController: KinViewController {
     @IBAction func getStartedTapped(_ sender: Any) {
         Kin.track { try WelcomeScreenButtonTapped() }
         getStartedButton.isEnabled = false
-        shrinkButton()
-            .then(on: .main) { [weak self] in
-                self?.diamondsLoader.startAnimating()
-                self?.acceptTosAndOnboard()
-            .then(on: .main) {
+        shrinkButton().then { [weak self] in
+            self?.diamondsLoader.startAnimating()
+            self?.acceptTosAndOnboard().then(on: .main) {
                 self?.diamondsLoader.stopAnimating() {
                     self?.presentMarketplace()
                 }
             }
-        }.error { error in
-
         }
     }
 

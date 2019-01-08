@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'KinDevPlatform'
-  s.version          = '0.8.10'
+  s.version          = '0.8.11'
   s.summary          = 'Kin Developer Platform SDK for iOS'
   s.description      = <<-DESC
 Kin Developer Platform SDK for iOS

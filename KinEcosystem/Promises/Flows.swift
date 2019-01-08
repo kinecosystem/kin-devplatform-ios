@@ -241,7 +241,6 @@ struct Flows {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
                 let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
-                try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post)
                     .then { data in
@@ -278,7 +277,6 @@ struct Flows {
                 }
             }.then { memo, order -> KinUtil.Promise<OpenOrder> in
                 _ = core.blockchain.balance();
-                core.blockchain.stopWatchingForNewPayments(with: memo)
                 let intervals: [TimeInterval] = [2, 4, 8, 16, 32, 32, 32, 32]
                 return attempt(retryIntervals: intervals,
                                closure: { attemptNumber -> Promise<Void> in
@@ -326,7 +324,6 @@ struct Flows {
                     Kin.track { try SpendOrderCancelled(offerID: offerId, orderID: openOrder?.id ?? "") }
                 } else {
                     logError("\(error)")
-                    core.blockchain.stopWatchingForNewPayments()
                 }
                 if case KinError.insufficientFunds = error {
                     Kin.track { try SpendTransactionBroadcastToBlockchainFailed(errorReason: "\(error)", offerID: offerId, orderID: openOrder?.id ?? "") }

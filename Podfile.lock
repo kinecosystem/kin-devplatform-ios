@@ -1,4 +1,7 @@
 PODS:
+  - Base64 (1.1.2)
+  - JWT (3.0.0-beta.11):
+    - Base64 (~> 1.1.2)
   - KinCoreSDK (0.7.13):
     - Sodium (= 0.7.0)
     - StellarKit (= 0.3.11)
@@ -21,12 +24,15 @@ PODS:
     - StellarErrors (= 0.2.7)
 
 DEPENDENCIES:
+  - JWT (= 3.0.0-beta.11)
   - KinDevPlatform (from `./`)
   - KinMigrationModule (from `../kin-migration-module-ios`)
   - SimpleCoreDataStack
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Base64
+    - JWT
     - KinCoreSDK
     - KinSDK
     - KinUtil
@@ -42,8 +48,10 @@ EXTERNAL SOURCES:
     :path: "../kin-migration-module-ios"
 
 SPEC CHECKSUMS:
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
+  JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
   KinCoreSDK: b9b6f36fcca663cdca97ff25466f7b70b133bb56
-  KinDevPlatform: cfff26e6f5099c348b9aae5668ba5661b19536d9
+  KinDevPlatform: 43f13f06d93463fb0c052826ca5ed135b54eae0c
   KinMigrationModule: 60fb2a5c26d98661248496fcd1b1f5c56a51186d
   KinSDK: 73b54ddf0c5e38869b68f14a4971a3e65bc58aee
   KinUtil: ad22d0694a9c8a526740e1d2441c32e24a98928b
@@ -52,6 +60,6 @@ SPEC CHECKSUMS:
   StellarErrors: f9239fad02b05464fbc9845063195a87d28f57d1
   StellarKit: 2844acd019f7b59f2fd29e430e14111b3eb4f9d9
 
-PODFILE CHECKSUM: 29e1560bfc047d2e2dad51d9e8dd12857f51eb2a
+PODFILE CHECKSUM: 35773f8ed5ec758ef48fd2da6758b020226868d0
 
 COCOAPODS: 1.5.3

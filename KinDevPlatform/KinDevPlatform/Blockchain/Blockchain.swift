@@ -6,15 +6,11 @@
 //  Copyright © 2018 Kik Interactive. All rights reserved.
 //
 
-import Foundation
-import KinCoreSDK
-import StellarKit
+//import Foundation
+//import KinCoreSDK
+//import StellarKit
 import StellarErrors
-
-struct BlockchainProvider: ServiceProvider {
-    let url: URL
-    let networkId: KinCoreSDK.NetworkId
-}
+import KinMigrationModule
 
 struct PaymentMemoIdentifier: CustomStringConvertible, Equatable, Hashable {
     var hashValue: Int {
@@ -41,14 +37,13 @@ enum BlockchainError: Error {
 
 @available(iOS 9.0, *)
 class Blockchain {
-
-    let client: KinClient
-    fileprivate(set) var account: KinAccount!
+    let migrationManager: KinMigrationManager
+    fileprivate(set) var account: KinAccountProtocol?
     private let linkBag = LinkBag()
     private var paymentObservers = [PaymentMemoIdentifier : Observable<String>]()
     private var balanceObservers = [String : (Balance) -> ()]()
-    private var paymentsWatcher: KinCoreSDK.PaymentWatch?
-    private var balanceWatcher: KinCoreSDK.BalanceWatch?
+    private var paymentsWatcher: PaymentWatchProtocol?
+    private var balanceWatcher: BalanceWatchProtocol?
     let onboardEvent = Observable<Bool>()
     fileprivate(set) var balanceObservable = Observable<Balance>()
     fileprivate(set) var lastBalance: Balance? {
@@ -78,60 +73,70 @@ class Blockchain {
     }
     fileprivate(set) var onboarded: Bool {
         get {
-            return account.extra != nil
+            return account?.extra != nil
         }
         set {
             guard newValue else {
-                account.extra = nil
+                account?.extra = nil
                 return
             }
             onboardEvent.next(true)
             onboardEvent.finish()
-            account.extra = Data()
+            account?.extra = Data()
         }
     }
 
-    init(environment: Environment) throws {
+    init(environment: Environment, appId: AppId) throws {
         guard let bURL = URL(string: environment.blockchainURL) else {
             throw KinEcosystemError.client(.badRequest, nil)
         }
 
+        let network: Network = .custom(issuer: environment.kinIssuer, networkId: environment.blockchainPassphrase)
+        let kinCoreSP = try CustomServiceProvider(network: network, nodeURL: bURL)
+        let kinSDKSP = kinCoreSP // TODO:
 
-//        KinMigra
-
-        let provider = BlockchainProvider(url: bURL, networkId: .custom(issuer: environment.kinIssuer, stellarNetworkId: .custom(environment.blockchainPassphrase)))
-        let client = KinClient(provider: provider)
-        self.client = client
+        migrationManager = KinMigrationManager(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
     }
 
-    func startAccount() throws {
+    func startAccount(with client: KinClientProtocol) throws -> KinAccountProtocol {
         if Kin.shared.needsReset {
             lastBalance = nil
             try? client.deleteAccount(at: 0)
         }
+
+        let account: KinAccountProtocol
+
         if let acc = client.accounts[0] {
             account = acc
         } else {
             Kin.track { try StellarAccountCreationRequested() }
             account = try client.addAccount()
         }
+        
+        self.account = account
         _ = balance()
+
+        return account
     }
     
     func balance() -> Promise<Decimal> {
-        let p = Promise<Decimal>()
-        account.balance(completion: { [weak self] balance, error in
-            if let error = error {
-                p.signal(error)
-            } else if let balance = balance {
-                self?.lastBalance = Balance(amount: balance)
-                p.signal(balance)
-            } else {
-                p.signal(KinError.internalInconsistency)
-            }
-        })
+        if let account = account {
+            let p = Promise<Decimal>()
 
-        return p
+            account.balance()
+                .then { [weak self] kin in
+                    self?.lastBalance = Balance(amount: kin)
+                    p.signal(kin)
+                }
+                .error { error in
+                    p.signal(error)
+            }
+
+            return p
+        }
+        else {
+            return Promise(KinEcosystemError.client(.internalInconsistency, nil))
+        }
     }
 
     func onboard() -> Promise<Void> {
@@ -152,8 +157,8 @@ class Blockchain {
                         switch error {
                         case .missingAccount:
                             do {
-                                try self.account.watchCreation().then {
-                                    self.account.activate()
+                                try self.account?.watchCreation().then {
+                                    self.account?.activate()
                                 }.then { _ in
                                     Kin.track { try StellarKinTrustlineSetupSucceeded() }
                                     Kin.track { try WalletCreationSucceeded() }
@@ -167,7 +172,7 @@ class Blockchain {
                                 p.signal(error)
                             }
                         case .missingBalance:
-                            self.account.activate().then { _ in
+                            self.account?.activate().then { _ in
                                 Kin.track { try StellarKinTrustlineSetupSucceeded() }
                                 Kin.track { try WalletCreationSucceeded() }
                                 self.onboarded = true
@@ -193,8 +198,11 @@ class Blockchain {
     }
 
 
-    func pay(to recipient: String, kin: Decimal, memo: String?) -> Promise<TransactionId> {
-        return account.sendTransaction(to: recipient, kin: kin, memo: memo)
+    func pay(to recipient: String, kin: Decimal, memo: String?, whitelist: @escaping WhitelistClosure) -> Promise<TransactionId> {
+        guard let account = account else {
+            return Promise(KinEcosystemError.client(.internalInconsistency, nil))
+        }
+        return account.sendTransaction(to: recipient, kin: kin, memo: memo, whitelist: whitelist)
     }
 
     func startWatchingForNewPayments(with memo: PaymentMemoIdentifier) throws {
@@ -203,7 +211,7 @@ class Blockchain {
             paymentObservers[memo] = Observable<String>()
             return
         }
-        paymentsWatcher = try account.watchPayments(cursor: "now")
+        paymentsWatcher = try account?.watchPayments(cursor: "now")
         paymentsWatcher?.emitter.on(next: { [weak self] paymentInfo in
             guard let metadata = paymentInfo.memoText else { return }
             guard let match = self?.paymentObservers.first(where: { (memoKey, _) -> Bool in
@@ -265,7 +273,7 @@ class Blockchain {
         balanceObservers[observerIdentifier] = block
 
         if balanceWatcher == nil {
-            balanceWatcher = try account.watchBalance(lastBalance?.amount)
+            balanceWatcher = try account?.watchBalance(lastBalance?.amount)
             balanceWatcher?.emitter.on(next: { [weak self] amount in
                 self?.lastBalance = Balance(amount: amount)
             }).add(to: linkBag)

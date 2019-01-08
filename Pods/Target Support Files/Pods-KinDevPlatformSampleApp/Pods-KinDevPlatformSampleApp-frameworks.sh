@@ -151,6 +151,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Sodium/Sodium.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StellarErrors/StellarErrors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StellarKit/StellarKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Base64/Base64.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KinDevPlatform/KinDevPlatform.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KinCoreSDK/KinCoreSDK.framework"
@@ -161,6 +164,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Sodium/Sodium.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StellarErrors/StellarErrors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StellarKit/StellarKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Base64/Base64.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KinDevPlatform/KinDevPlatform.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

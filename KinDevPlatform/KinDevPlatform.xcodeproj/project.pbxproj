@@ -150,6 +150,13 @@
 			remoteGlobalIDString = 680CD34621E223FF0003AB59;
 			remoteInfo = KinDevPlatform;
 		};
+		680CD4D421E495630003AB59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 680CD33E21E223FF0003AB59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 680CD4BA21E2297F0003AB59;
+			remoteInfo = KinDevPlatformTestsHost;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -659,6 +666,7 @@
 			);
 			dependencies = (
 				680CD35321E223FF0003AB59 /* PBXTargetDependency */,
+				680CD4D521E495630003AB59 /* PBXTargetDependency */,
 			);
 			name = KinDevPlatformTests;
 			productName = KinDevPlatformTests;
@@ -698,6 +706,7 @@
 					680CD34F21E223FF0003AB59 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						TestTargetID = 680CD4BA21E2297F0003AB59;
 					};
 					680CD4BA21E2297F0003AB59 = {
 						CreatedOnToolsVersion = 10.1;
@@ -933,6 +942,11 @@
 			target = 680CD34621E223FF0003AB59 /* KinDevPlatform */;
 			targetProxy = 680CD35221E223FF0003AB59 /* PBXContainerItemProxy */;
 		};
+		680CD4D521E495630003AB59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 680CD4BA21E2297F0003AB59 /* KinDevPlatformTestsHost */;
+			targetProxy = 680CD4D421E495630003AB59 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1144,6 +1158,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinDevPlatformTestsHost.app/KinDevPlatformTestsHost";
 			};
 			name = Debug;
 		};
@@ -1163,6 +1178,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinDevPlatformTestsHost.app/KinDevPlatformTestsHost";
 			};
 			name = Release;
 		};

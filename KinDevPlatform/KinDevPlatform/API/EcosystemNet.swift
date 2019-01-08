@@ -8,14 +8,12 @@
 //  kinecosystem.org
 //
 
-
-import Foundation
-import KinUtil
+import KinMigrationModule
 
 struct EcosystemConfiguration {
     var baseURL: URL
     var apiKey: String?
-    var appId: String?
+    var appId: AppId
     var userId: String?
     var jwt: String?
     var publicAddress: String

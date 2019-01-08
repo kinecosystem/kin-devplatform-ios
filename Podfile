@@ -22,4 +22,5 @@ target 'KinDevPlatformSampleApp' do
   project 'KinDevPlatformSampleApp/KinDevPlatformSampleApp.xcodeproj'
 
   pod 'KinDevPlatform', :path => './'
+  pod 'JWT', '3.0.0-beta.11'
 end

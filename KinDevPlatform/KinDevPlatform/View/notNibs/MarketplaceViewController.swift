@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import CoreDataStack
 import StellarKit
-import KinCoreSDK
+import KinMigrationModule
 
 @available(iOS 9.0, *)
 class MarketplaceViewController: KinNavigationChildController {
@@ -270,7 +270,8 @@ extension MarketplaceViewController: UICollectionViewDelegate, UICollectionViewD
                     })
                 }
             }
-            
+
+
             Flows.spend(offerId: offer.id,
                         confirmPromise: controller.spend,
                         submissionPromise: submissionPromise,
@@ -279,9 +280,6 @@ extension MarketplaceViewController: UICollectionViewDelegate, UICollectionViewD
             
             
         }
-        
-        
-        
     }
 }
 

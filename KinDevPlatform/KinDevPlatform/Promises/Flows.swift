@@ -6,13 +6,12 @@
 //  Copyright © 2018 Kik Interactive. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 import CoreDataStack
-import StellarKit
+//import StellarKit
 import KinUtil
-import KinCoreSDK
+import KinMigrationModule
 
 enum OrderStatusError: Error {
     case orderStillPending
@@ -259,10 +258,15 @@ struct Flows {
                         SDOPFlowPromise().signal((recipient, amount, order, memo))
                 }
             }.then { recipient, amount, order, memo -> KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)> in
+                guard let whitelistClosure = Kin.shared.whitelistClosure else {
+                    logError("The `whitelistClosure` has not been set.")
+                    return Promise(KinEcosystemError.client(.internalInconsistency, nil))
+                }
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.description)
+                                           memo: memo.description,
+                                           whitelist: whitelistClosure)
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")
@@ -455,10 +459,15 @@ struct Flows {
                         SDOPFlowPromise().signal((recipient, amount, order, memo))
                 }
             }.then { recipient, amount, order, memo -> POFlowPromise in
+                guard let whitelistClosure = Kin.shared.whitelistClosure else {
+                    logError("The `whitelistClosure` has not been set.")
+                    return Promise(KinEcosystemError.client(.internalInconsistency, nil))
+                }
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.description)
+                                           memo: memo.description,
+                                           whitelist: whitelistClosure)
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")

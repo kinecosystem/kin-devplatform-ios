@@ -8,14 +8,16 @@
 //  kinecosystem.org
 //
 
-import Foundation
-import KinCoreSDK
 import StellarErrors
+import KinMigrationModule
 
 let SDKVersion = "0.8.4"
 
 public typealias ExternalOfferCallback = (String?, Error?) -> ()
 public typealias OrderConfirmationCallback = (ExternalOrderStatus?, Error?) -> ()
+public typealias MigrationVersionCallback = (KinVersion?, Error?) -> ()
+
+public typealias KinVersion = KinMigrationModule.KinVersion
 
 public enum ExternalOrderStatus {
     case pending
@@ -45,10 +47,20 @@ public struct NativeOffer: Equatable {
     }
 }
 
+public protocol KinMigrationDelegate: NSObjectProtocol {
+    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback)
+    func kinMigrationDidStartMigration()
+    func kinMigrationIsReady()
+    func kinMigration(error: Error)
+}
+
 @available(iOS 9.0, *)
-public class Kin {
-    
+public class Kin: NSObject {
     public static let shared = Kin()
+
+    public weak var migrationDelegate: KinMigrationDelegate?
+    public var whitelistClosure: WhitelistClosure?
+
     fileprivate(set) var core: Core?
     fileprivate(set) var needsReset = false
     fileprivate weak var mpPresentingController: UIViewController?
@@ -57,7 +69,6 @@ public class Kin {
     fileprivate var prestartNativeOffers = [NativeOffer]()
     fileprivate let psBalanceObsLock = NSLock()
     fileprivate let psNativeOLock = NSLock()
-    fileprivate init() { }
     
     public var lastKnownBalance: Balance? {
         guard let core = Kin.shared.core else {
@@ -70,7 +81,7 @@ public class Kin {
         guard let core = Kin.shared.core else {
             return nil
         }
-        return core.blockchain.account.publicAddress
+        return core.blockchain.account?.publicAddress
     }
     
     public var isActivated: Bool {
@@ -90,10 +101,12 @@ public class Kin {
             logError("failed to send event, error: \(error)")
         }
     }
+
+    private var startData: StartData?
     
     public func start(userId: String,
                       apiKey: String? = nil,
-                      appId: String? = nil,
+                      appId appIdValue: String,
                       jwt: String? = nil,
                       environment: Environment) throws {
         guard core == nil else {
@@ -116,32 +129,61 @@ public class Kin {
             logError("start failed")
             throw KinEcosystemError.client(.internalInconsistency, nil)
         }
-        let store: EcosystemData!
-        let chain: Blockchain!
+
+        let store: EcosystemData
+        let chain: Blockchain
+        let appId: AppId
+
         do {
+            appId = try AppId(appIdValue)
             store = try EcosystemData(modelName: "KinEcosystem",
                                       modelURL: URL(string: modelPath)!)
-            chain = try Blockchain(environment: environment)
-            try chain.startAccount()
+            chain = try Blockchain(environment: environment, appId: appId)
+            chain.migrationManager.delegate = self
+            try chain.migrationManager.start()
         } catch {
-            logError("start failed")
+            logError("prepare start failed")
             throw KinEcosystemError.client(.internalInconsistency, nil)
         }
-        
-        guard let marketplaceURL = URL(string: environment.marketplaceURL) else {
+
+        startData = StartData(environment: environment,
+                              userId: userId,
+                              apiKey: apiKey,
+                              appId: appId,
+                              jwt: jwt,
+                              store: store,
+                              blockchain: chain)
+    }
+
+    private func `continue`(with account: KinAccountProtocol) throws {
+        guard let startData = startData else {
+            throw KinEcosystemError.client(.internalInconsistency, nil)
+        }
+
+        self.startData = nil
+
+        guard let marketplaceURL = URL(string: startData.environment.marketplaceURL) else {
             throw KinEcosystemError.client(.badRequest, nil)
         }
-        let network = EcosystemNet(config: EcosystemConfiguration(baseURL: marketplaceURL,
-                                                                  apiKey: apiKey,
-                                                                  appId: appId,
-                                                                  userId: userId,
-                                                                  jwt: jwt,
-                                                                  publicAddress: chain.account.publicAddress))
-        core = try Core(environment: environment, network: network, data: store, blockchain: chain)
 
-        let tosAccepted = core!.network.tosAccepted
+        let config = EcosystemConfiguration(baseURL: marketplaceURL,
+                                            apiKey: startData.apiKey,
+                                            appId: startData.appId,
+                                            userId: startData.userId,
+                                            jwt: startData.jwt,
+                                            publicAddress: account.publicAddress)
+
+        let network = EcosystemNet(config: config)
+        let core = try Core(environment: startData.environment,
+                            network: network,
+                            data: startData.store,
+                            blockchain: startData.blockchain)
+
+        self.core = core
+
+        let tosAccepted = core.network.tosAccepted
         network.authorize().then { [weak self] _ in
-            self?.core!.blockchain.onboard()
+            core.blockchain.onboard()
                 .then {
                     logInfo("blockchain onboarded successfully")
                 }
@@ -149,7 +191,7 @@ public class Kin {
                     logError("blockchain onboarding failed - \(error)")
             }
             self?.updateData(with: OffersList.self, from: "offers").error { error in
-                    logError("data sync failed (\(error))")
+                logError("data sync failed (\(error))")
             }
             if tosAccepted {
                 self?.updateData(with: OrdersList.self, from: "orders").error { error in
@@ -161,8 +203,9 @@ public class Kin {
         defer {
             psBalanceObsLock.unlock()
         }
-        try prestartBalanceObservers.forEach { identifier, block in
-            _ = try core!.blockchain.addBalanceObserver(with: block, identifier: identifier)
+        try prestartBalanceObservers.forEach { (arg) in
+            let (identifier, block) = arg
+            _ = try core.blockchain.addBalanceObserver(with: block, identifier: identifier)
         }
         prestartBalanceObservers.removeAll()
         psNativeOLock.lock()
@@ -255,7 +298,7 @@ public class Kin {
         }
         
     }
-    
+
     public func purchase(offerJWT: String, completion: @escaping ExternalOfferCallback) -> Bool {
         guard let core = core else {
             logError("Kin not started")
@@ -406,7 +449,7 @@ public class Kin {
             }, digitalServiceID: { [weak self] () -> (String) in
                 guard let appId = self?.core?.network.client.authToken?.app_id else {
                     if let startAppid = self?.core?.network.client.config.appId {
-                        return startAppid
+                        return startAppid.value
                     }
                     return ""
                 }
@@ -460,5 +503,63 @@ public class Kin {
             }, version: { () -> (String) in
                 SDKVersion
         })
+    }
+}
+
+@available(iOS 9.0, *)
+extension Kin {
+    fileprivate struct StartData {
+        let environment: Environment
+        let userId: String
+        let apiKey: String?
+        let appId: AppId
+        let jwt: String?
+        let store: EcosystemData
+        let blockchain: Blockchain
+    }
+}
+
+@available(iOS 9.0, *)
+extension Kin: KinMigrationManagerDelegate {
+    public func kinMigrationManagerNeedsVersion(_ kinMigrationManager: KinMigrationManager) -> Promise<KinVersion> {
+        guard let migrationDelegate = migrationDelegate else {
+            fatalError("The `migrationDelegate` needs to be set.")
+        }
+
+        let promise = Promise<KinVersion>()
+
+        migrationDelegate.kinMigrationNeedsVersion() { (kinVersion, error) in
+            if let kinVersion = kinVersion {
+                promise.signal(kinVersion)
+            }
+            else if let error = error {
+                promise.signal(error)
+            }
+        }
+
+        return promise
+    }
+
+    public func kinMigrationManagerDidStart(_ kinMigrationManager: KinMigrationManager) {
+        migrationDelegate?.kinMigrationDidStartMigration()
+    }
+
+    public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
+        do {
+            if let account = try core?.blockchain.startAccount(with: client) {
+                try `continue`(with: account)
+            }
+        }
+        catch {
+            logError("start failed")
+        }
+
+        migrationDelegate?.kinMigrationIsReady()
+    }
+
+    public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, error: Error) {
+        logError(error.localizedDescription)
+
+        migrationDelegate?.kinMigration(error: error)
     }
 }

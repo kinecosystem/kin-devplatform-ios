@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "KinEcosystem.h"
+#import "KinDevPlatform.h"
 
 FOUNDATION_EXPORT double KinDevPlatformVersionNumber;
 FOUNDATION_EXPORT const unsigned char KinDevPlatformVersionString[];

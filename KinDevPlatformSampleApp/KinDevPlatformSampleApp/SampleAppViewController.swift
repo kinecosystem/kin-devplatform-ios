@@ -92,10 +92,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             alertConfigIssue()
             return
         }
+
+        Kin.shared.migrationDelegate = self
         
         if useJWT {
             do {
-                try jwtLoginWith(lastUser, id: id)
+                try jwtLoginWith(lastUser, appId: id)
             } catch {
                 alertStartError(error)
             }
@@ -111,7 +113,30 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
+    }
+    
+    func jwtLoginWith(_ user: String, appId: String) throws {
         
+        guard  let jwtPKey = privateKey else {
+            alertConfigIssue()
+            return
+        }
+        
+        guard let encoded = JWTUtil.encode(header: ["alg": "RS512",
+                                                    "typ": "jwt",
+                                                    "kid" : "rs512_0"],
+                                           body: ["user_id":user],
+                                           subject: "register",
+                                           id: appId, privateKey: jwtPKey) else {
+                                            alertConfigIssue()
+                                            return
+        }
+        
+        try Kin.shared.start(userId: user, appId: appId, jwt: encoded, environment: environment)
+        
+    }
+
+    fileprivate func launchMarketplace() {
         let offer = NativeOffer(id: "wowowo12345",
                                 title: "Renovate!",
                                 description: "Your new home",
@@ -129,33 +154,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: { [weak alert] action in
                     alert?.dismiss(animated: true, completion: nil)
                 }))
-                
+
                 let presentor = self.presentedViewController ?? self
                 presentor.present(alert, animated: true, completion: nil)
             }
         }
         Kin.shared.launchMarketplace(from: self)
-    }
-    
-    func jwtLoginWith(_ user: String, id: String) throws {
-        
-        guard  let jwtPKey = privateKey else {
-            alertConfigIssue()
-            return
-        }
-        
-        guard let encoded = JWTUtil.encode(header: ["alg": "RS512",
-                                                    "typ": "jwt",
-                                                    "kid" : "rs512_0"],
-                                           body: ["user_id":user],
-                                           subject: "register",
-                                           id: id, privateKey: jwtPKey) else {
-                                            alertConfigIssue()
-                                            return
-        }
-        
-        try Kin.shared.start(userId: user, jwt: encoded, environment: environment)
-        
     }
     
     fileprivate func alertStartError(_ error: Error) {
@@ -174,7 +178,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                 return
         }
         do {
-            try jwtLoginWith(lastUser, id: id)
+            try jwtLoginWith(lastUser, appId: id)
         } catch {
             alertStartError(error)
         }
@@ -230,7 +234,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
         
         do {
-            try jwtLoginWith(lastUser, id: appId)
+            try jwtLoginWith(lastUser, appId: appId)
         } catch {
             alertStartError(error)
         }
@@ -294,7 +298,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
         
         do {
-            try jwtLoginWith(lastUser, id: appId)
+            try jwtLoginWith(lastUser, appId: appId)
         } catch {
             alertStartError(error)
         }
@@ -341,3 +345,20 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension SampleAppViewController: KinMigrationDelegate {
+    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
+
+    }
+
+    func kinMigrationDidStartMigration() {
+
+    }
+
+    func kinMigrationIsReady() {
+        launchMarketplace()
+    }
+
+    func kinMigration(error: Error) {
+        
+    }
+}

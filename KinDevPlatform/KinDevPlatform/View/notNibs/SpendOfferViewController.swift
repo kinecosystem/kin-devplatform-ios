@@ -32,8 +32,10 @@ class SpendOfferViewController: KinViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.image.then(on: .main) { [weak self] result in
-            self?.spendImageView.image = result.image
+        viewModel.image.then { [weak self] result in
+            DispatchQueue.main.async {
+                self?.spendImageView.image = result.image
+            }
         }
         spendTitle.attributedText = viewModel.title
         spendDescription.numberOfLines = 2

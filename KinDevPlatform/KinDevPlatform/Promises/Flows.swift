@@ -51,13 +51,17 @@ struct Flows {
                     .then { htmlResult in
                         KinUtil.Promise<(String, OpenOrder)>().signal((htmlResult, order))
                 }
-            }.then(on: .main) { htmlResult, order -> SOPFlowPromise in
-                guard let appId = core.network.client.authToken?.app_id else {
-                    return SOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
+            }.then { htmlResult, order -> SOPFlowPromise in
+                let p = SOPFlowPromise()
+                DispatchQueue.main.async {
+                    guard let appId = core.network.client.authToken?.app_id else {
+                        p.signal(KinEcosystemError.client(.internalInconsistency, nil))
+                        return
+                    }
+                    let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
+                    p.signal((htmlResult, order, memo))
                 }
-                let memo = PaymentMemoIdentifier(appId: appId,
-                                                 id: order.id)
-                return SOPFlowPromise().signal((htmlResult, order, memo))
+                return p
             }.then { htmlResult, order, memo -> Promise<(PaymentMemoIdentifier, OpenOrder)> in
                 try core.blockchain.startWatchingForNewPayments(with: memo)
                 let result = EarnResult(content: htmlResult)

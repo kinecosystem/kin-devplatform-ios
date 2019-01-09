@@ -40,9 +40,11 @@ class WelcomeViewController: KinViewController {
         getStartedButton.isEnabled = false
         shrinkButton().then { [weak self] in
             self?.diamondsLoader.startAnimating()
-            self?.acceptTosAndOnboard().then(on: .main) {
-                self?.diamondsLoader.stopAnimating() {
-                    self?.presentMarketplace()
+            self?.acceptTosAndOnboard().then {
+                DispatchQueue.main.async {
+                    self?.diamondsLoader.stopAnimating() {
+                        self?.presentMarketplace()
+                    }
                 }
             }
         }

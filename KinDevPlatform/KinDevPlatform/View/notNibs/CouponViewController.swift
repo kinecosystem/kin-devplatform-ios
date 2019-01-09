@@ -32,8 +32,10 @@ class CouponViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.image.then(on: .main) { [weak self] result in
-            self?.couponImageView.image = result.image
+        viewModel.image.then { [weak self] result in
+            DispatchQueue.main.async {
+                self?.couponImageView.image = result.image
+            }
         }
         couponDescription.textContainer.maximumNumberOfLines = 1
         couponDescription.textContainer.lineBreakMode = .byTruncatingTail

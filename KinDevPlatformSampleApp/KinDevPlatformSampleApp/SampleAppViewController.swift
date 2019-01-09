@@ -18,6 +18,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var spendIndicator: UIActivityIndicatorView!
     @IBOutlet weak var buyStickerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+
+    let loader = UIActivityIndicatorView(style: .whiteLarge)
     
     let environment: Environment = .playground
     
@@ -64,6 +66,15 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         titleLabel.text = "\(version) (\(build))"
 
         Kin.shared.migrationDelegate = self
+
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        loader.isHidden = true
+        view.addSubview(loader)
+        loader.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        loader.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        loader.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        loader.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     func alertConfigIssue() {
@@ -344,6 +355,33 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+
+    fileprivate func showLoader() {
+        guard loader.isHidden else {
+            return
+        }
+
+        loader.isHidden = false
+        loader.alpha = 0
+        loader.startAnimating()
+
+        UIView.animate(withDuration: 0.3) {
+            self.loader.alpha = 1
+        }
+    }
+
+    fileprivate func hideLoader() {
+        guard !loader.isHidden else {
+            return
+        }
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.loader.alpha = 0
+        }) { _ in
+            self.loader.isHidden = false
+            self.loader.stopAnimating()
+        }
+    }
 }
 
 extension SampleAppViewController: KinMigrationDelegate {
@@ -352,8 +390,8 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
-        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
-//        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
+//        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
+        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
 
         URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
             if let error = error {
@@ -379,14 +417,16 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationDidStartMigration() {
-
+        showLoader()
     }
 
     func kinMigrationIsReady() {
+        hideLoader()
         launchMarketplace()
     }
 
     func kinMigration(error: Error) {
+        hideLoader()
         alertStartError(error)
     }
 }

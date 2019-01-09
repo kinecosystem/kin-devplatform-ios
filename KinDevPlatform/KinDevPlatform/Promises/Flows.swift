@@ -30,7 +30,7 @@ typealias POFlowPromise = KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>
 
 @available(iOS 9.0, *)
 struct Flows {
-        
+    
     static func earn(offerId: String,
                      resultPromise: Promise<String>,
                      core: Core) {
@@ -80,50 +80,57 @@ struct Flows {
                 let (memo, order) = arg
                 return core.data.changeObjects(of: Offer.self,
                                                changeBlock: { _, offers in
-                    offers.first?.pending = true
+                                                offers.first?.pending = true
                 }, with: NSPredicate(with: ["id":offerId]))
                     .then {
                         KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>().signal((memo, order))
                 }
             }.then { memo, order -> KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)> in
-                return core.blockchain.waitForNewPayment(with: memo)
+                let p = POFlowPromise()
+                core.blockchain.waitForNewPayment(with: memo, timeout: 15.0)
                     .then { txHash in
                         Kin.track { try EarnOrderPaymentConfirmed(orderID: order.id, transactionID: txHash) }
-                        return KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>().signal((memo, order))
+                    } .error({ (_) in
+                        //in case of timeout, relay on server order verfication
+                        logVerbose("waitForNewPayment timeout, waiting for order confirmation.")
+                    })
+                    .finally {
+                        p.signal((memo, order))
                 }
+                return p
             }.then { memo, order -> KinUtil.Promise<OpenOrder> in
                 core.blockchain.stopWatchingForNewPayments(with: memo)
                 let intervals: [TimeInterval] = [2, 4, 8, 16, 32, 32, 32, 32]
                 return attempt(retryIntervals: intervals,
                                closure: { attemptNumber -> Promise<Void> in
-                    let p = KinUtil.Promise<Void>()
-                    logVerbose("attempt to get earn order with !pending state: (\(attemptNumber)/\(intervals.count + 1))")
-                    var pending = true
-                    core.network.dataAtPath("orders/\(order.id)")
-                        .then { data in
-                            core.data.read(Order.self, with: data,
-                                           readBlock: { networkOrder in
-                                logVerbose("earn order \(networkOrder.id) status: \(networkOrder.orderStatus)")
-                                if networkOrder.orderStatus != .pending {
-                                    pending = false
-                                }
-                            }).then {
-                                if pending {
-                                    if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
-                                        logWarn("attempts reached \(attemptNumber)")
-                                        _ = core.data.changeObjects(of: Order.self, changeBlock: { _, orders in
-                                            if let order = orders.first {
-                                                order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                let p = KinUtil.Promise<Void>()
+                                logVerbose("attempt to get earn order with !pending state: (\(attemptNumber)/\(intervals.count + 1))")
+                                var pending = true
+                                core.network.dataAtPath("orders/\(order.id)")
+                                    .then { data in
+                                        core.data.read(Order.self, with: data,
+                                                       readBlock: { networkOrder in
+                                                        logVerbose("earn order \(networkOrder.id) status: \(networkOrder.orderStatus)")
+                                                        if networkOrder.orderStatus != .pending {
+                                                            pending = false
+                                                        }
+                                        }).then {
+                                            if pending {
+                                                if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
+                                                    logWarn("attempts reached \(attemptNumber)")
+                                                    _ = core.data.changeObjects(of: Order.self, changeBlock: { _, orders in
+                                                        if let order = orders.first {
+                                                            order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                                        }
+                                                    }, with: NSPredicate(with: ["id":order.id]))
+                                                }
+                                                p.signal(OrderStatusError.orderStillPending)
+                                            } else {
+                                                p.signal(())
                                             }
-                                        }, with: NSPredicate(with: ["id":order.id]))
-                                    }
-                                    p.signal(OrderStatusError.orderStillPending)
-                                } else {
-                                    p.signal(())
+                                        }
                                 }
-                            }
-                    }
-                    return p
+                                return p
                 }).then {
                     KinUtil.Promise<OpenOrder>().signal(order)
                 }
@@ -132,6 +139,8 @@ struct Flows {
                     guard let offer = result.first else {
                         return
                     }
+                    //update balance after order completed
+                    _ = core.blockchain.balance()
                     if let type = KBITypes.OfferType(rawValue: offer.offerContentType.rawValue) {
                         Kin.track { try EarnOrderCompleted(kinAmount: Double(order.amount), offerID: order.offer_id, offerType: type, orderID: order.id) }
                     }
@@ -235,7 +244,6 @@ struct Flows {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
                 let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
-                try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post)
                     .then { data in
@@ -276,47 +284,42 @@ struct Flows {
                         logVerbose("\(amount) kin sent to \(recipient)")
                         return KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>().signal((memo, order))
                 }
-            }.then { memo, order -> KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)> in
-                return core.blockchain.waitForNewPayment(with: memo)
-                    .then { txHash in
-                        return POFlowPromise().signal((memo, order))
-                }
             }.then { memo, order -> KinUtil.Promise<OpenOrder> in
-                core.blockchain.stopWatchingForNewPayments(with: memo)
+                _ = core.blockchain.balance();
                 let intervals: [TimeInterval] = [2, 4, 8, 16, 32, 32, 32, 32]
                 return attempt(retryIntervals: intervals,
                                closure: { attemptNumber -> Promise<Void> in
-                    let p = KinUtil.Promise<Void>()
-                    logVerbose("attempt to get spend order with !pending state (and result): (\(attemptNumber)/\(intervals.count + 1))")
-                    var pending = true
-                    core.network.dataAtPath("orders/\(order.id)")
-                        .then { data in
-                            core.data.read(Order.self,
-                                           with: data,
-                                           readBlock: { networkOrder in
-                                let hasResult = (networkOrder.result as? CouponCode)?.coupon_code != nil
-                                logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
-                                if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
-                                    pending = false
-                                }
-                            }).then {
-                                if pending {
-                                    if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
-                                        logWarn("attempts reached \(attemptNumber)")
-                                        _ = core.data.changeObjects(of: Order.self,
-                                                                    changeBlock: { _, orders in
-                                            if let order = orders.first {
-                                                order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                let p = KinUtil.Promise<Void>()
+                                logVerbose("attempt to get spend order with !pending state (and result): (\(attemptNumber)/\(intervals.count + 1))")
+                                var pending = true
+                                core.network.dataAtPath("orders/\(order.id)")
+                                    .then { data in
+                                        core.data.read(Order.self,
+                                                       with: data,
+                                                       readBlock: { networkOrder in
+                                                        let hasResult = (networkOrder.result as? CouponCode)?.coupon_code != nil
+                                                        logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
+                                                        if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
+                                                            pending = false
+                                                        }
+                                        }).then {
+                                            if pending {
+                                                if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
+                                                    logWarn("attempts reached \(attemptNumber)")
+                                                    _ = core.data.changeObjects(of: Order.self,
+                                                                                changeBlock: { _, orders in
+                                                                                    if let order = orders.first {
+                                                                                        order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                                                                    }
+                                                    }, with: NSPredicate(with: ["id":order.id]))
+                                                }
+                                                p.signal(OrderStatusError.orderStillPending)
+                                            } else {
+                                                p.signal(())
                                             }
-                                        }, with: NSPredicate(with: ["id":order.id]))
-                                    }
-                                    p.signal(OrderStatusError.orderStillPending)
-                                } else {
-                                    p.signal(())
+                                        }
                                 }
-                            }
-                    }
-                    return p
+                                return p
                 }).then {
                     KinUtil.Promise<OpenOrder>().signal(order)
                 }
@@ -330,7 +333,6 @@ struct Flows {
                     Kin.track { try SpendOrderCancelled(offerID: offerId, orderID: openOrder?.id ?? "") }
                 } else {
                     logError("\(error)")
-                    core.blockchain.stopWatchingForNewPayments()
                 }
                 if case KinError.insufficientFunds = error {
                     Kin.track { try SpendTransactionBroadcastToBlockchainFailed(errorReason: "\(error)", offerID: offerId, orderID: openOrder?.id ?? "") }
@@ -440,7 +442,6 @@ struct Flows {
                 }
                 let memo = PaymentMemoIdentifier(appId: appId,
                                                  id: order.id)
-                try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
                     .then { data in
                         Kin.track { try SpendOrderCompletionSubmitted(isNative: true, offerID: order.offer_id, orderID: order.id) }
@@ -477,48 +478,43 @@ struct Flows {
                         logVerbose("\(amount) kin sent to \(recipient)")
                         return POFlowPromise().signal((memo, order))
                 }
-            }.then { memo, order -> POFlowPromise in
-                return core.blockchain.waitForNewPayment(with: memo)
-                    .then { txHash in
-                        POFlowPromise().signal((memo, order))
-                }
             }.then { memo, order -> KinUtil.Promise<OpenOrder> in
-                core.blockchain.stopWatchingForNewPayments(with: memo)
+                _ = core.blockchain.balance();
                 let intervals: [TimeInterval] = [2, 4, 8, 16, 32, 32, 32, 32]
                 return KinUtil.attempt(retryIntervals: intervals,
                                        closure: { attemptNumber -> Promise<Void> in
-                    let p = KinUtil.Promise<Void>()
-                    logVerbose("attempt to get spend order with !pending state (and result): (\(attemptNumber)/\(intervals.count + 1))")
-                    var pending = true
-                    core.network.dataAtPath("orders/\(order.id)")
-                        .then { data in
-                            core.data.read(Order.self,
-                                           with: data,
-                                           readBlock: { networkOrder in
-                                jwtConfirmation = (networkOrder.result as? JWTConfirmation)?.jwt
-                                let hasResult = jwtConfirmation != nil
-                                logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
-                                if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
-                                    pending = false
-                                }
-                            }).then {
-                                if pending {
-                                    if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
-                                        logWarn("attempts reached \(attemptNumber)")
-                                        _ = core.data.changeObjects(of: Order.self,
-                                                                    changeBlock: { _, orders in
-                                            if let order = orders.first {
-                                                order.orderStatus = attemptNumber == 5 ? .delayed : .failed
-                                            }
-                                        }, with: NSPredicate(with: ["id":order.id]))
-                                    }
-                                    p.signal(OrderStatusError.orderStillPending)
-                                } else {
-                                    p.signal(())
-                                }
-                            }
-                    }
-                    return p
+                                        let p = KinUtil.Promise<Void>()
+                                        logVerbose("attempt to get spend order with !pending state (and result): (\(attemptNumber)/\(intervals.count + 1))")
+                                        var pending = true
+                                        core.network.dataAtPath("orders/\(order.id)")
+                                            .then { data in
+                                                core.data.read(Order.self,
+                                                               with: data,
+                                                               readBlock: { networkOrder in
+                                                                jwtConfirmation = (networkOrder.result as? JWTConfirmation)?.jwt
+                                                                let hasResult = jwtConfirmation != nil
+                                                                logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
+                                                                if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
+                                                                    pending = false
+                                                                }
+                                                }).then {
+                                                    if pending {
+                                                        if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
+                                                            logWarn("attempts reached \(attemptNumber)")
+                                                            _ = core.data.changeObjects(of: Order.self,
+                                                                                        changeBlock: { _, orders in
+                                                                                            if let order = orders.first {
+                                                                                                order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                                                                            }
+                                                            }, with: NSPredicate(with: ["id":order.id]))
+                                                        }
+                                                        p.signal(OrderStatusError.orderStillPending)
+                                                    } else {
+                                                        p.signal(())
+                                                    }
+                                                }
+                                        }
+                                        return p
                 }).then {
                     KinUtil.Promise<OpenOrder>().signal(order)
                 }
@@ -547,7 +543,6 @@ struct Flows {
                     Kin.track { try EarnOrderCreationFailed(errorReason: responseError.message ?? "\(responseError.code)", offerID: openOrder?.offer_id ?? "") }
                 }
                 Kin.track { try SpendOrderFailed(errorReason: "\(error)", isNative: true, offerID: openOrder?.offer_id ?? "", orderID: openOrder?.id ?? "") }
-                core.blockchain.stopWatchingForNewPayments()
                 _ = core.blockchain.balance()
                 if let order = openOrder, canCancelOrder {
                     core.network.delete("orders/\(order.id)")
@@ -585,34 +580,34 @@ struct Flows {
                                                         if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                             pending = false
                                                         }
-                                                    }.then {
-                                                        if pending {
-                                                            if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
-                                                                logWarn("attempts reached \(attemptNumber)")
-                                                                _ = core.data.changeObjects(of: Order.self,
-                                                                                            changeBlock: { _, orders in
-                                                                                                if let order = orders.first {
-                                                                                                    order.orderStatus = attemptNumber == 5 ? .delayed : .failed
-                                                                                                }
-                                                                }, with: NSPredicate(with: ["id":order]))
+                                                        }.then {
+                                                            if pending {
+                                                                if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
+                                                                    logWarn("attempts reached \(attemptNumber)")
+                                                                    _ = core.data.changeObjects(of: Order.self,
+                                                                                                changeBlock: { _, orders in
+                                                                                                    if let order = orders.first {
+                                                                                                        order.orderStatus = attemptNumber == 5 ? .delayed : .failed
+                                                                                                    }
+                                                                    }, with: NSPredicate(with: ["id":order]))
+                                                                }
+                                                                p.signal(OrderStatusError.orderStillPending)
+                                                            } else {
+                                                                p.signal(())
                                                             }
-                                                            p.signal(OrderStatusError.orderStillPending)
-                                                        } else {
-                                                            p.signal(())
-                                                        }
                                                     }
-                                            }.error { error in
-                                                 p.signal(())
+                                                }.error { error in
+                                                    p.signal(())
                                             }
-                        return p
+                                            return p
                     }).then {
                         if let jwt = jwtConfirmation {
                             jwtPromise.signal(jwt)
                         } else  {
                             jwtPromise.signal(KinEcosystemError.service(.timeout, nil))
                         }
-                    }.error { error in
-                        jwtPromise.signal(error)
+                        }.error { error in
+                            jwtPromise.signal(error)
                     }
                 } else {
                     openOrder = nil
@@ -696,10 +691,18 @@ struct Flows {
                         return POFlowPromise().signal((memo, order))
                 }
             }.then { memo, order -> POFlowPromise in
-                return core.blockchain.waitForNewPayment(with: memo)
+                let p = POFlowPromise()
+                core.blockchain.waitForNewPayment(with: memo, timeout: 15.0)
                     .then { txHash in
-                        POFlowPromise().signal((memo, order))
+                        Kin.track { try EarnOrderPaymentConfirmed(orderID: order.id, transactionID: txHash) }
+                    } .error({ (_) in
+                        //in case of timeout, relay on server order verfication
+                        logVerbose("waitForNewPayment timeout, waiting for order confirmation.")
+                    })
+                    .finally {
+                        p.signal((memo, order))
                 }
+                return p
             }.then { memo, order -> KinUtil.Promise<OpenOrder> in
                 core.blockchain.stopWatchingForNewPayments(with: memo)
                 let intervals: [TimeInterval] = [2, 4, 8, 16, 32, 32, 32, 32]
@@ -743,6 +746,8 @@ struct Flows {
                 
             }.then { order in
                 Kin.track { try EarnOrderCompleted(kinAmount: Double(order.amount), offerID: order.offer_id, offerType: .external, orderID: order.id) }
+                //update balance after order completed
+                _ = core.blockchain.balance()
                 if let confirmation = jwtConfirmation {
                     jwtPromise.signal(confirmation)
                 } else {

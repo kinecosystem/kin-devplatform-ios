@@ -1,6 +1,6 @@
 {
   "name": "KinDevPlatform",
-  "version": "0.8.10",
+  "version": "0.8.11",
   "summary": "Kin Developer Platform SDK for iOS",
   "description": "Kin Developer Platform SDK for iOS",
   "homepage": "https://github.com/kinecosystem/kin-devplatform-ios",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/kinecosystem/kin-devplatform-ios",
-    "tag": "0.8.10"
+    "tag": "0.8.11"
   },
   "platforms": {
     "ios": "8.1"

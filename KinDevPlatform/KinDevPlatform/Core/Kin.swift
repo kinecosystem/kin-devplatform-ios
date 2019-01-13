@@ -102,6 +102,10 @@ public class Kin: NSObject {
         }
     }
 
+    public var blockchainVersion: KinVersion? {
+        return core?.blockchain.migrationManager.version
+    }
+
     private var startData: StartData?
     
     public func start(userId: String,

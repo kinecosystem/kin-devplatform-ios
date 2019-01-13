@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import CoreDataStack
-//import StellarKit
 import KinUtil
 import KinMigrationModule
 
@@ -58,7 +57,7 @@ struct Flows {
                         p.signal(KinEcosystemError.client(.internalInconsistency, nil))
                         return
                     }
-                    let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
+                    let memo = PaymentMemoIdentifier(id: order.id)
                     p.signal((htmlResult, order, memo))
                 }
                 return p
@@ -243,7 +242,7 @@ struct Flows {
                 guard let appId = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
+                let memo = PaymentMemoIdentifier(id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post)
                     .then { data in
@@ -277,7 +276,7 @@ struct Flows {
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.description,
+                                           memo: memo.id,
                                            whitelist: whitelistClosure)
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
@@ -440,8 +439,7 @@ struct Flows {
                 guard let appId = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(appId: appId,
-                                                 id: order.id)
+                let memo = PaymentMemoIdentifier(id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
                     .then { data in
                         Kin.track { try SpendOrderCompletionSubmitted(isNative: true, offerID: order.offer_id, orderID: order.id) }
@@ -471,7 +469,7 @@ struct Flows {
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.description,
+                                           memo: memo.id,
                                            whitelist: whitelistClosure)
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
@@ -678,8 +676,7 @@ struct Flows {
                 guard let appId = core.network.client.authToken?.app_id else {
                     return POFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(appId: appId,
-                                                 id: order.id)
+                let memo = PaymentMemoIdentifier(id: order.id)
                 try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
                     .then { data in

@@ -390,8 +390,8 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
-//        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
-        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
+        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
+//        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
 
         URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
             if let error = error {

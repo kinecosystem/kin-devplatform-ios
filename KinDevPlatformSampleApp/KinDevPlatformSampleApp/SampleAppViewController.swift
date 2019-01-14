@@ -20,9 +20,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleLabel: UILabel!
 
     let loader = UIActivityIndicatorView(style: .whiteLarge)
-    
-    let environment: Environment = .playground
-    
+
     var appKey: String? {
         return configValue(for: "appKey", of: String.self)
     }
@@ -118,7 +116,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             do {
-                try Kin.shared.start(userId: lastUser, apiKey: key, appId: id, environment: environment)
+                try start(user: lastUser, apiKey: key, appId: id)
             } catch {
                 alertStartError(error)
             }
@@ -141,8 +139,14 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                                             alertConfigIssue()
                                             return
         }
-        
-        try Kin.shared.start(userId: user, appId: appId, jwt: encoded, environment: environment)
+
+        try start(user: user, appId: appId, jwt: encoded)
+    }
+
+    private func start(user: String, apiKey: String? = nil, appId: String, jwt: String? = nil) throws {
+        let url = URL(string: "https://migration-devplatform-playground.developers.kinecosystem.com")!
+
+        try Kin.shared.start(userId: user, appId: appId, kinCoreEnvironment: .playground, kinSDKEnvironment: .playground, migrateBaseURL: url)
     }
 
     fileprivate func launchMarketplace() {

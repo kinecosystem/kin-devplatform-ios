@@ -5,15 +5,16 @@
 //
 
 import Foundation
+import KinMigrationModule
 
 public struct EnvironmentProperties: Codable, Equatable {
-    let blockchainURL: String
+    let blockchainURL: URL
     let blockchainPassphrase: String
     let kinIssuer: String
     let marketplaceURL: String
     let webURL: String
     let BIURL: String
-    public init(blockchainURL: String,
+    public init(blockchainURL: URL,
                 blockchainPassphrase: String,
                 kinIssuer: String,
                 marketplaceURL: String,
@@ -44,18 +45,20 @@ public enum Environment {
         }
     }
     
-    public var blockchainURL: String {
+    public var blockchainURL: URL {
+        // .playground and .production are coming from the migration module
         switch self {
         case .playground:
-            return "https://horizon-playground.kininfrastructure.com"
+            return URL(string: "https://horizon-playground.kininfrastructure.com")!
         case .production:
-            return "https://horizon-ecosystem.kininfrastructure.com/"
+            return URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
         case .custom(let envProps):
             return envProps.blockchainURL
         }
     }
     
     public var blockchainPassphrase: String {
+        // .playground and .production are coming from the migration module
         switch self {
         case .playground:
             return "Kin Playground Network ; June 2018"
@@ -67,14 +70,7 @@ public enum Environment {
     }
     
     public var kinIssuer: String {
-        switch self {
-        case .playground:
-            return "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
-        case .production:
-            return "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
-        case .custom(let envProps):
-            return envProps.kinIssuer
-        }
+        return mapToMigrationModuleNetwork.kinCoreIssuer
     }
     
     public var marketplaceURL: String {
@@ -117,5 +113,27 @@ public enum Environment {
                                      marketplaceURL: marketplaceURL,
                                      webURL: webURL,
                                      BIURL: BIURL)
+    }
+}
+
+extension Environment {
+    internal var mapToMigrationModuleNetwork: KinMigrationModule.Network {
+        switch self {
+        case .production:
+            return .mainNet
+        case .playground:
+            return .testNet
+        case .custom(let properties):
+            return .custom(issuer: properties.kinIssuer, networkId: properties.blockchainPassphrase)
+        }
+    }
+
+    internal func mapToMigrationModuleServiceProvider(_ migrateBaseURL: URL? = nil) throws -> KinMigrationModule.ServiceProviderProtocol {
+        if case .custom = self {
+            return try CustomServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrateBaseURL, nodeURL: properties.blockchainURL)
+        }
+        else {
+            return try ServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrateBaseURL)
+        }
     }
 }

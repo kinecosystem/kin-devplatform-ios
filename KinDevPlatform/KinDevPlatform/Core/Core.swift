@@ -10,14 +10,25 @@
 @available(iOS 9.0, *)
 class Core {
     let network: EcosystemNet
+    let kinCoreEnvironment: Environment
+    let kinSDKEnvironment: Environment
     let data: EcosystemData
     let blockchain: Blockchain
-    let environment: Environment
     
-    init(environment: Environment, network: EcosystemNet, data: EcosystemData, blockchain: Blockchain) throws {
+    init(kinCoreEnvironment: Environment,
+         kinSDKEnvironment: Environment,
+         network: EcosystemNet,
+         data: EcosystemData,
+         blockchain: Blockchain) throws
+    {
         self.network = network
+        self.kinCoreEnvironment = kinCoreEnvironment
+        self.kinSDKEnvironment = kinSDKEnvironment
         self.data = data
         self.blockchain = blockchain
-        self.environment = environment
+    }
+
+    var environment: Environment {
+        return kinSDKEnvironment
     }
 }

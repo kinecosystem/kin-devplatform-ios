@@ -77,16 +77,8 @@ class Blockchain {
         }
     }
 
-    init(environment: Environment, appId: AppId) throws {
-        guard let bURL = URL(string: environment.blockchainURL) else {
-            throw KinEcosystemError.client(.badRequest, nil)
-        }
-
-        let network: Network = .custom(issuer: environment.kinIssuer, networkId: environment.blockchainPassphrase)
-        let kinCoreSP = try CustomServiceProvider(network: network, nodeURL: bURL)
-        let kinSDKSP = kinCoreSP // TODO:
-
-        migrationManager = KinMigrationManager(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
+    init(kinCoreServiceProvider: ServiceProviderProtocol, kinSDKServiceProvider: ServiceProviderProtocol, appId: AppId) throws {
+        migrationManager = KinMigrationManager(kinCoreServiceProvider: kinCoreServiceProvider, kinSDKServiceProvider: kinSDKServiceProvider, appId: appId)
     }
 
     func startAccount(with client: KinClientProtocol) throws -> KinAccountProtocol {

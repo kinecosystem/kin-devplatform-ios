@@ -153,6 +153,7 @@
 		6898FED221F06A3C00BCF0AD /* migration_callback_start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC521F06A3B00BCF0AD /* migration_callback_start.swift */; };
 		6898FED321F06A3C00BCF0AD /* migration_version_check_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC621F06A3C00BCF0AD /* migration_version_check_succeeded.swift */; };
 		6898FED421F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC721F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift */; };
+		6898FED621F0720100BCF0AD /* KBIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FED521F0720100BCF0AD /* KBIMapping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,6 +326,7 @@
 		6898FEC521F06A3B00BCF0AD /* migration_callback_start.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_start.swift; sourceTree = "<group>"; };
 		6898FEC621F06A3C00BCF0AD /* migration_version_check_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_succeeded.swift; sourceTree = "<group>"; };
 		6898FEC721F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_succeeded.swift; sourceTree = "<group>"; };
+		6898FED521F0720100BCF0AD /* KBIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBIMapping.swift; sourceTree = "<group>"; };
 		A1D111AD1FA0284414CE17AD /* Pods-KinDevPlatform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinDevPlatform.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-KinDevPlatform/Pods-KinDevPlatform.debug.xcconfig"; sourceTree = "<group>"; };
 		C5946F2745620C7A39D8F507 /* Pods-KinDevPlatform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinDevPlatform.release.xcconfig"; path = "../Pods/Target Support Files/Pods-KinDevPlatform/Pods-KinDevPlatform.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -530,6 +532,7 @@
 				680CD3F321E2258C0003AB59 /* BIError.swift */,
 				680CD3F421E2258C0003AB59 /* DeviceData.swift */,
 				680CD3F521E2258C0003AB59 /* KBIEvent.swift */,
+				6898FED521F0720100BCF0AD /* KBIMapping.swift */,
 				680CD3F621E2258C0003AB59 /* client */,
 			);
 			path = BI;
@@ -914,6 +917,7 @@
 				6898FE9121F0667E00BCF0AD /* earn_order_creation_received.swift in Sources */,
 				6898FE6421F0667E00BCF0AD /* welcome_screen_page_viewed.swift in Sources */,
 				680CD3E021E225840003AB59 /* OrderError.swift in Sources */,
+				6898FED621F0720100BCF0AD /* KBIMapping.swift in Sources */,
 				6898FE6A21F0667E00BCF0AD /* general_ecosystem_sdk_error.swift in Sources */,
 				6898FE7321F0667E00BCF0AD /* redeem_url_tapped.swift in Sources */,
 				6898FE9B21F0667E00BCF0AD /* earn_order_completion_submitted.swift in Sources */,

@@ -150,6 +150,7 @@ public class Kin: NSObject {
 
             chain = try Blockchain(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
             chain.migrationManager.delegate = self
+            chain.migrationManager.biDelegate = self
             try chain.migrationManager.start()
         }
         catch {
@@ -582,5 +583,60 @@ extension Kin: KinMigrationManagerDelegate {
         logError(error.localizedDescription)
 
         migrationDelegate?.kinMigration(error: error)
+    }
+}
+
+@available(iOS 9.0, *)
+extension Kin: KinMigrationBIDelegate {
+    public func kinMigrationMethodStarted() {
+        Kin.track { try MigrationMethodStarted() }
+    }
+
+    public func kinMigrationCallbackStart() {
+        Kin.track { try MigrationCallbackStart() }
+    }
+
+    public func kinMigrationCallbackReady(reason: KinMigrationBIReadyReason, version: KinVersion) {
+        Kin.track { try MigrationCallbackReady(sdkVersion: version.mapToKBI, selectedSDKReason: reason.mapToKBI) }
+    }
+
+    public func kinMigrationCallbackFailed(error: Error) {
+        Kin.track { try MigrationCallbackFailed(errorCode: "", errorMessage: error.localizedDescription, errorReason: "") }
+    }
+
+    public func kinMigrationVersionCheckStarted() {
+        Kin.track { try MigrationVersionCheckStarted() }
+    }
+
+    public func kinMigrationVersionCheckSucceeded(version: KinVersion) {
+        Kin.track { try MigrationVersionCheckSucceeded(sdkVersion: version.mapToKBI) }
+    }
+
+    public func kinMigrationVersionCheckFailed(error: Error) {
+        Kin.track { try MigrationVersionCheckFailed(errorCode: "", errorMessage: error.localizedDescription, errorReason: "") }
+    }
+
+    public func kinMigrationBurnStarted(publicAddress: String) {
+        Kin.track { try MigrationBurnStarted(publicAddress: publicAddress) }
+    }
+
+    public func kinMigrationBurnSucceeded(reason: KinMigrationBIBurnReason, publicAddress: String) {
+        Kin.track { try MigrationBurnSucceeded(burnReason: reason.mapToKBI, publicAddress: publicAddress) }
+    }
+
+    public func kinMigrationBurnFailed(error: Error, publicAddress: String) {
+        Kin.track { try MigrationBurnFailed(errorCode: "", errorMessage: error.localizedDescription, errorReason: "", publicAddress: publicAddress) }
+    }
+
+    public func kinMigrationRequestAccountMigrationStarted(publicAddress: String) {
+        Kin.track { try MigrationRequestAccountMigrationStarted(publicAddress: publicAddress) }
+    }
+
+    public func kinMigrationRequestAccountMigrationSucceeded(reason: KinMigrationBIMigrateReason, publicAddress: String) {
+        Kin.track { try MigrationRequestAccountMigrationSucceeded(migrationReason: reason.mapToKBI, publicAddress: publicAddress) }
+    }
+
+    public func kinMigrationRequestAccountMigrationFailed(error: Error, publicAddress: String) {
+        Kin.track { try MigrationRequestAccountMigrationFailed(errorCode: "", errorMessage: error.localizedDescription, errorReason: "", publicAddress: publicAddress) }
     }
 }

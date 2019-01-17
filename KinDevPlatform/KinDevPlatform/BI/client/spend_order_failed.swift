@@ -32,30 +32,27 @@ import Foundation
 struct SpendOrderFailed: KBIEvent {
     let client: Client
     let common: Common
-    let errorCode, errorMessage, errorReason: String
+    let errorReason: String
     let eventName: String
     let eventType: String
+    let isNative: Bool
     let offerID, orderID: String
-    let origin: KBITypes.Origin
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
-        case errorCode = "error_code"
-        case errorMessage = "error_message"
         case errorReason = "error_reason"
         case eventName = "event_name"
         case eventType = "event_type"
+        case isNative = "is_native"
         case offerID = "offer_id"
         case orderID = "order_id"
-        case origin, user
+        case user
     }
 }
 
-
-
 extension SpendOrderFailed {
-    init(errorCode: String, errorMessage: String, errorReason: String, offerID: String, orderID: String, origin: KBITypes.Origin) throws {
+    init(errorReason: String, isNative: Bool, offerID: String, orderID: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -71,11 +68,9 @@ extension SpendOrderFailed {
         eventName = "spend_order_failed"
         eventType = "log"
 
-        self.errorCode = errorCode
-        self.errorMessage = errorMessage
         self.errorReason = errorReason
+        self.isNative = isNative
         self.offerID = offerID
         self.orderID = orderID
-        self.origin = origin
     }
 }

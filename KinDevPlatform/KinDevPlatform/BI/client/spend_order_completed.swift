@@ -34,26 +34,23 @@ struct SpendOrderCompleted: KBIEvent {
     let common: Common
     let eventName: String
     let eventType: String
-    let kinAmount: Double
+    let isNative: Bool
     let offerID, orderID: String
-    let origin: KBITypes.Origin
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
         case eventName = "event_name"
         case eventType = "event_type"
-        case kinAmount = "kin_amount"
+        case isNative = "is_native"
         case offerID = "offer_id"
         case orderID = "order_id"
-        case origin, user
+        case user
     }
 }
 
-
-
 extension SpendOrderCompleted {
-    init(kinAmount: Double, offerID: String, orderID: String, origin: KBITypes.Origin) throws {
+    init(isNative: Bool, offerID: String, orderID: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -69,9 +66,8 @@ extension SpendOrderCompleted {
         eventName = "spend_order_completed"
         eventType = "business"
 
-        self.kinAmount = kinAmount
+        self.isNative = isNative
         self.offerID = offerID
         self.orderID = orderID
-        self.origin = origin
     }
 }

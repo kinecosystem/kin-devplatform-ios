@@ -34,27 +34,21 @@ struct EarnOrderPaymentConfirmed: KBIEvent {
     let common: Common
     let eventName: String
     let eventType: String
-    let operationID, orderID: String
-    let origin: KBITypes.Origin
-    let transactionID: String
+    let orderID, transactionID: String
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
         case eventName = "event_name"
         case eventType = "event_type"
-        case operationID = "operation_id"
         case orderID = "order_id"
-        case origin
         case transactionID = "transaction_id"
         case user
     }
 }
 
-
-
 extension EarnOrderPaymentConfirmed {
-    init(operationID: String, orderID: String, origin: KBITypes.Origin, transactionID: String) throws {
+    init(orderID: String, transactionID: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -70,9 +64,7 @@ extension EarnOrderPaymentConfirmed {
         eventName = "earn_order_payment_confirmed"
         eventType = "log"
 
-        self.operationID = operationID
         self.orderID = orderID
-        self.origin = origin
         self.transactionID = transactionID
     }
 }

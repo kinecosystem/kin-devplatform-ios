@@ -34,23 +34,22 @@ struct SpendOrderCreationRequested: KBIEvent {
     let common: Common
     let eventName: String
     let eventType: String
+    let isNative: Bool
     let offerID: String
-    let origin: KBITypes.Origin
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
         case eventName = "event_name"
         case eventType = "event_type"
+        case isNative = "is_native"
         case offerID = "offer_id"
-        case origin, user
+        case user
     }
 }
 
-
-
 extension SpendOrderCreationRequested {
-    init(offerID: String, origin: KBITypes.Origin) throws {
+    init(isNative: Bool, offerID: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -66,7 +65,7 @@ extension SpendOrderCreationRequested {
         eventName = "spend_order_creation_requested"
         eventType = "business"
 
+        self.isNative = isNative
         self.offerID = offerID
-        self.origin = origin
     }
 }

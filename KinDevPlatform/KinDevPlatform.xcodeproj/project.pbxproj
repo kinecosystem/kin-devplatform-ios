@@ -92,104 +92,67 @@
 		680CD4C321E2297F0003AB59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680CD4C121E2297F0003AB59 /* Main.storyboard */; };
 		680CD4C521E2297F0003AB59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 680CD4C421E2297F0003AB59 /* Assets.xcassets */; };
 		680CD4C821E2297F0003AB59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680CD4C621E2297F0003AB59 /* LaunchScreen.storyboard */; };
-		6898FE5921F0667E00BCF0AD /* migration_request_account_migration_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDF721F0665600BCF0AD /* migration_request_account_migration_started.swift */; };
 		6898FE5A21F0667E00BCF0AD /* stellar_kin_trustline_setup_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDF821F0665700BCF0AD /* stellar_kin_trustline_setup_failed.swift */; };
 		6898FE5B21F0667E00BCF0AD /* earn_order_cancelled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDF921F0665700BCF0AD /* earn_order_cancelled.swift */; };
 		6898FE5C21F0667E00BCF0AD /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFA21F0665800BCF0AD /* client.swift */; };
-		6898FE5D21F0667E00BCF0AD /* migration_method_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFB21F0665800BCF0AD /* migration_method_started.swift */; };
 		6898FE5E21F0667E00BCF0AD /* common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFC21F0665900BCF0AD /* common.swift */; };
 		6898FE5F21F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFD21F0665900BCF0AD /* spend_transaction_broadcast_to_blockchain_succeeded.swift */; };
-		6898FE6021F0667E00BCF0AD /* backup_create_password_back_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFE21F0665A00BCF0AD /* backup_create_password_back_button_tapped.swift */; };
 		6898FE6121F0667E00BCF0AD /* kin_balance_updated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FDFF21F0665A00BCF0AD /* kin_balance_updated.swift */; };
-		6898FE6221F0667E00BCF0AD /* backup_qr_code_send_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0021F0665A00BCF0AD /* backup_qr_code_send_button_tapped.swift */; };
 		6898FE6321F0667E00BCF0AD /* wallet_creation_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0121F0665A00BCF0AD /* wallet_creation_succeeded.swift */; };
 		6898FE6421F0667E00BCF0AD /* welcome_screen_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0221F0665A00BCF0AD /* welcome_screen_page_viewed.swift */; };
-		6898FE6521F0667E00BCF0AD /* pay_to_user_order_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0321F0665B00BCF0AD /* pay_to_user_order_failed.swift */; };
-		6898FE6621F0667E00BCF0AD /* migration_request_account_migration_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0421F0665B00BCF0AD /* migration_request_account_migration_succeeded.swift */; };
-		6898FE6721F0667E00BCF0AD /* backup_qr_code_myqrcode_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0521F0665B00BCF0AD /* backup_qr_code_myqrcode_button_tapped.swift */; };
-		6898FE6821F0667E00BCF0AD /* backup_welcome_page_back_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0621F0665C00BCF0AD /* backup_welcome_page_back_button_tapped.swift */; };
 		6898FE6921F0667E00BCF0AD /* spend_order_creation_requested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0721F0665C00BCF0AD /* spend_order_creation_requested.swift */; };
 		6898FE6A21F0667E00BCF0AD /* general_ecosystem_sdk_error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0821F0665C00BCF0AD /* general_ecosystem_sdk_error.swift */; };
-		6898FE6B21F0667E00BCF0AD /* restore_upload_qr_code_back_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0921F0665D00BCF0AD /* restore_upload_qr_code_back_button_tapped.swift */; };
 		6898FE6C21F0667E00BCF0AD /* earn_page_loaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0A21F0665D00BCF0AD /* earn_page_loaded.swift */; };
-		6898FE6D21F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_submitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0B21F0665E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_submitted.swift */; };
-		6898FE6E21F0667E00BCF0AD /* migration_check_burn_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0C21F0665E00BCF0AD /* migration_check_burn_succeeded.swift */; };
 		6898FE6F21F0667E00BCF0AD /* order_history_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0D21F0665E00BCF0AD /* order_history_page_viewed.swift */; };
-		6898FE7021F0667E00BCF0AD /* migration_check_burn_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0E21F0665F00BCF0AD /* migration_check_burn_failed.swift */; };
-		6898FE7121F0667E00BCF0AD /* migration_burn_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE0F21F0665F00BCF0AD /* migration_burn_started.swift */; };
 		6898FE7221F0667E00BCF0AD /* earn_offer_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1021F0665F00BCF0AD /* earn_offer_tapped.swift */; };
 		6898FE7321F0667E00BCF0AD /* redeem_url_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1121F0665F00BCF0AD /* redeem_url_tapped.swift */; };
 		6898FE7421F0667E00BCF0AD /* spend_order_creation_received.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1221F0666000BCF0AD /* spend_order_creation_received.swift */; };
 		6898FE7521F0667E00BCF0AD /* confirm_purchase_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1321F0666000BCF0AD /* confirm_purchase_page_viewed.swift */; };
 		6898FE7621F0667E00BCF0AD /* earn_order_completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1421F0666100BCF0AD /* earn_order_completed.swift */; };
 		6898FE7721F0667E00BCF0AD /* spend_offer_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1521F0666200BCF0AD /* spend_offer_tapped.swift */; };
-		6898FE7821F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1621F0666200BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_failed.swift */; };
-		6898FE7921F0667E00BCF0AD /* restore_password_done_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1721F0666200BCF0AD /* restore_password_done_button_tapped.swift */; };
-		6898FE7A21F0667E00BCF0AD /* restore_upload_qr_code_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1821F0666300BCF0AD /* restore_upload_qr_code_page_viewed.swift */; };
 		6898FE7B21F0667E00BCF0AD /* spend_order_completion_submitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1921F0666300BCF0AD /* spend_order_completion_submitted.swift */; };
-		6898FE7C21F0667E00BCF0AD /* backup_welcome_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1A21F0666400BCF0AD /* backup_welcome_page_viewed.swift */; };
 		6898FE7D21F0667E00BCF0AD /* spend_redeem_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1B21F0666400BCF0AD /* spend_redeem_button_tapped.swift */; };
 		6898FE7E21F0667E00BCF0AD /* spend_order_creation_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1C21F0666500BCF0AD /* spend_order_creation_failed.swift */; };
-		6898FE7F21F0667E00BCF0AD /* pay_to_user_order_completion_submitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1D21F0666500BCF0AD /* pay_to_user_order_completion_submitted.swift */; };
 		6898FE8021F0667E00BCF0AD /* earn_order_creation_requested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1E21F0666600BCF0AD /* earn_order_creation_requested.swift */; };
-		6898FE8121F0667E00BCF0AD /* migration_burn_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE1F21F0666600BCF0AD /* migration_burn_succeeded.swift */; };
-		6898FE8221F0667E00BCF0AD /* backup_popup_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2021F0666700BCF0AD /* backup_popup_page_viewed.swift */; };
-		6898FE8321F0667E00BCF0AD /* restore_password_entry_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2121F0666700BCF0AD /* restore_password_entry_page_viewed.swift */; };
-		6898FE8421F0667E00BCF0AD /* backup_create_password_next_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2221F0666800BCF0AD /* backup_create_password_next_button_tapped.swift */; };
-		6898FE8521F0667E00BCF0AD /* migration_burn_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2321F0666800BCF0AD /* migration_burn_failed.swift */; };
-		6898FE8621F0667E00BCF0AD /* backup_popup_later_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2421F0666800BCF0AD /* backup_popup_later_button_tapped.swift */; };
 		6898FE8721F0667E00BCF0AD /* earn_order_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2521F0666800BCF0AD /* earn_order_failed.swift */; };
-		6898FE8821F0667E00BCF0AD /* backup_start_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2621F0666900BCF0AD /* backup_start_button_tapped.swift */; };
-		6898FE8921F0667E00BCF0AD /* restore_upload_qr_code_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2721F0666900BCF0AD /* restore_upload_qr_code_button_tapped.swift */; };
-		6898FE8A21F0667E00BCF0AD /* migration_check_burn_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2821F0666900BCF0AD /* migration_check_burn_started.swift */; };
-		6898FE8B21F0667E00BCF0AD /* restore_password_entry_back_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2921F0666900BCF0AD /* restore_password_entry_back_button_tapped.swift */; };
 		6898FE8C21F0667E00BCF0AD /* spend_order_cancelled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2A21F0666A00BCF0AD /* spend_order_cancelled.swift */; };
 		6898FE8D21F0667E00BCF0AD /* back_button_on_marketplace_page_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2B21F0666A00BCF0AD /* back_button_on_marketplace_page_tapped.swift */; };
 		6898FE8E21F0667E00BCF0AD /* entrypoint_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2C21F0666B00BCF0AD /* entrypoint_button_tapped.swift */; };
-		6898FE8F21F0667E00BCF0AD /* pay_to_user_order_creation_received.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2D21F0666B00BCF0AD /* pay_to_user_order_creation_received.swift */; };
 		6898FE9021F0667E00BCF0AD /* balance_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2E21F0666B00BCF0AD /* balance_tapped.swift */; };
 		6898FE9121F0667E00BCF0AD /* earn_order_creation_received.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE2F21F0666C00BCF0AD /* earn_order_creation_received.swift */; };
 		6898FE9221F0667E00BCF0AD /* order_history_item_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3021F0666C00BCF0AD /* order_history_item_tapped.swift */; };
-		6898FE9321F0667E00BCF0AD /* migration_version_check_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3121F0666D00BCF0AD /* migration_version_check_succeeded.swift */; };
 		6898FE9421F0667E00BCF0AD /* stellar_account_creation_requested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3221F0666D00BCF0AD /* stellar_account_creation_requested.swift */; };
-		6898FE9521F0667E00BCF0AD /* pay_to_user_order_creation_requested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3321F0666D00BCF0AD /* pay_to_user_order_creation_requested.swift */; };
-		6898FE9621F0667E00BCF0AD /* pay_to_user_order_cancelled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3421F0666E00BCF0AD /* pay_to_user_order_cancelled.swift */; };
 		6898FE9721F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3521F0666E00BCF0AD /* spend_transaction_broadcast_to_blockchain_failed.swift */; };
-		6898FE9821F0667E00BCF0AD /* restore_are_you_sure_cancel_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3621F0666F00BCF0AD /* restore_are_you_sure_cancel_button_tapped.swift */; };
 		6898FE9921F0667E00BCF0AD /* types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3721F0666F00BCF0AD /* types.swift */; };
 		6898FE9A21F0667E00BCF0AD /* kin_sdk_initiated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3821F0667000BCF0AD /* kin_sdk_initiated.swift */; };
 		6898FE9B21F0667E00BCF0AD /* earn_order_completion_submitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3921F0667000BCF0AD /* earn_order_completion_submitted.swift */; };
 		6898FE9C21F0667E00BCF0AD /* welcome_screen_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3A21F0667100BCF0AD /* welcome_screen_button_tapped.swift */; };
-		6898FE9D21F0667E00BCF0AD /* backup_wallet_completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3B21F0667100BCF0AD /* backup_wallet_completed.swift */; };
-		6898FE9E21F0667E00BCF0AD /* backup_qr_code_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3C21F0667100BCF0AD /* backup_qr_code_page_viewed.swift */; };
-		6898FE9F21F0667E00BCF0AD /* migration_callback_ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3D21F0667200BCF0AD /* migration_callback_ready.swift */; };
 		6898FEA021F0667E00BCF0AD /* back_button_on_welcome_screen_page_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3E21F0667200BCF0AD /* back_button_on_welcome_screen_page_tapped.swift */; };
-		6898FEA121F0667E00BCF0AD /* pay_to_user_order_completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE3F21F0667200BCF0AD /* pay_to_user_order_completed.swift */; };
 		6898FEA221F0667E00BCF0AD /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4021F0667200BCF0AD /* user.swift */; };
 		6898FEA321F0667E00BCF0AD /* spend_order_completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4121F0667300BCF0AD /* spend_order_completed.swift */; };
-		6898FEA421F0667E00BCF0AD /* backup_create_password_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4221F0667400BCF0AD /* backup_create_password_page_viewed.swift */; };
-		6898FEA521F0667E00BCF0AD /* pay_to_user_order_creation_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4321F0667400BCF0AD /* pay_to_user_order_creation_failed.swift */; };
-		6898FEA621F0667E00BCF0AD /* migration_callback_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4421F0667500BCF0AD /* migration_callback_failed.swift */; };
 		6898FEA721F0667E00BCF0AD /* earn_order_payment_confirmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4521F0667500BCF0AD /* earn_order_payment_confirmed.swift */; };
 		6898FEA821F0667E00BCF0AD /* spend_thankyou_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4621F0667600BCF0AD /* spend_thankyou_page_viewed.swift */; };
-		6898FEA921F0667E00BCF0AD /* migration_version_check_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4721F0667600BCF0AD /* migration_version_check_started.swift */; };
 		6898FEAA21F0667E00BCF0AD /* spend_redeem_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4821F0667600BCF0AD /* spend_redeem_page_viewed.swift */; };
 		6898FEAB21F0667E00BCF0AD /* stellar_kin_trustline_setup_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4921F0667700BCF0AD /* stellar_kin_trustline_setup_succeeded.swift */; };
-		6898FEAC21F0667E00BCF0AD /* restore_are_you_sure_ok_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4A21F0667700BCF0AD /* restore_are_you_sure_ok_button_tapped.swift */; };
 		6898FEAD21F0667E00BCF0AD /* spend_order_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4B21F0667800BCF0AD /* spend_order_failed.swift */; };
 		6898FEAE21F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_submitted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4C21F0667800BCF0AD /* spend_transaction_broadcast_to_blockchain_submitted.swift */; };
-		6898FEAF21F0667E00BCF0AD /* migration_request_account_migration_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4D21F0667900BCF0AD /* migration_request_account_migration_failed.swift */; };
 		6898FEB021F0667E00BCF0AD /* not_enough_kin_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4E21F0667A00BCF0AD /* not_enough_kin_page_viewed.swift */; };
 		6898FEB121F0667E00BCF0AD /* confirm_purchase_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE4F21F0667A00BCF0AD /* confirm_purchase_button_tapped.swift */; };
 		6898FEB221F0667E00BCF0AD /* marketplace_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5021F0667B00BCF0AD /* marketplace_page_viewed.swift */; };
-		6898FEB321F0667E00BCF0AD /* backup_qr_code_back_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5121F0667B00BCF0AD /* backup_qr_code_back_button_tapped.swift */; };
 		6898FEB421F0667E00BCF0AD /* earn_order_creation_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5221F0667B00BCF0AD /* earn_order_creation_failed.swift */; };
-		6898FEB521F0667E00BCF0AD /* migration_callback_start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5321F0667C00BCF0AD /* migration_callback_start.swift */; };
-		6898FEB621F0667E00BCF0AD /* backup_popup_button_tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5421F0667C00BCF0AD /* backup_popup_button_tapped.swift */; };
-		6898FEB721F0667E00BCF0AD /* backup_completed_page_viewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5521F0667D00BCF0AD /* backup_completed_page_viewed.swift */; };
-		6898FEB821F0667E00BCF0AD /* migration_version_check_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5621F0667D00BCF0AD /* migration_version_check_failed.swift */; };
-		6898FEB921F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5721F0667D00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift */; };
-		6898FEBA21F0667E00BCF0AD /* restore_wallet_completed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FE5821F0667E00BCF0AD /* restore_wallet_completed.swift */; };
+		6898FEC821F06A3C00BCF0AD /* migration_version_check_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEBB21F06A3800BCF0AD /* migration_version_check_failed.swift */; };
+		6898FEC921F06A3C00BCF0AD /* migration_request_account_migration_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEBC21F06A3900BCF0AD /* migration_request_account_migration_failed.swift */; };
+		6898FECA21F06A3C00BCF0AD /* migration_callback_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEBD21F06A3900BCF0AD /* migration_callback_failed.swift */; };
+		6898FECB21F06A3C00BCF0AD /* migration_request_account_migration_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEBE21F06A3A00BCF0AD /* migration_request_account_migration_started.swift */; };
+		6898FECC21F06A3C00BCF0AD /* migration_burn_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEBF21F06A3A00BCF0AD /* migration_burn_started.swift */; };
+		6898FECD21F06A3C00BCF0AD /* migration_callback_ready.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC021F06A3A00BCF0AD /* migration_callback_ready.swift */; };
+		6898FECE21F06A3C00BCF0AD /* migration_version_check_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC121F06A3A00BCF0AD /* migration_version_check_started.swift */; };
+		6898FECF21F06A3C00BCF0AD /* migration_method_started.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC221F06A3B00BCF0AD /* migration_method_started.swift */; };
+		6898FED021F06A3C00BCF0AD /* migration_burn_failed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC321F06A3B00BCF0AD /* migration_burn_failed.swift */; };
+		6898FED121F06A3C00BCF0AD /* migration_burn_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC421F06A3B00BCF0AD /* migration_burn_succeeded.swift */; };
+		6898FED221F06A3C00BCF0AD /* migration_callback_start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC521F06A3B00BCF0AD /* migration_callback_start.swift */; };
+		6898FED321F06A3C00BCF0AD /* migration_version_check_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC621F06A3C00BCF0AD /* migration_version_check_succeeded.swift */; };
+		6898FED421F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6898FEC721F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,104 +264,67 @@
 		680CD4C721E2297F0003AB59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		680CD4C921E2297F0003AB59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		680CD4CF21E2341F0003AB59 /* CoreDataStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreDataStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6898FDF721F0665600BCF0AD /* migration_request_account_migration_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_started.swift; sourceTree = "<group>"; };
 		6898FDF821F0665700BCF0AD /* stellar_kin_trustline_setup_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stellar_kin_trustline_setup_failed.swift; sourceTree = "<group>"; };
 		6898FDF921F0665700BCF0AD /* earn_order_cancelled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_cancelled.swift; sourceTree = "<group>"; };
 		6898FDFA21F0665800BCF0AD /* client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = client.swift; sourceTree = "<group>"; };
-		6898FDFB21F0665800BCF0AD /* migration_method_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_method_started.swift; sourceTree = "<group>"; };
 		6898FDFC21F0665900BCF0AD /* common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = common.swift; sourceTree = "<group>"; };
 		6898FDFD21F0665900BCF0AD /* spend_transaction_broadcast_to_blockchain_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_transaction_broadcast_to_blockchain_succeeded.swift; sourceTree = "<group>"; };
-		6898FDFE21F0665A00BCF0AD /* backup_create_password_back_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_create_password_back_button_tapped.swift; sourceTree = "<group>"; };
 		6898FDFF21F0665A00BCF0AD /* kin_balance_updated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kin_balance_updated.swift; sourceTree = "<group>"; };
-		6898FE0021F0665A00BCF0AD /* backup_qr_code_send_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_qr_code_send_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE0121F0665A00BCF0AD /* wallet_creation_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wallet_creation_succeeded.swift; sourceTree = "<group>"; };
 		6898FE0221F0665A00BCF0AD /* welcome_screen_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcome_screen_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE0321F0665B00BCF0AD /* pay_to_user_order_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_failed.swift; sourceTree = "<group>"; };
-		6898FE0421F0665B00BCF0AD /* migration_request_account_migration_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_succeeded.swift; sourceTree = "<group>"; };
-		6898FE0521F0665B00BCF0AD /* backup_qr_code_myqrcode_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_qr_code_myqrcode_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE0621F0665C00BCF0AD /* backup_welcome_page_back_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_welcome_page_back_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE0721F0665C00BCF0AD /* spend_order_creation_requested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_creation_requested.swift; sourceTree = "<group>"; };
 		6898FE0821F0665C00BCF0AD /* general_ecosystem_sdk_error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general_ecosystem_sdk_error.swift; sourceTree = "<group>"; };
-		6898FE0921F0665D00BCF0AD /* restore_upload_qr_code_back_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_upload_qr_code_back_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE0A21F0665D00BCF0AD /* earn_page_loaded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_page_loaded.swift; sourceTree = "<group>"; };
-		6898FE0B21F0665E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_submitted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_transaction_broadcast_to_blockchain_submitted.swift; sourceTree = "<group>"; };
-		6898FE0C21F0665E00BCF0AD /* migration_check_burn_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_check_burn_succeeded.swift; sourceTree = "<group>"; };
 		6898FE0D21F0665E00BCF0AD /* order_history_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = order_history_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE0E21F0665F00BCF0AD /* migration_check_burn_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_check_burn_failed.swift; sourceTree = "<group>"; };
-		6898FE0F21F0665F00BCF0AD /* migration_burn_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_started.swift; sourceTree = "<group>"; };
 		6898FE1021F0665F00BCF0AD /* earn_offer_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_offer_tapped.swift; sourceTree = "<group>"; };
 		6898FE1121F0665F00BCF0AD /* redeem_url_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = redeem_url_tapped.swift; sourceTree = "<group>"; };
 		6898FE1221F0666000BCF0AD /* spend_order_creation_received.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_creation_received.swift; sourceTree = "<group>"; };
 		6898FE1321F0666000BCF0AD /* confirm_purchase_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = confirm_purchase_page_viewed.swift; sourceTree = "<group>"; };
 		6898FE1421F0666100BCF0AD /* earn_order_completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_completed.swift; sourceTree = "<group>"; };
 		6898FE1521F0666200BCF0AD /* spend_offer_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_offer_tapped.swift; sourceTree = "<group>"; };
-		6898FE1621F0666200BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_transaction_broadcast_to_blockchain_failed.swift; sourceTree = "<group>"; };
-		6898FE1721F0666200BCF0AD /* restore_password_done_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_password_done_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE1821F0666300BCF0AD /* restore_upload_qr_code_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_upload_qr_code_page_viewed.swift; sourceTree = "<group>"; };
 		6898FE1921F0666300BCF0AD /* spend_order_completion_submitted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_completion_submitted.swift; sourceTree = "<group>"; };
-		6898FE1A21F0666400BCF0AD /* backup_welcome_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_welcome_page_viewed.swift; sourceTree = "<group>"; };
 		6898FE1B21F0666400BCF0AD /* spend_redeem_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_redeem_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE1C21F0666500BCF0AD /* spend_order_creation_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_creation_failed.swift; sourceTree = "<group>"; };
-		6898FE1D21F0666500BCF0AD /* pay_to_user_order_completion_submitted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_completion_submitted.swift; sourceTree = "<group>"; };
 		6898FE1E21F0666600BCF0AD /* earn_order_creation_requested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_creation_requested.swift; sourceTree = "<group>"; };
-		6898FE1F21F0666600BCF0AD /* migration_burn_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_succeeded.swift; sourceTree = "<group>"; };
-		6898FE2021F0666700BCF0AD /* backup_popup_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_popup_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE2121F0666700BCF0AD /* restore_password_entry_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_password_entry_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE2221F0666800BCF0AD /* backup_create_password_next_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_create_password_next_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE2321F0666800BCF0AD /* migration_burn_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_failed.swift; sourceTree = "<group>"; };
-		6898FE2421F0666800BCF0AD /* backup_popup_later_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_popup_later_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE2521F0666800BCF0AD /* earn_order_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_failed.swift; sourceTree = "<group>"; };
-		6898FE2621F0666900BCF0AD /* backup_start_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_start_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE2721F0666900BCF0AD /* restore_upload_qr_code_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_upload_qr_code_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE2821F0666900BCF0AD /* migration_check_burn_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_check_burn_started.swift; sourceTree = "<group>"; };
-		6898FE2921F0666900BCF0AD /* restore_password_entry_back_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_password_entry_back_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE2A21F0666A00BCF0AD /* spend_order_cancelled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_cancelled.swift; sourceTree = "<group>"; };
 		6898FE2B21F0666A00BCF0AD /* back_button_on_marketplace_page_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = back_button_on_marketplace_page_tapped.swift; sourceTree = "<group>"; };
 		6898FE2C21F0666B00BCF0AD /* entrypoint_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = entrypoint_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE2D21F0666B00BCF0AD /* pay_to_user_order_creation_received.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_creation_received.swift; sourceTree = "<group>"; };
 		6898FE2E21F0666B00BCF0AD /* balance_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = balance_tapped.swift; sourceTree = "<group>"; };
 		6898FE2F21F0666C00BCF0AD /* earn_order_creation_received.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_creation_received.swift; sourceTree = "<group>"; };
 		6898FE3021F0666C00BCF0AD /* order_history_item_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = order_history_item_tapped.swift; sourceTree = "<group>"; };
-		6898FE3121F0666D00BCF0AD /* migration_version_check_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_succeeded.swift; sourceTree = "<group>"; };
 		6898FE3221F0666D00BCF0AD /* stellar_account_creation_requested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stellar_account_creation_requested.swift; sourceTree = "<group>"; };
-		6898FE3321F0666D00BCF0AD /* pay_to_user_order_creation_requested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_creation_requested.swift; sourceTree = "<group>"; };
-		6898FE3421F0666E00BCF0AD /* pay_to_user_order_cancelled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_cancelled.swift; sourceTree = "<group>"; };
 		6898FE3521F0666E00BCF0AD /* spend_transaction_broadcast_to_blockchain_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_transaction_broadcast_to_blockchain_failed.swift; sourceTree = "<group>"; };
-		6898FE3621F0666F00BCF0AD /* restore_are_you_sure_cancel_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_are_you_sure_cancel_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE3721F0666F00BCF0AD /* types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = types.swift; sourceTree = "<group>"; };
 		6898FE3821F0667000BCF0AD /* kin_sdk_initiated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kin_sdk_initiated.swift; sourceTree = "<group>"; };
 		6898FE3921F0667000BCF0AD /* earn_order_completion_submitted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_completion_submitted.swift; sourceTree = "<group>"; };
 		6898FE3A21F0667100BCF0AD /* welcome_screen_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcome_screen_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE3B21F0667100BCF0AD /* backup_wallet_completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_wallet_completed.swift; sourceTree = "<group>"; };
-		6898FE3C21F0667100BCF0AD /* backup_qr_code_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_qr_code_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE3D21F0667200BCF0AD /* migration_callback_ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_ready.swift; sourceTree = "<group>"; };
 		6898FE3E21F0667200BCF0AD /* back_button_on_welcome_screen_page_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = back_button_on_welcome_screen_page_tapped.swift; sourceTree = "<group>"; };
-		6898FE3F21F0667200BCF0AD /* pay_to_user_order_completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_completed.swift; sourceTree = "<group>"; };
 		6898FE4021F0667200BCF0AD /* user.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		6898FE4121F0667300BCF0AD /* spend_order_completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_completed.swift; sourceTree = "<group>"; };
-		6898FE4221F0667400BCF0AD /* backup_create_password_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_create_password_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE4321F0667400BCF0AD /* pay_to_user_order_creation_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_order_creation_failed.swift; sourceTree = "<group>"; };
-		6898FE4421F0667500BCF0AD /* migration_callback_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_failed.swift; sourceTree = "<group>"; };
 		6898FE4521F0667500BCF0AD /* earn_order_payment_confirmed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_payment_confirmed.swift; sourceTree = "<group>"; };
 		6898FE4621F0667600BCF0AD /* spend_thankyou_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_thankyou_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE4721F0667600BCF0AD /* migration_version_check_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_started.swift; sourceTree = "<group>"; };
 		6898FE4821F0667600BCF0AD /* spend_redeem_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_redeem_page_viewed.swift; sourceTree = "<group>"; };
 		6898FE4921F0667700BCF0AD /* stellar_kin_trustline_setup_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stellar_kin_trustline_setup_succeeded.swift; sourceTree = "<group>"; };
-		6898FE4A21F0667700BCF0AD /* restore_are_you_sure_ok_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_are_you_sure_ok_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE4B21F0667800BCF0AD /* spend_order_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_order_failed.swift; sourceTree = "<group>"; };
 		6898FE4C21F0667800BCF0AD /* spend_transaction_broadcast_to_blockchain_submitted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spend_transaction_broadcast_to_blockchain_submitted.swift; sourceTree = "<group>"; };
-		6898FE4D21F0667900BCF0AD /* migration_request_account_migration_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_failed.swift; sourceTree = "<group>"; };
 		6898FE4E21F0667A00BCF0AD /* not_enough_kin_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = not_enough_kin_page_viewed.swift; sourceTree = "<group>"; };
 		6898FE4F21F0667A00BCF0AD /* confirm_purchase_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = confirm_purchase_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE5021F0667B00BCF0AD /* marketplace_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = marketplace_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE5121F0667B00BCF0AD /* backup_qr_code_back_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_qr_code_back_button_tapped.swift; sourceTree = "<group>"; };
 		6898FE5221F0667B00BCF0AD /* earn_order_creation_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earn_order_creation_failed.swift; sourceTree = "<group>"; };
-		6898FE5321F0667C00BCF0AD /* migration_callback_start.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_start.swift; sourceTree = "<group>"; };
-		6898FE5421F0667C00BCF0AD /* backup_popup_button_tapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_popup_button_tapped.swift; sourceTree = "<group>"; };
-		6898FE5521F0667D00BCF0AD /* backup_completed_page_viewed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup_completed_page_viewed.swift; sourceTree = "<group>"; };
-		6898FE5621F0667D00BCF0AD /* migration_version_check_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_failed.swift; sourceTree = "<group>"; };
-		6898FE5721F0667D00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift; sourceTree = "<group>"; };
-		6898FE5821F0667E00BCF0AD /* restore_wallet_completed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = restore_wallet_completed.swift; sourceTree = "<group>"; };
+		6898FEBB21F06A3800BCF0AD /* migration_version_check_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_failed.swift; sourceTree = "<group>"; };
+		6898FEBC21F06A3900BCF0AD /* migration_request_account_migration_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_failed.swift; sourceTree = "<group>"; };
+		6898FEBD21F06A3900BCF0AD /* migration_callback_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_failed.swift; sourceTree = "<group>"; };
+		6898FEBE21F06A3A00BCF0AD /* migration_request_account_migration_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_started.swift; sourceTree = "<group>"; };
+		6898FEBF21F06A3A00BCF0AD /* migration_burn_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_started.swift; sourceTree = "<group>"; };
+		6898FEC021F06A3A00BCF0AD /* migration_callback_ready.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_ready.swift; sourceTree = "<group>"; };
+		6898FEC121F06A3A00BCF0AD /* migration_version_check_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_started.swift; sourceTree = "<group>"; };
+		6898FEC221F06A3B00BCF0AD /* migration_method_started.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_method_started.swift; sourceTree = "<group>"; };
+		6898FEC321F06A3B00BCF0AD /* migration_burn_failed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_failed.swift; sourceTree = "<group>"; };
+		6898FEC421F06A3B00BCF0AD /* migration_burn_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_burn_succeeded.swift; sourceTree = "<group>"; };
+		6898FEC521F06A3B00BCF0AD /* migration_callback_start.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_callback_start.swift; sourceTree = "<group>"; };
+		6898FEC621F06A3C00BCF0AD /* migration_version_check_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_version_check_succeeded.swift; sourceTree = "<group>"; };
+		6898FEC721F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_succeeded.swift; sourceTree = "<group>"; };
 		A1D111AD1FA0284414CE17AD /* Pods-KinDevPlatform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinDevPlatform.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-KinDevPlatform/Pods-KinDevPlatform.debug.xcconfig"; sourceTree = "<group>"; };
 		C5946F2745620C7A39D8F507 /* Pods-KinDevPlatform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinDevPlatform.release.xcconfig"; path = "../Pods/Target Support Files/Pods-KinDevPlatform/Pods-KinDevPlatform.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -614,21 +540,6 @@
 			children = (
 				6898FE2B21F0666A00BCF0AD /* back_button_on_marketplace_page_tapped.swift */,
 				6898FE3E21F0667200BCF0AD /* back_button_on_welcome_screen_page_tapped.swift */,
-				6898FE5521F0667D00BCF0AD /* backup_completed_page_viewed.swift */,
-				6898FDFE21F0665A00BCF0AD /* backup_create_password_back_button_tapped.swift */,
-				6898FE2221F0666800BCF0AD /* backup_create_password_next_button_tapped.swift */,
-				6898FE4221F0667400BCF0AD /* backup_create_password_page_viewed.swift */,
-				6898FE5421F0667C00BCF0AD /* backup_popup_button_tapped.swift */,
-				6898FE2421F0666800BCF0AD /* backup_popup_later_button_tapped.swift */,
-				6898FE2021F0666700BCF0AD /* backup_popup_page_viewed.swift */,
-				6898FE5121F0667B00BCF0AD /* backup_qr_code_back_button_tapped.swift */,
-				6898FE0521F0665B00BCF0AD /* backup_qr_code_myqrcode_button_tapped.swift */,
-				6898FE3C21F0667100BCF0AD /* backup_qr_code_page_viewed.swift */,
-				6898FE0021F0665A00BCF0AD /* backup_qr_code_send_button_tapped.swift */,
-				6898FE2621F0666900BCF0AD /* backup_start_button_tapped.swift */,
-				6898FE3B21F0667100BCF0AD /* backup_wallet_completed.swift */,
-				6898FE0621F0665C00BCF0AD /* backup_welcome_page_back_button_tapped.swift */,
-				6898FE1A21F0666400BCF0AD /* backup_welcome_page_viewed.swift */,
 				6898FE2E21F0666B00BCF0AD /* balance_tapped.swift */,
 				6898FDFA21F0665800BCF0AD /* client.swift */,
 				6898FDFC21F0665900BCF0AD /* common.swift */,
@@ -649,45 +560,23 @@
 				6898FDFF21F0665A00BCF0AD /* kin_balance_updated.swift */,
 				6898FE3821F0667000BCF0AD /* kin_sdk_initiated.swift */,
 				6898FE5021F0667B00BCF0AD /* marketplace_page_viewed.swift */,
-				6898FE2321F0666800BCF0AD /* migration_burn_failed.swift */,
-				6898FE0F21F0665F00BCF0AD /* migration_burn_started.swift */,
-				6898FE1F21F0666600BCF0AD /* migration_burn_succeeded.swift */,
-				6898FE4421F0667500BCF0AD /* migration_callback_failed.swift */,
-				6898FE3D21F0667200BCF0AD /* migration_callback_ready.swift */,
-				6898FE5321F0667C00BCF0AD /* migration_callback_start.swift */,
-				6898FE0E21F0665F00BCF0AD /* migration_check_burn_failed.swift */,
-				6898FE2821F0666900BCF0AD /* migration_check_burn_started.swift */,
-				6898FE0C21F0665E00BCF0AD /* migration_check_burn_succeeded.swift */,
-				6898FDFB21F0665800BCF0AD /* migration_method_started.swift */,
-				6898FE4D21F0667900BCF0AD /* migration_request_account_migration_failed.swift */,
-				6898FDF721F0665600BCF0AD /* migration_request_account_migration_started.swift */,
-				6898FE0421F0665B00BCF0AD /* migration_request_account_migration_succeeded.swift */,
-				6898FE5621F0667D00BCF0AD /* migration_version_check_failed.swift */,
-				6898FE4721F0667600BCF0AD /* migration_version_check_started.swift */,
-				6898FE3121F0666D00BCF0AD /* migration_version_check_succeeded.swift */,
+				6898FEC321F06A3B00BCF0AD /* migration_burn_failed.swift */,
+				6898FEBF21F06A3A00BCF0AD /* migration_burn_started.swift */,
+				6898FEC421F06A3B00BCF0AD /* migration_burn_succeeded.swift */,
+				6898FEBD21F06A3900BCF0AD /* migration_callback_failed.swift */,
+				6898FEC021F06A3A00BCF0AD /* migration_callback_ready.swift */,
+				6898FEC521F06A3B00BCF0AD /* migration_callback_start.swift */,
+				6898FEC221F06A3B00BCF0AD /* migration_method_started.swift */,
+				6898FEBC21F06A3900BCF0AD /* migration_request_account_migration_failed.swift */,
+				6898FEBE21F06A3A00BCF0AD /* migration_request_account_migration_started.swift */,
+				6898FEC721F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift */,
+				6898FEBB21F06A3800BCF0AD /* migration_version_check_failed.swift */,
+				6898FEC121F06A3A00BCF0AD /* migration_version_check_started.swift */,
+				6898FEC621F06A3C00BCF0AD /* migration_version_check_succeeded.swift */,
 				6898FE4E21F0667A00BCF0AD /* not_enough_kin_page_viewed.swift */,
 				6898FE3021F0666C00BCF0AD /* order_history_item_tapped.swift */,
 				6898FE0D21F0665E00BCF0AD /* order_history_page_viewed.swift */,
-				6898FE3421F0666E00BCF0AD /* pay_to_user_order_cancelled.swift */,
-				6898FE3F21F0667200BCF0AD /* pay_to_user_order_completed.swift */,
-				6898FE1D21F0666500BCF0AD /* pay_to_user_order_completion_submitted.swift */,
-				6898FE4321F0667400BCF0AD /* pay_to_user_order_creation_failed.swift */,
-				6898FE2D21F0666B00BCF0AD /* pay_to_user_order_creation_received.swift */,
-				6898FE3321F0666D00BCF0AD /* pay_to_user_order_creation_requested.swift */,
-				6898FE0321F0665B00BCF0AD /* pay_to_user_order_failed.swift */,
-				6898FE1621F0666200BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_failed.swift */,
-				6898FE0B21F0665E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_submitted.swift */,
-				6898FE5721F0667D00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift */,
 				6898FE1121F0665F00BCF0AD /* redeem_url_tapped.swift */,
-				6898FE3621F0666F00BCF0AD /* restore_are_you_sure_cancel_button_tapped.swift */,
-				6898FE4A21F0667700BCF0AD /* restore_are_you_sure_ok_button_tapped.swift */,
-				6898FE1721F0666200BCF0AD /* restore_password_done_button_tapped.swift */,
-				6898FE2921F0666900BCF0AD /* restore_password_entry_back_button_tapped.swift */,
-				6898FE2121F0666700BCF0AD /* restore_password_entry_page_viewed.swift */,
-				6898FE0921F0665D00BCF0AD /* restore_upload_qr_code_back_button_tapped.swift */,
-				6898FE2721F0666900BCF0AD /* restore_upload_qr_code_button_tapped.swift */,
-				6898FE1821F0666300BCF0AD /* restore_upload_qr_code_page_viewed.swift */,
-				6898FE5821F0667E00BCF0AD /* restore_wallet_completed.swift */,
 				6898FE1521F0666200BCF0AD /* spend_offer_tapped.swift */,
 				6898FE2A21F0666A00BCF0AD /* spend_order_cancelled.swift */,
 				6898FE4121F0667300BCF0AD /* spend_order_completed.swift */,
@@ -952,66 +841,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6898FED421F06A3C00BCF0AD /* migration_request_account_migration_succeeded.swift in Sources */,
 				6898FE9C21F0667E00BCF0AD /* welcome_screen_button_tapped.swift in Sources */,
-				6898FEBA21F0667E00BCF0AD /* restore_wallet_completed.swift in Sources */,
 				680CD3CC21E225840003AB59 /* BalanceViewController.swift in Sources */,
 				680CD47C21E2258C0003AB59 /* Blockchain.swift in Sources */,
 				6898FE5F21F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_succeeded.swift in Sources */,
 				680CD3D421E225840003AB59 /* SheetTransition.swift in Sources */,
-				6898FE5921F0667E00BCF0AD /* migration_request_account_migration_started.swift in Sources */,
 				680CD3E221E225840003AB59 /* KinEcosystem.xcdatamodeld in Sources */,
 				680CD47921E2258C0003AB59 /* RestClient.swift in Sources */,
-				6898FE7821F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_failed.swift in Sources */,
 				6898FE9021F0667E00BCF0AD /* balance_tapped.swift in Sources */,
 				680CD44421E2258C0003AB59 /* BIError.swift in Sources */,
 				6898FE8C21F0667E00BCF0AD /* spend_order_cancelled.swift in Sources */,
-				6898FE8B21F0667E00BCF0AD /* restore_password_entry_back_button_tapped.swift in Sources */,
-				6898FE6B21F0667E00BCF0AD /* restore_upload_qr_code_back_button_tapped.swift in Sources */,
-				6898FE7021F0667E00BCF0AD /* migration_check_burn_failed.swift in Sources */,
 				680CD3DD21E225840003AB59 /* Offer.swift in Sources */,
-				6898FEB321F0667E00BCF0AD /* backup_qr_code_back_button_tapped.swift in Sources */,
 				680CD3CA21E225840003AB59 /* EarnOfferCell.swift in Sources */,
 				680CD48121E2258C0003AB59 /* CGPoint+functions.swift in Sources */,
 				680CD48421E2258C0003AB59 /* UINavigationBar+gradient.swift in Sources */,
 				680CD43921E2258C0003AB59 /* ImageCache.swift in Sources */,
 				680CD47721E2258C0003AB59 /* NetworkTypes.swift in Sources */,
-				6898FE7921F0667E00BCF0AD /* restore_password_done_button_tapped.swift in Sources */,
 				6898FE9721F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_failed.swift in Sources */,
-				6898FEB521F0667E00BCF0AD /* migration_callback_start.swift in Sources */,
-				6898FEA121F0667E00BCF0AD /* pay_to_user_order_completed.swift in Sources */,
-				6898FE9D21F0667E00BCF0AD /* backup_wallet_completed.swift in Sources */,
 				680CD43E21E2258C0003AB59 /* Kin.swift in Sources */,
 				680CD43C21E2258C0003AB59 /* KinEcosystemError.swift in Sources */,
-				6898FEB921F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_succeeded.swift in Sources */,
 				6898FE6121F0667E00BCF0AD /* kin_balance_updated.swift in Sources */,
-				6898FE9521F0667E00BCF0AD /* pay_to_user_order_creation_requested.swift in Sources */,
-				6898FE9F21F0667E00BCF0AD /* migration_callback_ready.swift in Sources */,
 				680CD48521E2258C0003AB59 /* Bundle+extensions.swift in Sources */,
+				6898FED121F06A3C00BCF0AD /* migration_burn_succeeded.swift in Sources */,
+				6898FEC821F06A3C00BCF0AD /* migration_version_check_failed.swift in Sources */,
 				680CD3E421E225840003AB59 /* EcosystemData.swift in Sources */,
-				6898FEA621F0667E00BCF0AD /* migration_callback_failed.swift in Sources */,
-				6898FE6721F0667E00BCF0AD /* backup_qr_code_myqrcode_button_tapped.swift in Sources */,
 				680CD44321E2258C0003AB59 /* BIClient.swift in Sources */,
 				6898FEAA21F0667E00BCF0AD /* spend_redeem_page_viewed.swift in Sources */,
 				6898FEAE21F0667E00BCF0AD /* spend_transaction_broadcast_to_blockchain_submitted.swift in Sources */,
 				680CD3CF21E225840003AB59 /* Animations.swift in Sources */,
-				6898FE8821F0667E00BCF0AD /* backup_start_button_tapped.swift in Sources */,
-				6898FEB721F0667E00BCF0AD /* backup_completed_page_viewed.swift in Sources */,
 				680CD3D321E225840003AB59 /* OrdersViewController.swift in Sources */,
-				6898FEAF21F0667E00BCF0AD /* migration_request_account_migration_failed.swift in Sources */,
 				680CD48021E2258C0003AB59 /* UIImage+extensions.swift in Sources */,
-				6898FE7121F0667E00BCF0AD /* migration_burn_started.swift in Sources */,
 				6898FEA821F0667E00BCF0AD /* spend_thankyou_page_viewed.swift in Sources */,
 				680CD3CE21E225840003AB59 /* KinNavigationViewController.swift in Sources */,
 				680CD3BA21E225840003AB59 /* CouponViewModel.swift in Sources */,
-				6898FE9321F0667E00BCF0AD /* migration_version_check_succeeded.swift in Sources */,
 				680CD3D621E225840003AB59 /* OrderCellTimelineView.swift in Sources */,
-				6898FE6E21F0667E00BCF0AD /* migration_check_burn_succeeded.swift in Sources */,
 				680CD44221E2258C0003AB59 /* EventsStore.swift in Sources */,
 				6898FE6321F0667E00BCF0AD /* wallet_creation_succeeded.swift in Sources */,
 				6898FEAB21F0667E00BCF0AD /* stellar_kin_trustline_setup_succeeded.swift in Sources */,
-				6898FEA521F0667E00BCF0AD /* pay_to_user_order_creation_failed.swift in Sources */,
 				680CD44621E2258C0003AB59 /* KBIEvent.swift in Sources */,
+				6898FECE21F06A3C00BCF0AD /* migration_version_check_started.swift in Sources */,
 				680CD44021E2258C0003AB59 /* Reachability.swift in Sources */,
+				6898FECF21F06A3C00BCF0AD /* migration_method_started.swift in Sources */,
 				680CD3DB21E225840003AB59 /* CouponViewController.swift in Sources */,
 				6898FE7D21F0667E00BCF0AD /* spend_redeem_button_tapped.swift in Sources */,
 				680CD43A21E2258C0003AB59 /* Environment.swift in Sources */,
@@ -1022,22 +893,18 @@
 				680CD3D021E225840003AB59 /* WelcomeViewController.swift in Sources */,
 				6898FE6C21F0667E00BCF0AD /* earn_page_loaded.swift in Sources */,
 				6898FE7721F0667E00BCF0AD /* spend_offer_tapped.swift in Sources */,
-				6898FE8F21F0667E00BCF0AD /* pay_to_user_order_creation_received.swift in Sources */,
-				6898FE9821F0667E00BCF0AD /* restore_are_you_sure_cancel_button_tapped.swift in Sources */,
-				6898FE7F21F0667E00BCF0AD /* pay_to_user_order_completion_submitted.swift in Sources */,
-				6898FE8321F0667E00BCF0AD /* restore_password_entry_page_viewed.swift in Sources */,
 				6898FE5E21F0667E00BCF0AD /* common.swift in Sources */,
 				6898FE8D21F0667E00BCF0AD /* back_button_on_marketplace_page_tapped.swift in Sources */,
-				6898FE8521F0667E00BCF0AD /* migration_burn_failed.swift in Sources */,
+				6898FECC21F06A3C00BCF0AD /* migration_burn_started.swift in Sources */,
 				680CD48321E2258C0003AB59 /* CodingUserInfoKey+Decode.swift in Sources */,
-				6898FE8221F0667E00BCF0AD /* backup_popup_page_viewed.swift in Sources */,
 				6898FEB021F0667E00BCF0AD /* not_enough_kin_page_viewed.swift in Sources */,
 				680CD3E521E225840003AB59 /* JWTConfirmation.swift in Sources */,
 				680CD48221E2258C0003AB59 /* NSAttributedString+extensions.swift in Sources */,
+				6898FEC921F06A3C00BCF0AD /* migration_request_account_migration_failed.swift in Sources */,
 				6898FEA321F0667E00BCF0AD /* spend_order_completed.swift in Sources */,
+				6898FECA21F06A3C00BCF0AD /* migration_callback_failed.swift in Sources */,
 				6898FE5B21F0667E00BCF0AD /* earn_order_cancelled.swift in Sources */,
 				6898FE7221F0667E00BCF0AD /* earn_offer_tapped.swift in Sources */,
-				6898FE9E21F0667E00BCF0AD /* backup_qr_code_page_viewed.swift in Sources */,
 				6898FE5C21F0667E00BCF0AD /* client.swift in Sources */,
 				6898FE9921F0667E00BCF0AD /* types.swift in Sources */,
 				6898FE8021F0667E00BCF0AD /* earn_order_creation_requested.swift in Sources */,
@@ -1046,53 +913,40 @@
 				6898FEAD21F0667E00BCF0AD /* spend_order_failed.swift in Sources */,
 				6898FE9121F0667E00BCF0AD /* earn_order_creation_received.swift in Sources */,
 				6898FE6421F0667E00BCF0AD /* welcome_screen_page_viewed.swift in Sources */,
-				6898FE8621F0667E00BCF0AD /* backup_popup_later_button_tapped.swift in Sources */,
-				6898FE8921F0667E00BCF0AD /* restore_upload_qr_code_button_tapped.swift in Sources */,
-				6898FE8A21F0667E00BCF0AD /* migration_check_burn_started.swift in Sources */,
 				680CD3E021E225840003AB59 /* OrderError.swift in Sources */,
 				6898FE6A21F0667E00BCF0AD /* general_ecosystem_sdk_error.swift in Sources */,
 				6898FE7321F0667E00BCF0AD /* redeem_url_tapped.swift in Sources */,
 				6898FE9B21F0667E00BCF0AD /* earn_order_completion_submitted.swift in Sources */,
 				680CD3DE21E225840003AB59 /* Order.swift in Sources */,
 				680CD3BD21E225840003AB59 /* OrderViewModel.swift in Sources */,
-				6898FEAC21F0667E00BCF0AD /* restore_are_you_sure_ok_button_tapped.swift in Sources */,
+				6898FED021F06A3C00BCF0AD /* migration_burn_failed.swift in Sources */,
 				680CD3E121E225840003AB59 /* OrderResult.swift in Sources */,
 				6898FE7621F0667E00BCF0AD /* earn_order_completed.swift in Sources */,
-				6898FE6221F0667E00BCF0AD /* backup_qr_code_send_button_tapped.swift in Sources */,
-				6898FE9621F0667E00BCF0AD /* pay_to_user_order_cancelled.swift in Sources */,
-				6898FE6D21F0667E00BCF0AD /* pay_to_user_transaction_broadcast_to_blockchain_submitted.swift in Sources */,
 				680CD3DF21E225840003AB59 /* CouponCode.swift in Sources */,
 				680CD3C921E225840003AB59 /* SplashTransition.swift in Sources */,
 				6898FE7E21F0667E00BCF0AD /* spend_order_creation_failed.swift in Sources */,
 				680CD47B21E2258C0003AB59 /* Balance.swift in Sources */,
 				6898FEA021F0667E00BCF0AD /* back_button_on_welcome_screen_page_tapped.swift in Sources */,
-				6898FE5D21F0667E00BCF0AD /* migration_method_started.swift in Sources */,
 				680CD47F21E2258C0003AB59 /* UIView+extensions.swift in Sources */,
+				6898FED321F06A3C00BCF0AD /* migration_version_check_succeeded.swift in Sources */,
 				680CD3DA21E225840003AB59 /* MarketplaceViewController.swift in Sources */,
+				6898FECD21F06A3C00BCF0AD /* migration_callback_ready.swift in Sources */,
 				6898FEB221F0667E00BCF0AD /* marketplace_page_viewed.swift in Sources */,
-				6898FE7A21F0667E00BCF0AD /* restore_upload_qr_code_page_viewed.swift in Sources */,
 				680CD3D921E225840003AB59 /* OrderCell.swift in Sources */,
-				6898FE7C21F0667E00BCF0AD /* backup_welcome_page_viewed.swift in Sources */,
 				680CD3D121E225840003AB59 /* OffersCollectionViewFlowLayout.swift in Sources */,
 				680CD43B21E2258C0003AB59 /* Logger.swift in Sources */,
 				6898FE8E21F0667E00BCF0AD /* entrypoint_button_tapped.swift in Sources */,
-				6898FE6621F0667E00BCF0AD /* migration_request_account_migration_succeeded.swift in Sources */,
 				680CD3D521E225840003AB59 /* DiamondsLoaderView.swift in Sources */,
 				6898FEB421F0667E00BCF0AD /* earn_order_creation_failed.swift in Sources */,
+				6898FED221F06A3C00BCF0AD /* migration_callback_start.swift in Sources */,
 				680CD3E321E225840003AB59 /* BlockchainData.swift in Sources */,
 				680CD3CD21E225840003AB59 /* SpendOfferViewController.swift in Sources */,
-				6898FEA921F0667E00BCF0AD /* migration_version_check_started.swift in Sources */,
 				6898FEB121F0667E00BCF0AD /* confirm_purchase_button_tapped.swift in Sources */,
 				680CD3B921E225840003AB59 /* Flows.swift in Sources */,
-				6898FE8121F0667E00BCF0AD /* migration_burn_succeeded.swift in Sources */,
-				6898FEB821F0667E00BCF0AD /* migration_version_check_failed.swift in Sources */,
 				6898FE8721F0667E00BCF0AD /* earn_order_failed.swift in Sources */,
 				6898FE7B21F0667E00BCF0AD /* spend_order_completion_submitted.swift in Sources */,
-				6898FEB621F0667E00BCF0AD /* backup_popup_button_tapped.swift in Sources */,
 				680CD3D221E225840003AB59 /* SpendOfferCell.swift in Sources */,
-				6898FE6521F0667E00BCF0AD /* pay_to_user_order_failed.swift in Sources */,
 				680CD3BB21E225840003AB59 /* SpendViewModel.swift in Sources */,
-				6898FE6821F0667E00BCF0AD /* backup_welcome_page_back_button_tapped.swift in Sources */,
 				6898FE9A21F0667E00BCF0AD /* kin_sdk_initiated.swift in Sources */,
 				680CD47821E2258C0003AB59 /* EcosystemNet.swift in Sources */,
 				680CD43F21E2258C0003AB59 /* Iso8601DateFormatter.swift in Sources */,
@@ -1101,17 +955,15 @@
 				6898FE6921F0667E00BCF0AD /* spend_order_creation_requested.swift in Sources */,
 				6898FEA221F0667E00BCF0AD /* user.swift in Sources */,
 				680CD3D721E225840003AB59 /* InsufficientFundsViewController.swift in Sources */,
-				6898FE8421F0667E00BCF0AD /* backup_create_password_next_button_tapped.swift in Sources */,
 				680CD3DC21E225840003AB59 /* KinViewController.swift in Sources */,
 				680CD44521E2258C0003AB59 /* DeviceData.swift in Sources */,
 				680CD47E21E2258C0003AB59 /* Decimal+Currency.swift in Sources */,
 				6898FE9221F0667E00BCF0AD /* order_history_item_tapped.swift in Sources */,
 				680CD3D821E225840003AB59 /* EarnOfferViewController.swift in Sources */,
 				680CD44121E2258C0003AB59 /* Core.swift in Sources */,
+				6898FECB21F06A3C00BCF0AD /* migration_request_account_migration_started.swift in Sources */,
 				680CD3CB21E225840003AB59 /* KinBaseNavigationController.swift in Sources */,
-				6898FE6021F0667E00BCF0AD /* backup_create_password_back_button_tapped.swift in Sources */,
 				6898FE6F21F0667E00BCF0AD /* order_history_page_viewed.swift in Sources */,
-				6898FEA421F0667E00BCF0AD /* backup_create_password_page_viewed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

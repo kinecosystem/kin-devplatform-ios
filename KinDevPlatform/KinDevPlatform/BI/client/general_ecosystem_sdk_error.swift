@@ -32,13 +32,15 @@ import Foundation
 struct GeneralEcosystemSDKError: KBIEvent {
     let client: Client
     let common: Common
-    let errorReason: String
+    let errorCode, errorMessage, errorReason: String
     let eventName: String
     let eventType: String
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
         case errorReason = "error_reason"
         case eventName = "event_name"
         case eventType = "event_type"
@@ -47,7 +49,7 @@ struct GeneralEcosystemSDKError: KBIEvent {
 }
 
 extension GeneralEcosystemSDKError {
-    init(errorReason: String) throws {
+    init(errorCode: String, errorMessage: String, errorReason: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -63,6 +65,8 @@ extension GeneralEcosystemSDKError {
         eventName = "general_ecosystem_sdk_error"
         eventType = "log"
 
+        self.errorCode = errorCode
+        self.errorMessage = errorMessage
         self.errorReason = errorReason
     }
 }

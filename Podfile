@@ -11,6 +11,8 @@ target 'KinDevPlatform' do
 
   pod 'SimpleCoreDataStack'
   pod 'KinMigrationModule', :path => '../kin-migration-module-ios'
+  # can remove entire line after pushing pod
+  pod 'KinSDK', :path => '../kin-sdk-ios' 
 end
 
 target 'KinDevPlatformSampleApp' do

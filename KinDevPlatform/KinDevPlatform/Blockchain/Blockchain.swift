@@ -185,7 +185,8 @@ class Blockchain {
         guard let account = account else {
             return Promise(KinEcosystemError.client(.internalInconsistency, nil))
         }
-        return account.sendTransaction(to: recipient, kin: kin, memo: memo, whitelist: whitelist)
+
+        return account.sendTransaction(to: recipient, kin: kin, memo: memo, fee: 0, whitelist: whitelist)
     }
 
     func startWatchingForNewPayments(with memo: PaymentMemoIdentifier) throws {

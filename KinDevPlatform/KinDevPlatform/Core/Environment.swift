@@ -46,7 +46,6 @@ public enum Environment {
     }
     
     public var blockchainURL: URL {
-        // .playground and .production are coming from the migration module
         switch self {
         case .playground:
             return URL(string: "https://horizon-playground.kininfrastructure.com")!
@@ -58,7 +57,6 @@ public enum Environment {
     }
     
     public var blockchainPassphrase: String {
-        // .playground and .production are coming from the migration module
         switch self {
         case .playground:
             return "Kin Playground Network ; June 2018"
@@ -70,7 +68,14 @@ public enum Environment {
     }
     
     public var kinIssuer: String {
-        return mapToMigrationModuleNetwork.kinCoreIssuer
+        switch self {
+        case .playground:
+            return "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
+        case .production:
+            return "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
+        case .custom(let envProps):
+            return envProps.kinIssuer
+        }
     }
     
     public var marketplaceURL: String {

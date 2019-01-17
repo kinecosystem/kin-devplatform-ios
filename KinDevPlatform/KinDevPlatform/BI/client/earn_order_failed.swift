@@ -32,25 +32,30 @@ import Foundation
 struct EarnOrderFailed: KBIEvent {
     let client: Client
     let common: Common
-    let errorReason: String
+    let errorCode, errorMessage, errorReason: String
     let eventName: String
     let eventType: String
     let offerID, orderID: String
+    let origin: KBITypes.Origin
     let user: User
 
     enum CodingKeys: String, CodingKey {
         case client, common
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
         case errorReason = "error_reason"
         case eventName = "event_name"
         case eventType = "event_type"
         case offerID = "offer_id"
         case orderID = "order_id"
-        case user
+        case origin, user
     }
 }
 
+
+
 extension EarnOrderFailed {
-    init(errorReason: String, offerID: String, orderID: String) throws {
+    init(errorCode: String, errorMessage: String, errorReason: String, offerID: String, orderID: String, origin: KBITypes.Origin) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -66,8 +71,11 @@ extension EarnOrderFailed {
         eventName = "earn_order_failed"
         eventType = "log"
 
+        self.errorCode = errorCode
+        self.errorMessage = errorMessage
         self.errorReason = errorReason
         self.offerID = offerID
         self.orderID = orderID
+        self.origin = origin
     }
 }

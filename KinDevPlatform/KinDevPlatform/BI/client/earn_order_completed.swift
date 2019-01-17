@@ -35,9 +35,8 @@ struct EarnOrderCompleted: KBIEvent {
     let eventName: String
     let eventType: String
     let kinAmount: Double
-    let offerID: String
-    let offerType: KBITypes.OfferType
-    let orderID: String
+    let offerID, orderID: String
+    let origin: KBITypes.Origin
     let user: User
 
     enum CodingKeys: String, CodingKey {
@@ -46,16 +45,15 @@ struct EarnOrderCompleted: KBIEvent {
         case eventType = "event_type"
         case kinAmount = "kin_amount"
         case offerID = "offer_id"
-        case offerType = "offer_type"
         case orderID = "order_id"
-        case user
+        case origin, user
     }
 }
 
 
 
 extension EarnOrderCompleted {
-    init(kinAmount: Double, offerID: String, offerType: KBITypes.OfferType, orderID: String) throws {
+    init(kinAmount: Double, offerID: String, orderID: String, origin: KBITypes.Origin) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -73,7 +71,7 @@ extension EarnOrderCompleted {
 
         self.kinAmount = kinAmount
         self.offerID = offerID
-        self.offerType = offerType
         self.orderID = orderID
+        self.origin = origin
     }
 }

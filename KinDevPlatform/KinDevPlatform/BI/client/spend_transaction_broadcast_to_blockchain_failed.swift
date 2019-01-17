@@ -32,7 +32,7 @@ import Foundation
 struct SpendTransactionBroadcastToBlockchainFailed: KBIEvent {
     let client: Client
     let common: Common
-    let errorReason: String
+    let errorCode, errorMessage, errorReason: String
     let eventName: String
     let eventType: String
     let offerID, orderID: String
@@ -40,6 +40,8 @@ struct SpendTransactionBroadcastToBlockchainFailed: KBIEvent {
 
     enum CodingKeys: String, CodingKey {
         case client, common
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
         case errorReason = "error_reason"
         case eventName = "event_name"
         case eventType = "event_type"
@@ -50,7 +52,7 @@ struct SpendTransactionBroadcastToBlockchainFailed: KBIEvent {
 }
 
 extension SpendTransactionBroadcastToBlockchainFailed {
-    init(errorReason: String, offerID: String, orderID: String) throws {
+    init(errorCode: String, errorMessage: String, errorReason: String, offerID: String, orderID: String) throws {
         let es = EventsStore.shared
 
         guard   let user = es.userProxy?.snapshot,
@@ -66,6 +68,8 @@ extension SpendTransactionBroadcastToBlockchainFailed {
         eventName = "spend_transaction_broadcast_to_blockchain_failed"
         eventType = "log"
 
+        self.errorCode = errorCode
+        self.errorMessage = errorMessage
         self.errorReason = errorReason
         self.offerID = offerID
         self.orderID = orderID

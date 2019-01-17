@@ -146,7 +146,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     private func start(user: String, apiKey: String? = nil, appId: String, jwt: String? = nil) throws {
         let url = URL(string: "https://migration-devplatform-playground.developers.kinecosystem.com")!
 
-        try Kin.shared.start(userId: user, appId: appId, kinCoreEnvironment: .playground, kinSDKEnvironment: .playground, migrateBaseURL: url)
+        try Kin.shared.start(userId: user, appId: appId, jwt: jwt, kinCoreEnvironment: .playground, kinSDKEnvironment: .playground, migrateBaseURL: url)
     }
 
     fileprivate func launchMarketplace() {

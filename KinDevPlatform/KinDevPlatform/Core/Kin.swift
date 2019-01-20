@@ -48,7 +48,6 @@ public struct NativeOffer: Equatable {
 }
 
 public protocol KinMigrationDelegate: NSObjectProtocol {
-    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback)
     func kinMigrationDidStartMigration()
     func kinMigrationIsReady()
     func kinMigration(error: Error)
@@ -137,35 +136,32 @@ public class Kin: NSObject {
             throw KinEcosystemError.client(.internalInconsistency, nil)
         }
 
-        let store: EcosystemData
-        let chain: Blockchain
-        let appId: AppId
-
         do {
-            appId = try AppId(appIdValue)
-            store = try EcosystemData(modelName: "KinEcosystem", modelURL: URL(string: modelPath)!)
+            let appId = try AppId(appIdValue)
+            let store = try EcosystemData(modelName: "KinEcosystem", modelURL: URL(string: modelPath)!)
 
             let kinCoreSP = try kinCoreEnvironment.mapToMigrationModuleServiceProvider()
             let kinSDKSP = try kinSDKEnvironment.mapToMigrationModuleServiceProvider(migrateBaseURL)
 
-            chain = try Blockchain(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
+            let chain = try Blockchain(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
             chain.migrationManager.delegate = self
             chain.migrationManager.biDelegate = self
+
+            startData = StartData(kinCoreEnvironment: kinCoreEnvironment,
+                                  kinSDKEnvironment: kinSDKEnvironment,
+                                  userId: userId,
+                                  apiKey: apiKey,
+                                  appId: appId,
+                                  jwt: jwt,
+                                  store: store,
+                                  blockchain: chain)
+
             try chain.migrationManager.start()
         }
         catch {
             logError("prepare start failed")
             throw KinEcosystemError.client(.internalInconsistency, nil)
         }
-
-        startData = StartData(kinCoreEnvironment: kinCoreEnvironment,
-                              kinSDKEnvironment: kinSDKEnvironment,
-                              userId: userId,
-                              apiKey: apiKey,
-                              appId: appId,
-                              jwt: jwt,
-                              store: store,
-                              blockchain: chain)
     }
 
     private func `continue`(with account: KinAccountProtocol) throws {
@@ -541,23 +537,30 @@ extension Kin {
 @available(iOS 9.0, *)
 extension Kin: KinMigrationManagerDelegate {
     public func kinMigrationManagerNeedsVersion(_ kinMigrationManager: KinMigrationManager) -> Promise<KinVersion> {
-        guard let migrationDelegate = migrationDelegate else {
-            fatalError("The `migrationDelegate` needs to be set.")
+        guard let appId = startData?.appId, let environment = startData?.kinSDKEnvironment else {
+            return Promise(KinEcosystemError.client(.internalInconsistency, nil))
         }
 
         let promise = Promise<KinVersion>()
+        let url = URL(string: "\(environment.marketplaceURL)/config/blockchain/\(appId.value)")!
 
-        migrationDelegate.kinMigrationNeedsVersion() { (kinVersion, error) in
-            if let kinVersion = kinVersion {
-                promise.signal(kinVersion)
-            }
-            else if let error = error {
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
                 promise.signal(error)
+                return
+            }
+
+            if let data = data,
+                let dataString = String(data: data, encoding: .utf8),
+                let dataInt = Int(dataString),
+                let kinVersion = KinVersion(rawValue: dataInt)
+            {
+                promise.signal(kinVersion)
             }
             else {
                 promise.signal(KinEcosystemError.client(.internalInconsistency, nil))
             }
-        }
+        }.resume()
 
         return promise
     }

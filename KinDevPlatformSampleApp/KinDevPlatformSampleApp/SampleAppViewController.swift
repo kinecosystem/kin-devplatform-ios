@@ -19,6 +19,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var buyStickerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
+    let environment: Environment = .playground
+
     let loader = UIActivityIndicatorView(style: .whiteLarge)
 
     var appKey: String? {
@@ -146,7 +148,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     private func start(user: String, apiKey: String? = nil, appId: String, jwt: String? = nil) throws {
         let url = URL(string: "https://migration-devplatform-playground.developers.kinecosystem.com")!
 
-        try Kin.shared.start(userId: user, appId: appId, jwt: jwt, kinCoreEnvironment: .playground, kinSDKEnvironment: .playground, migrateBaseURL: url)
+        try Kin.shared.start(userId: user, appId: appId, jwt: jwt, kinCoreEnvironment: environment, kinSDKEnvironment: environment, migrateBaseURL: url)
     }
 
     fileprivate func launchMarketplace() {
@@ -389,37 +391,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SampleAppViewController: KinMigrationDelegate {
-    private struct VersionResponse: Codable {
-        let version: KinVersion
-    }
-
-    func kinMigrationNeedsVersion(callback: @escaping MigrationVersionCallback) {
-        let url = URL(string: "https://www.mocky.io/v2/5c2db8b82f00008e2f1751df")! // Kin Core
-//        let url = URL(string: "https://www.mocky.io/v2/5c2db8cd2f0000a3301751e3")! // Kin SDK
-
-        URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
-            if let error = error {
-                self?.alertStartError(error)
-                callback(nil, error)
-                return
-            }
-
-            guard let data = data else {
-                callback(nil, nil)
-                return
-            }
-
-            do {
-                let response = try JSONDecoder().decode(VersionResponse.self, from: data)
-                callback(response.version, nil)
-            }
-            catch {
-                self?.alertStartError(error)
-                callback(nil, error)
-            }
-        }.resume()
-    }
-
     func kinMigrationDidStartMigration() {
         showLoader()
     }

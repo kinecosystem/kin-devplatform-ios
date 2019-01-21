@@ -570,6 +570,8 @@ extension Kin: KinMigrationManagerDelegate {
     }
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
+        needsReset = client.accounts.count > 1
+
         do {
             if let account = try startData?.blockchain.startAccount(with: client) {
                 try `continue`(with: account)

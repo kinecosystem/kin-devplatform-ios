@@ -135,13 +135,12 @@ class Blockchain {
                 p.signal(())
             }
             .error { (bError) in
-                if case let KinError.balanceQueryFailed(error) = bError {
-                    if let error = error as? StellarError {
-                        switch error {
-                        case .missingAccount:
-                            do {
-                                try self.account?.watchCreation().then {
-                                    self.account?.activate()
+                if let error = bError as? KinError {
+                    switch error {
+                    case .missingAccount:
+                        do {
+                            try self.account?.watchCreation().then {
+                                self.account?.activate()
                                 }.then { _ in
                                     Kin.track { try StellarKinTrustlineSetupSucceeded() }
                                     Kin.track { try WalletCreationSucceeded() }
@@ -150,26 +149,22 @@ class Blockchain {
                                 }.error { error in
                                     Kin.track { try StellarKinTrustlineSetupFailed(errorReason: error.localizedDescription) }
                                     p.signal(error)
-                                }
-                            } catch {
-                                p.signal(error)
                             }
-                        case .missingBalance:
-                            self.account?.activate().then { _ in
-                                Kin.track { try StellarKinTrustlineSetupSucceeded() }
-                                Kin.track { try WalletCreationSucceeded() }
-                                self.onboarded = true
-                                p.signal(())
+                        } catch {
+                            p.signal(error)
+                        }
+                    case .missingBalance:
+                        self.account?.activate().then { _ in
+                            Kin.track { try StellarKinTrustlineSetupSucceeded() }
+                            Kin.track { try WalletCreationSucceeded() }
+                            self.onboarded = true
+                            p.signal(())
                             }.error { error in
                                 Kin.track { try StellarKinTrustlineSetupFailed(errorReason: error.localizedDescription) }
                                 p.signal(error)
-                            }
-                        default:
-                            p.signal(KinError.unknown)
                         }
-                    }
-                    else {
-                        p.signal(bError)
+                    default:
+                        p.signal(KinError.unknown)
                     }
                 }
                 else {

@@ -274,3 +274,12 @@ class Blockchain {
         }
     }
 }
+
+// MARK: Debugging
+
+@available(iOS 9.0, *)
+extension Blockchain {
+    func deleteKeystore() {
+        migrationManager.deleteKeystore()
+    }
+}

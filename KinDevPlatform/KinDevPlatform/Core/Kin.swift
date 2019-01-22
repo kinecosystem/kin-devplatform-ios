@@ -119,7 +119,7 @@ public class Kin: NSObject {
             return
         }
         bi = try BIClient(endpoint: URL(string: kinSDKEnvironment.BIURL)!)
-        setupBIProxies()
+        setupBIProxies(appIdValue: appIdValue, userId: userId)
         Kin.track { try KinSDKInitiated() }
         let lastUser = UserDefaults.standard.string(forKey: KinPreferenceKey.lastSignedInUser.rawValue)
         let lastEnvironmentName = UserDefaults.standard.string(forKey: KinPreferenceKey.lastEnvironment.rawValue)
@@ -450,30 +450,16 @@ public class Kin: NSObject {
         mpPresentingController?.dismiss(animated: true, completion: completion)
     }
     
-    fileprivate func setupBIProxies() {
+    fileprivate func setupBIProxies(appIdValue: String, userId: String) {
         EventsStore.shared.userProxy = UserProxy(balance: { [weak self] () -> (Double) in
             guard let balance = self?.core?.blockchain.lastBalance else {
                 return 0
             }
             return NSDecimalNumber(decimal: balance.amount).doubleValue
             }, digitalServiceID: { [weak self] () -> (String) in
-                guard let appId = self?.core?.network.client.authToken?.app_id else {
-                    if let startAppid = self?.core?.network.client.config.appId {
-                        return startAppid.value
-                    }
-                    return ""
-                }
-                return appId
+                return self?.core?.network.client.authToken?.app_id ?? appIdValue
             }, digitalServiceUserID: { [weak self] () -> (String) in
-                guard let uid = self?.core?.network.client.authToken?.user_id else {
-                    if let startUid = self?.core?.network.client.config.userId {
-                        return startUid
-                    } else if let lastUser = UserDefaults.standard.string(forKey: KinPreferenceKey.lastSignedInUser.rawValue) {
-                        return lastUser
-                    }
-                    return ""
-                }
-                return uid
+                return self?.core?.network.client.authToken?.user_id ?? userId
             }, earnCount: { () -> (Int) in
                 0
         }, entryPointParam: { () -> (String) in
@@ -643,5 +629,14 @@ extension Kin: KinMigrationBIDelegate {
 
     public func kinMigrationRequestAccountMigrationFailed(error: Error, publicAddress: String) {
         Kin.track { try MigrationRequestAccountMigrationFailed(errorCode: "", errorMessage: error.localizedDescription, errorReason: "", publicAddress: publicAddress) }
+    }
+}
+
+// MARK: Debugging
+
+@available(iOS 9.0, *)
+extension Kin {
+    public func deleteKeystoreIfPossible() {
+        core?.blockchain.deleteKeystore()
     }
 }

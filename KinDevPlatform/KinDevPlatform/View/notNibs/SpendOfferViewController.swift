@@ -43,7 +43,7 @@ class SpendOfferViewController: KinViewController {
         spendButton.setAttributedTitle(viewModel.buttonLabel, for: .normal)
         spendButton.backgroundColor = .kinDeepSkyBlue
         spendButton.adjustsImageWhenDisabled = false
-        Kin.track { try ConfirmPurchasePageViewed(kinAmount: biData.amount, offerID: biData.offerId, orderID: "") }
+        Kin.track { try ConfirmPurchasePageViewed(kinAmount: self.biData.amount, offerID: self.biData.offerId, orderID: "") }
     }
 
     @IBAction func closeButtonTapped(_ sender: Any) {
@@ -55,7 +55,7 @@ class SpendOfferViewController: KinViewController {
     }
 
     @IBAction func confirmTapped(_ sender: Any) {
-        Kin.track { try ConfirmPurchaseButtonTapped(kinAmount: biData.amount, offerID: biData.offerId, orderID: "" ) }
+        Kin.track { try ConfirmPurchaseButtonTapped(kinAmount: self.biData.amount, offerID: self.biData.offerId, orderID: "" ) }
         spendButton.isEnabled = false
         spend.signal(())
         transitionToConfirmed()
@@ -101,7 +101,7 @@ class SpendOfferViewController: KinViewController {
             self?.closeButton.isHidden = true
         }
         
-        Kin.track { try SpendThankyouPageViewed(kinAmount: biData.amount, offerID: biData.offerId, orderID: "") }
+        Kin.track { try SpendThankyouPageViewed(kinAmount: self.biData.amount, offerID: self.biData.offerId, orderID: "") }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + duration * 0.72) { [weak self] in
 

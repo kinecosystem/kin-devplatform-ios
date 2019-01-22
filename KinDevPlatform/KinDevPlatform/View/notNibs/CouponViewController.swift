@@ -53,7 +53,7 @@ class CouponViewController: UIViewController, UITextViewDelegate {
         shape.strokeColor = UIColor.kinLightBlueGrey.cgColor
         shape.lineWidth = 2.0
         couponCode.layer.addSublayer(shape)
-        Kin.track { try SpendRedeemPageViewed(kinAmount: biData.amount, offerID: biData.offerId, orderID: biData.orderId, redeemTrigger: biData.trigger) }
+        Kin.track { try SpendRedeemPageViewed(kinAmount: self.biData.amount, offerID: self.biData.offerId, orderID: self.biData.orderId, redeemTrigger: self.biData.trigger) }
     }
 
     @IBAction func closeButtonTapped(_ sender: Any) {
@@ -66,7 +66,7 @@ class CouponViewController: UIViewController, UITextViewDelegate {
     @IBAction func copyCodeButtonTapped(_ sender: Any) {
         UIPasteboard.general.string = viewModel.code.string
         transitionToConfirmed()
-        Kin.track { try SpendRedeemButtonTapped(kinAmount: biData.amount, offerID: biData.offerId, orderID: biData.orderId) }
+        Kin.track { try SpendRedeemButtonTapped(kinAmount: self.biData.amount, offerID: self.biData.offerId, orderID: self.biData.orderId) }
     }
     
     func transitionToConfirmed() {

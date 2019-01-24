@@ -115,9 +115,7 @@ public class Kin: NSObject {
                       kinSDKEnvironment: Environment,
                       migrateBaseURL: URL) throws
     {
-        guard core == nil else {
-            return
-        }
+        core = nil
         bi = try BIClient(endpoint: URL(string: kinSDKEnvironment.BIURL)!)
         setupBIProxies(appIdValue: appIdValue, userId: userId)
         Kin.track { try KinSDKInitiated() }

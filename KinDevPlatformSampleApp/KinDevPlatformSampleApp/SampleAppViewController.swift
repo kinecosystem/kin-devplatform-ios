@@ -452,6 +452,9 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationIsReady() {
+        // !!!: DEBUG
+//        Kin.shared.deleteKeystoreIfPossible()
+
         hideLoader()
         launchMarketplace()
     }

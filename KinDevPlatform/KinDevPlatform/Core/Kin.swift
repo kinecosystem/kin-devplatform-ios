@@ -630,6 +630,78 @@ extension Kin: KinMigrationBIDelegate {
     }
 }
 
+// MARK: Migration
+
+@available(iOS 9.0, *)
+extension Kin {
+    struct BlockchainVersion {
+        let version: KinVersion?
+
+        init(_ version: KinVersion?) {
+            self.version = version
+        }
+
+        init(_ version: String?) {
+            if let versionString = version,
+                let versionInt = Int(versionString),
+                let v = KinVersion(rawValue: versionInt)
+            {
+                self.version = v
+            }
+            else {
+                self.version = nil
+            }
+        }
+    }
+
+    enum MigrationAlert: String {
+        case `default` = "Kin is being upgraded, you will be able to complete the operation after you force close the app and restart."
+        case saved = "Kin is being upgraded, you will be able to complete the operation after you force close the app and restart.\n\nYour Kin will appear after the upgrade is complete."
+    }
+
+    static func needsToMigrate(_ blockchainVersionA: BlockchainVersion, _ blockchainVersionB: BlockchainVersion) -> Bool {
+        if let blockchainVersionA = blockchainVersionA.version,
+            let blockchainVersionB = blockchainVersionB.version,
+            blockchainVersionA != blockchainVersionB
+        {
+            return true
+        }
+        return false
+    }
+
+    static func presentMigrationAlertIfNeeded(alert: MigrationAlert, _ presentingViewController: UIViewController? = nil) {
+        func presentMigrationAlert() {
+            let alertController = UIAlertController(title: "Upgrading Kin", message: alert.rawValue, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            (presentingViewController ?? topViewController())?.present(alertController, animated: true)
+        }
+
+        if Thread.isMainThread {
+            presentMigrationAlert()
+        }
+        else {
+            DispatchQueue.main.async {
+                presentMigrationAlert()
+            }
+        }
+    }
+
+    private static func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
+}
+
 // MARK: Debugging
 
 @available(iOS 9.0, *)

@@ -32,7 +32,8 @@ struct Flows {
     
     static func earn(offerId: String,
                      resultPromise: Promise<String>,
-                     core: Core) {
+                     core: Core,
+                     presentingViewController: UIViewController? = nil) {
         
         var openOrder: OpenOrder?
         var canCancelOrder = true
@@ -42,6 +43,14 @@ struct Flows {
             type: OpenOrder.self,
             method: .post)
             .then { order -> Promise<(String, OpenOrder)> in
+                let blockchainVersionA = Kin.BlockchainVersion(core.blockchain.migrationManager.version)
+                let blockchainVersionB = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+
+                if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                    Kin.presentMigrationAlertIfNeeded(alert: .default, presentingViewController)
+                    return Promise(KinMigrationError.migrationNeeded)
+                }
+
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "WatchOrderNotification"),
                                                 object: order.id)
                 openOrder = order
@@ -53,7 +62,7 @@ struct Flows {
             }.then { htmlResult, order -> SOPFlowPromise in
                 let p = SOPFlowPromise()
                 DispatchQueue.main.async {
-                    guard let appId = core.network.client.authToken?.app_id else {
+                    guard let _ = core.network.client.authToken?.app_id else {
                         p.signal(KinEcosystemError.client(.internalInconsistency, nil))
                         return
                     }
@@ -68,11 +77,21 @@ struct Flows {
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post,
                     body: content)
-                    .then { data in
+                    .then { data -> Promise<Data> in
                         Kin.track { try EarnOrderCompletionSubmitted(offerID: order.offer_id, orderID: order.id) }
-                        return core.data.save(Order.self, with: data)
-                    }.then {
+                        return core.data.save(Order.self, with: data).then { Promise(data) }
+                    }.then { data in
                         canCancelOrder = false
+
+                        let d = try JSONDecoder().decode(ClosedOrder.self, from: data)
+                        let blockchainVersionA = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+                        let blockchainVersionB = Kin.BlockchainVersion(d.blockchain_data?.blockchain_version)
+
+                        if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                            Kin.presentMigrationAlertIfNeeded(alert: .saved, presentingViewController)
+                            return Promise(KinMigrationError.migrationNeeded)
+                        }
+
                         return KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>().signal((memo, order))
                 }
             }.then { (arg) -> Promise<(PaymentMemoIdentifier, OpenOrder)> in
@@ -202,7 +221,8 @@ struct Flows {
                       confirmPromise: Promise<Void>,
                       submissionPromise: Promise<Void>? = nil,
                       successPromise: Promise<String>? = nil,
-                      core: Core) {
+                      core: Core,
+                      presentingViewController: UIViewController? = nil) {
         
         var openOrder: OpenOrder?
         var canCancelOrder = true
@@ -212,6 +232,13 @@ struct Flows {
             type: OpenOrder.self,
             method: .post)
             .then { order -> SDOFlowPromise in
+                let blockchainVersionA = Kin.BlockchainVersion(core.blockchain.migrationManager.version)
+                let blockchainVersionB = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+
+                if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                    return Promise(KinMigrationError.migrationNeeded)
+                }
+
                 openOrder = order
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "WatchOrderNotification"),
                                                 object: order.id)
@@ -239,17 +266,26 @@ struct Flows {
                         
                 }
             }.then { recipient, amount, order -> SDOPFlowPromise in
-                guard let appId = core.network.client.authToken?.app_id else {
+                guard let _ = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
                 let memo = PaymentMemoIdentifier(id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post)
-                    .then { data in
+                    .then { data -> Promise<Data> in
                         Kin.track { try SpendOrderCompletionSubmitted(isNative: false, offerID: offerId, orderID: order.id) }
-                        return core.data.save(Order.self, with: data)
-                    }.then {
+                        return core.data.save(Order.self, with: data).then { Promise(data) }
+                    }.then { data in
                         canCancelOrder = false
+
+                        let d = try JSONDecoder().decode(ClosedOrder.self, from: data)
+                        let blockchainVersionA = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+                        let blockchainVersionB = Kin.BlockchainVersion(d.blockchain_data?.blockchain_version)
+
+                        if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                            return Promise(KinMigrationError.migrationNeeded)
+                        }
+
                         logVerbose("Submitted order \(order.id)")
                         if let p = submissionPromise {
                             p.signal(())
@@ -402,7 +438,8 @@ struct Flows {
     }
     
     static func nativeSpend(jwt: String,
-                            core: Core) -> Promise<String> {
+                            core: Core,
+                            presentingViewController: UIViewController? = nil) -> Promise<String> {
         let jwtPromise = KinUtil.Promise<String>()
         var jwtConfirmation: String?
         guard let jwtSubmission = try? JSONEncoder().encode(JWTOrderSubmission(jwt: jwt)) else {
@@ -417,6 +454,13 @@ struct Flows {
                                   method: .post,
                                   body: jwtSubmission)
             .then { order -> SDOFlowPromise in
+                let blockchainVersionA = Kin.BlockchainVersion(core.blockchain.migrationManager.version)
+                let blockchainVersionB = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+
+                if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                    return Promise(KinMigrationError.migrationNeeded)
+                }
+
                 openOrder = order
                 logVerbose("created order \(order.id)")
                 Kin.track { try SpendOrderCreationReceived(isNative: true, offerID: order.offer_id, orderID: order.id) }
@@ -436,16 +480,25 @@ struct Flows {
                 }
             }
             .then { recipient, amount, order -> SDOPFlowPromise in
-                guard let appId = core.network.client.authToken?.app_id else {
+                guard let _ = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
                 let memo = PaymentMemoIdentifier(id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
-                    .then { data in
+                    .then { data -> Promise<Data> in
                         Kin.track { try SpendOrderCompletionSubmitted(isNative: true, offerID: order.offer_id, orderID: order.id) }
-                        return core.data.save(Order.self, with: data)
-                    }.then {
+                        return core.data.save(Order.self, with: data).then { Promise(data) }
+                    }.then { data in
                         canCancelOrder = false
+
+                        let d = try JSONDecoder().decode(ClosedOrder.self, from: data)
+                        let blockchainVersionA = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+                        let blockchainVersionB = Kin.BlockchainVersion(d.blockchain_data?.blockchain_version)
+
+                        if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                            return Promise(KinMigrationError.migrationNeeded)
+                        }
+
                         logVerbose("Submitted order \(order.id)")
                         return SDOPFlowPromise().signal((recipient, amount, order, memo))
                 }
@@ -647,7 +700,8 @@ struct Flows {
     }
     
     static func nativeEarn(jwt: String,
-                           core: Core) -> Promise<String> {
+                           core: Core,
+                           presentingViewController: UIViewController? = nil) -> Promise<String> {
         let jwtPromise = KinUtil.Promise<String>()
         var jwtConfirmation: String?
         guard let jwtSubmission = try? JSONEncoder().encode(JWTOrderSubmission(jwt: jwt)) else {
@@ -663,6 +717,13 @@ struct Flows {
                                   method: .post,
                                   body: jwtSubmission)
             .then { order -> SDOFlowPromise in
+                let blockchainVersionA = Kin.BlockchainVersion(core.blockchain.migrationManager.version)
+                let blockchainVersionB = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+
+                if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                    return Promise(KinMigrationError.migrationNeeded)
+                }
+
                 openOrder = order
                 logVerbose("created order \(order.id)")
                 Kin.track { try EarnOrderCreationReceived(offerID: order.offer_id, orderID: order.id) }
@@ -673,17 +734,26 @@ struct Flows {
                 return SDOFlowPromise().signal((recipient, Decimal(order.amount), order))
                 
             }.then { recipient, amount, order -> POFlowPromise in
-                guard let appId = core.network.client.authToken?.app_id else {
+                guard let _ = core.network.client.authToken?.app_id else {
                     return POFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
                 let memo = PaymentMemoIdentifier(id: order.id)
                 try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
-                    .then { data in
+                    .then { data -> Promise<Data> in
                         Kin.track { try EarnOrderCompletionSubmitted(offerID: order.offer_id, orderID: order.id) }
-                        return core.data.save(Order.self, with: data)
-                    }.then {
+                        return core.data.save(Order.self, with: data).then { Promise(data) }
+                    }.then { data in
                         canCancelOrder = false
+
+                        let d = try JSONDecoder().decode(ClosedOrder.self, from: data)
+                        let blockchainVersionA = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
+                        let blockchainVersionB = Kin.BlockchainVersion(d.blockchain_data?.blockchain_version)
+
+                        if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
+                            return Promise(KinMigrationError.migrationNeeded)
+                        }
+
                         logVerbose("Submitted order \(order.id)")
                         return POFlowPromise().signal((memo, order))
                 }

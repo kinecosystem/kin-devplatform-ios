@@ -88,6 +88,7 @@ struct OpenOrderData: Decodable {
     var transaction_id: String?
     var sender_address: String?
     var recipient_address: String?
+    var blockchain_version: String?
 }
 
 struct OpenOrder: Decodable {
@@ -99,6 +100,21 @@ struct OpenOrder: Decodable {
     var title: String
     var description: String
     var amount: Int32
+}
+
+struct ClosedOrder: Decodable {
+//    let id: String
+//    let origin: String
+//    let status: String
+//    let amount: Int
+//    let result: String?
+//    let offer_type: String
+//    let offer_id: String
+//    let title: String
+//    let error: String?
+    let blockchain_data: OpenOrderData?
+//    let completion_date: String
+//    let description: String
 }
 
 struct JWTOrderSubmission: Encodable {

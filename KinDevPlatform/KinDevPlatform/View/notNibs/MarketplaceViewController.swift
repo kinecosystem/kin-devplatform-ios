@@ -217,7 +217,7 @@ extension MarketplaceViewController: UICollectionViewDelegate, UICollectionViewD
                 Kin.track { try EarnOfferTapped(kinAmount: Double(offer.amount), offerID: offer.id, offerType: type) }
                 Kin.track { try EarnOrderCreationRequested(kinAmount: Double(offer.amount), offerID: offer.id, offerType: type) }
             }
-            Flows.earn(offerId: offer.id, resultPromise: html.earn, core: core)
+            Flows.earn(offerId: offer.id, resultPromise: html.earn, core: core, presentingViewController: self)
         default: // spend
             guard   let data = offer.content.data(using: .utf8),
                     let viewModel = try? JSONDecoder().decode(SpendViewModel.self, from: data) else {
@@ -283,7 +283,8 @@ extension MarketplaceViewController: UICollectionViewDelegate, UICollectionViewD
                         confirmPromise: controller.spend,
                         submissionPromise: submissionPromise,
                         successPromise: successPromise,
-                        core: core)
+                        core: core,
+                        presentingViewController: self)
             
             
         }

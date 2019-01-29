@@ -531,7 +531,7 @@ extension Kin: KinMigrationManagerDelegate {
                 promise.signal(kinVersion)
             }
             else {
-                promise.signal(KinEcosystemError.client(.internalInconsistency, nil))
+                promise.signal(KinEcosystemError.client(.invalidSDKVersion, nil))
             }
         }.resume()
 

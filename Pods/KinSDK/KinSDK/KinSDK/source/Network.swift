@@ -43,6 +43,9 @@ extension Network {
         case custom
     }
 
+    /**
+     Id of this network
+     */
     public var id: Id {
         switch self {
         case .mainNet:

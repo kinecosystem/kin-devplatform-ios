@@ -25,14 +25,24 @@ public protocol KinAccount: class {
     /**
      Export the account data as a JSON string.  The seed is encrypted.
 
-     - parameter passphrase: The passphrase with which to encrypt the seed
+     - Parameter passphrase: The passphrase with which to encrypt the seed
 
-     - return: A JSON representation of the data as a string
-     **/
+     - Returns: A JSON representation of the data as a string
+     */
     func export(passphrase: String) throws -> String
 
+    /**
+     Query the status of the account on the blockchain.
+
+     - Parameter completion: The completion handler function with the `AccountStatus` or an `Error.
+     */
     func status(completion: @escaping (AccountStatus?, Error?) -> Void)
 
+    /**
+     Query the status of the account on the blockchain using promises.
+
+     - Returns: A promise which will signal the `AccountStatus` value.
+     */
     func status() -> Promise<AccountStatus>
 
     /**
@@ -46,11 +56,13 @@ public protocol KinAccount: class {
      - Parameter recipient: The recipient's public address.
      - Parameter kin: The amount of Kin to be sent.
      - Parameter memo: An optional string, up-to 28 bytes in length, included on the transaction record.
+     - Parameter fee: The fee in `Stroop`s used if the transaction is not whitelisted.
      - Parameter completion: A completion with the `TransactionEnvelope` or an `Error`.
      */
     func generateTransaction(to recipient: String,
                              kin: Kin,
                              memo: String?,
+                             fee: Stroop,
                              completion: @escaping GenerateTransactionCompletion)
 
     /**
@@ -59,10 +71,11 @@ public protocol KinAccount: class {
      - Parameter recipient: The recipient's public address.
      - Parameter kin: The amount of Kin to be sent.
      - Parameter memo: An optional string, up-to 28 bytes in length, included on the transaction record.
+     - Parameter fee: The fee in `Stroop`s used if the transaction is not whitelisted.
 
      - Returns: A promise which is signalled with the `TransactionEnvelope` or an `Error`.
      */
-    func generateTransaction(to recipient: String, kin: Kin, memo: String?) -> Promise<TransactionEnvelope>
+    func generateTransaction(to recipient: String, kin: Kin, memo: String?, fee: Stroop) -> Promise<TransactionEnvelope>
 
     /**
      Send a Kin transaction.
@@ -102,10 +115,29 @@ public protocol KinAccount: class {
      */
     func balance() -> Promise<Kin>
 
+    /**
+     Watch for changes on the account balance.
+
+     - Parameter balance: An optional `Kin` balance that the watcher will be notified of first.
+
+     - Returns: A `BalanceWatch` object that will notify of any balance changes.
+     */
     func watchBalance(_ balance: Kin?) throws -> BalanceWatch
 
+    /**
+     Watch for changes of account payments.
+
+     - Parameter cursor: An optional `cursor` that specifies the id of the last payment after which the watcher will be notified of the new payments.
+
+     - Returns: A `PaymentWatch` object that will notify of any payment changes.
+    */
     func watchPayments(cursor: String?) throws -> PaymentWatch
 
+    /**
+     Watch for the creation of an account.
+
+     - Returns: A `Promise` that signals when the account is detected to have the `.created` `AccountStatus`.
+     */
     func watchCreation() throws -> Promise<Void>
 
     /**
@@ -197,6 +229,7 @@ final class KinStellarAccount: KinAccount {
     func generateTransaction(to recipient: String,
                              kin: Kin,
                              memo: String? = nil,
+                             fee: Stroop = 0,
                              completion: @escaping GenerateTransactionCompletion) {
         guard deleted == false else {
             completion(nil, KinError.accountDeleted)
@@ -226,7 +259,8 @@ final class KinStellarAccount: KinAccount {
                             destination: recipient,
                             amount: kinInt,
                             memo: try Memo(prefixedMemo),
-                            node: node)
+                            node: node,
+                            fee: fee)
                 .then { transactionEnvelope -> Void in
                     self.stellarAccount.sign = nil
                     completion(transactionEnvelope, nil)
@@ -242,9 +276,9 @@ final class KinStellarAccount: KinAccount {
         }
     }
 
-    func generateTransaction(to recipient: String, kin: Kin, memo: String? = nil) -> Promise<TransactionEnvelope> {
+    func generateTransaction(to recipient: String, kin: Kin, memo: String? = nil, fee: Stroop) -> Promise<TransactionEnvelope> {
         let txClosure = { (txComp: @escaping GenerateTransactionCompletion) in
-            self.generateTransaction(to: recipient, kin: kin, memo: memo, completion: txComp)
+            self.generateTransaction(to: recipient, kin: kin, memo: memo, fee: fee, completion: txComp)
         }
 
         return promise(txClosure)

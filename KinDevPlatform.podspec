@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage    = 'https://github.com/kinecosystem/kin-devplatform-ios'
   s.license     = { :type => 'MIT', :file => 'LICENSE' }
   s.author      = { 'Kin' => 'kin@kinfoundation.com' }
-  s.source      = { :git => 'https://github.com/kinecosystem/kin-devplatform-ios', :tag => s.version.to_s }
+  s.source      = { :git => 'https://github.com/kinecosystem/kin-devplatform-ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.1'
 

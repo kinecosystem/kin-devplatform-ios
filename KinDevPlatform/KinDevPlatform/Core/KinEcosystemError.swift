@@ -12,6 +12,7 @@ public enum KinClientErrorCode: Int {
     case notStarted             = 4001
     case badRequest             = 4002
     case internalInconsistency  = 4003
+    case invalidSDKVersion      = 4004
 }
 
 public enum KinServiceErrorCode: Int {
@@ -56,6 +57,8 @@ public enum KinEcosystemError: LocalizedError {
                 description = "Bad or missing parameters"
             case .internalInconsistency:
                 description = "Ecosystem SDK encountered an unexpected error"
+            case .invalidSDKVersion:
+                description = "Failed to request the SDK version";
             }
         case let KinEcosystemError.service(errorCode, error):
             underlyingError = error

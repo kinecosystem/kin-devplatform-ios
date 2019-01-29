@@ -19,8 +19,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var buyStickerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
-    let environment: Environment = .playground
-
     let loader = UIActivityIndicatorView(style: .whiteLarge)
 
     var lastOfferId: String? = nil
@@ -147,9 +145,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func start(user: String, apiKey: String? = nil, appId: String, jwt: String? = nil) throws {
-        let url = URL(string: "https://migration-devplatform-playground.developers.kinecosystem.com")!
-
-        try Kin.shared.start(userId: user, appId: appId, jwt: jwt, kinCoreEnvironment: environment, kinSDKEnvironment: environment, migrateBaseURL: url)
+        try Kin.shared.start(userId: user, appId: appId, jwt: jwt, environment: .playground)
     }
 
     fileprivate func launchMarketplace() {

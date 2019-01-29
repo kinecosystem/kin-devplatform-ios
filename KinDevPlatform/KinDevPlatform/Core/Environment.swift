@@ -55,6 +55,17 @@ public enum Environment {
             return envProps.blockchainURL
         }
     }
+
+    public var migrationURL: URL {
+        switch self {
+        case .playground:
+            return URL(string: "https://migration-devplatform-playground.developers.kinecosystem.com")!
+        case .production:
+            return URL(string: "https://migration-devplatform-production.developers.kinecosystem.com")!
+        case .custom:
+            fatalError()
+        }
+    }
     
     public var blockchainPassphrase: String {
         switch self {
@@ -133,12 +144,12 @@ extension Environment {
         }
     }
 
-    internal func mapToMigrationModuleServiceProvider(_ migrateBaseURL: URL? = nil) throws -> KinMigrationModule.ServiceProviderProtocol {
+    internal func mapToMigrationModuleServiceProvider() throws -> KinMigrationModule.ServiceProviderProtocol {
         if case .custom = self {
-            return try CustomServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrateBaseURL, nodeURL: properties.blockchainURL)
+            return try CustomServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrationURL, nodeURL: properties.blockchainURL)
         }
         else {
-            return try ServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrateBaseURL)
+            return try ServiceProvider(network: mapToMigrationModuleNetwork, migrateBaseURL: migrationURL)
         }
     }
 }

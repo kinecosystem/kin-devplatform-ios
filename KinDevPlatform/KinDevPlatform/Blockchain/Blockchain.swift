@@ -77,8 +77,8 @@ class Blockchain {
         }
     }
 
-    init(kinCoreServiceProvider: ServiceProviderProtocol, kinSDKServiceProvider: ServiceProviderProtocol, appId: AppId) throws {
-        migrationManager = KinMigrationManager(kinCoreServiceProvider: kinCoreServiceProvider, kinSDKServiceProvider: kinSDKServiceProvider, appId: appId)
+    init(serviceProvider: ServiceProviderProtocol, appId: AppId) throws {
+        migrationManager = KinMigrationManager(serviceProvider: serviceProvider, appId: appId)
     }
 
     func startAccount(with client: KinClientProtocol) throws -> KinAccountProtocol {

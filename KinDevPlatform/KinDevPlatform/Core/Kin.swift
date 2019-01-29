@@ -111,23 +111,21 @@ public class Kin: NSObject {
                       apiKey: String? = nil,
                       appId appIdValue: String,
                       jwt: String? = nil,
-                      kinCoreEnvironment: Environment,
-                      kinSDKEnvironment: Environment,
-                      migrateBaseURL: URL) throws
+                      environment: Environment) throws
     {
         core = nil
-        bi = try BIClient(endpoint: URL(string: kinSDKEnvironment.BIURL)!)
+        bi = try BIClient(endpoint: URL(string: environment.BIURL)!)
         setupBIProxies(appIdValue: appIdValue, userId: userId)
         Kin.track { try KinSDKInitiated() }
         let lastUser = UserDefaults.standard.string(forKey: KinPreferenceKey.lastSignedInUser.rawValue)
         let lastEnvironmentName = UserDefaults.standard.string(forKey: KinPreferenceKey.lastEnvironment.rawValue)
-        if lastUser != userId || (lastEnvironmentName != nil && lastEnvironmentName != kinSDKEnvironment.name) {
+        if lastUser != userId || (lastEnvironmentName != nil && lastEnvironmentName != environment.name) {
             needsReset = true
             logInfo("new user or environment type detected - resetting everything")
             UserDefaults.standard.set(false, forKey: KinPreferenceKey.firstSpendSubmitted.rawValue)
         }
         UserDefaults.standard.set(userId, forKey: KinPreferenceKey.lastSignedInUser.rawValue)
-        UserDefaults.standard.set(kinSDKEnvironment.name, forKey: KinPreferenceKey.lastEnvironment.rawValue)
+        UserDefaults.standard.set(environment.name, forKey: KinPreferenceKey.lastEnvironment.rawValue)
         guard   let modelPath = Bundle.ecosystem.path(forResource: "KinEcosystem",
                                                       ofType: "momd") else {
             logError("start failed")
@@ -137,16 +135,13 @@ public class Kin: NSObject {
         do {
             let appId = try AppId(appIdValue)
             let store = try EcosystemData(modelName: "KinEcosystem", modelURL: URL(string: modelPath)!)
+            let serviceProvider = try environment.mapToMigrationModuleServiceProvider()
 
-            let kinCoreSP = try kinCoreEnvironment.mapToMigrationModuleServiceProvider()
-            let kinSDKSP = try kinSDKEnvironment.mapToMigrationModuleServiceProvider(migrateBaseURL)
-
-            let chain = try Blockchain(kinCoreServiceProvider: kinCoreSP, kinSDKServiceProvider: kinSDKSP, appId: appId)
+            let chain = try Blockchain(serviceProvider: serviceProvider, appId: appId)
             chain.migrationManager.delegate = self
             chain.migrationManager.biDelegate = self
 
-            startData = StartData(kinCoreEnvironment: kinCoreEnvironment,
-                                  kinSDKEnvironment: kinSDKEnvironment,
+            startData = StartData(environment: environment,
                                   userId: userId,
                                   apiKey: apiKey,
                                   appId: appId,
@@ -181,8 +176,7 @@ public class Kin: NSObject {
                                             publicAddress: account.publicAddress)
 
         let network = EcosystemNet(config: config)
-        let core = try Core(kinCoreEnvironment: startData.kinCoreEnvironment,
-                            kinSDKEnvironment: startData.kinSDKEnvironment,
+        let core = try Core(environment: startData.environment,
                             network: network,
                             data: startData.store,
                             blockchain: startData.blockchain)
@@ -503,25 +497,20 @@ public class Kin: NSObject {
 @available(iOS 9.0, *)
 extension Kin {
     fileprivate struct StartData {
-        let kinCoreEnvironment: Environment
-        let kinSDKEnvironment: Environment
+        let environment: Environment
         let userId: String
         let apiKey: String?
         let appId: AppId
         let jwt: String?
         let store: EcosystemData
         let blockchain: Blockchain
-
-        var environment: Environment {
-            return kinSDKEnvironment
-        }
     }
 }
 
 @available(iOS 9.0, *)
 extension Kin: KinMigrationManagerDelegate {
     public func kinMigrationManagerNeedsVersion(_ kinMigrationManager: KinMigrationManager) -> Promise<KinVersion> {
-        guard let appId = startData?.appId, let environment = startData?.kinSDKEnvironment else {
+        guard let appId = startData?.appId, let environment = startData?.environment else {
             return Promise(KinEcosystemError.client(.internalInconsistency, nil))
         }
 

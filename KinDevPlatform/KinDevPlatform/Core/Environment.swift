@@ -50,7 +50,7 @@ public enum Environment {
         case .playground:
             return URL(string: "https://horizon-playground.kininfrastructure.com")!
         case .production:
-            return URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
+            return URL(string: "https://horizon-ecosystem.kininfrastructure.com")!
         case .custom(let envProps):
             return envProps.blockchainURL
         }

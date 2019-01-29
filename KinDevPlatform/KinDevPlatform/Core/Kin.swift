@@ -48,7 +48,8 @@ public struct NativeOffer: Equatable {
 }
 
 public protocol KinMigrationDelegate: NSObjectProtocol {
-    func kinMigrationDidStartMigration()
+    func kinMigrationDidStart()
+    func kinMigrationDidFinish()
     func kinMigrationIsReady()
     func kinMigration(error: Error)
 }
@@ -68,6 +69,7 @@ public class Kin: NSObject {
     fileprivate var prestartNativeOffers = [NativeOffer]()
     fileprivate let psBalanceObsLock = NSLock()
     fileprivate let psNativeOLock = NSLock()
+    fileprivate var didStartMigration = false
     
     public var lastKnownBalance: Balance? {
         guard let core = Kin.shared.core else {
@@ -539,7 +541,8 @@ extension Kin: KinMigrationManagerDelegate {
     }
 
     public func kinMigrationManagerDidStart(_ kinMigrationManager: KinMigrationManager) {
-        migrationDelegate?.kinMigrationDidStartMigration()
+        didStartMigration = true
+        migrationDelegate?.kinMigrationDidStart()
     }
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
@@ -552,6 +555,11 @@ extension Kin: KinMigrationManagerDelegate {
         }
         catch {
             logError("start failed")
+        }
+
+        if didStartMigration {
+            didStartMigration = false
+            migrationDelegate?.kinMigrationDidFinish()
         }
 
         migrationDelegate?.kinMigrationIsReady()

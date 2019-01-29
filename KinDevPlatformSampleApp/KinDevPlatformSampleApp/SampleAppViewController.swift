@@ -443,15 +443,18 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SampleAppViewController: KinMigrationDelegate {
-    func kinMigrationDidStartMigration() {
+    func kinMigrationDidStart() {
         showLoader()
+    }
+
+    func kinMigrationDidFinish() {
+        hideLoader()
     }
 
     func kinMigrationIsReady() {
         // !!!: DEBUG
 //        Kin.shared.deleteKeystoreIfPossible()
 
-        hideLoader()
         launchMarketplace()
     }
 

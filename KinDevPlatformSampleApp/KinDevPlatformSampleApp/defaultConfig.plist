@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RS512_PRIVATE_KEY</key>
+	<string>-----BEGIN RSA PRIVATE KEY-----
+MIICXgIBAAKBgQDW3g5Acwjxdyh+OLi8NH9jO4KEOruXozCbhsXL+CYGIG1sYykk
+/P1nPWiy7rlVHWy5x9B2pYtKb+vm/DaZ5gpTqzlb9D964yKRvWlCLCOjyLN/zh1/
+xHoieQ530kveTYY+tZHz1QzXnIOlxF6HjscU8PtDWw85CKngzgVA9oS4KwIDAQAB
+AoGBAJwq/u7G7VwbQDolXdekzGXCbgVPbuMyv/R6Sy8JqBFR5lYd6Fyy6DbuQjez
+HM8JOOn6mcByZ7/tgub6r3DB6wQ6ALmvmVztCt9BH7eP1X/VFQavqYhmrXBfTBVh
+GmK/qDvBzZWIQENuaSspBzxp7Ujl0CuevyfbSgb/s8FlEyxhAkEA7J2ecPHcoeNM
+Zc388CiLZ94CowSi6il3lkODK9/TXtx/LuW3iUhvSHp90tcMfI7sWGuXUGYqwvu+
+ij20d6en2wJBAOh4UxIXNcYcAfaLaCYji4GN4D9fp3/vK3hvk3f+X3uFgDRS8sp0
+Su0xYsrY7CMwJBCVH++qdIosKZ5RgSErCfECQQCZyvUhykKywo90mEewPVom/8lM
+9gWCF8PP2j/W85tqS/0qmUsLIxaZ0GwZ74cBKtB5xCzMqCthIsm9BtBW+ZUDAkBj
+biuhvjmqzYntaL0YKvXdaNB0arZa2vJN5fM+TJeMXpJyTtQ30bvGbewidNuzRUD3
+ssDhIpgMDU2TwKqphB4RAkEAp+a7ra80Jlb+r1ab9rkO0LHfHng2qmRTDq1i/PQ7
+OVob/qwUkYPn75DOg2qONFBmEUgcQS/MQ9SE13mdszMvzw==
+-----END RSA PRIVATE KEY-----</string>
+	<key>appKey</key>
+	<string>AyINT44OAKagkSav2vzMz</string>
+	<key>appId</key>
+	<string>tes5</string>
+	<key>IS_JWT_REGISTRATION</key>
+	<true/>
+</dict>
+</plist>

@@ -175,7 +175,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-KinDevPlatformSampleApp/Pods-KinDevPlatformSampleApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KinDevPlatformSampleApp/Pods-KinDevPlatformSampleApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KinCoreSDK/KinCoreSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/KinMigrationModule/KinMigrationModule.framework",
 				"${BUILT_PRODUCTS_DIR}/KinSDK/KinSDK.framework",
@@ -206,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-KinDevPlatformSampleApp/Pods-KinDevPlatformSampleApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KinDevPlatformSampleApp/Pods-KinDevPlatformSampleApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4D64431D5662503CA05842A1 /* [CP] Check Pods Manifest.lock */ = {

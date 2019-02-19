@@ -24,7 +24,9 @@ enum Result<Value> {
 public class Future<Value> {
     typealias Observer = (Result<Value>) -> ()
 
-    var result: Result<Value>? {
+    private var lock = DispatchSemaphore(value: 1)
+
+    fileprivate(set) var result: Result<Value>? {
         didSet {
             guard oldValue == nil else { return }
 
@@ -35,13 +37,21 @@ public class Future<Value> {
     var callbacks = [Observer]()
 
     func observe(with observer: @escaping Observer) {
-        callbacks.append(observer)
+        guard result != nil else {
+            lock.wait()
+            callbacks.append(observer)
+            lock.signal()
+
+            return
+        }
 
         result.map(observer)
     }
 
     func report(_ result: Result<Value>) {
+        lock.wait()
         callbacks.forEach { $0(result) }
+        lock.signal()
     }
 }
 
@@ -173,9 +183,9 @@ extension Promise {
 }
 
 extension Promise {
-    private func run(_ block: () -> (), on queue: DispatchQueue?) {
+    private func run(_ block: @escaping () -> (), on queue: DispatchQueue?) {
         if let queue = queue {
-            queue.sync { block() }
+            queue.async { block() }
         }
         else {
             block()

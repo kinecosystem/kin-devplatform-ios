@@ -59,18 +59,15 @@ struct Flows {
                     .then { htmlResult in
                         KinUtil.Promise<(String, OpenOrder)>().signal((htmlResult, order))
                 }
-            }.then { htmlResult, order -> SOPFlowPromise in
-                let p = SOPFlowPromise()
-                DispatchQueue.main.async {
-                    guard let _ = core.network.client.authToken?.app_id else {
-                        p.signal(KinEcosystemError.client(.internalInconsistency, nil))
-                        return
-                    }
-                    let memo = PaymentMemoIdentifier(id: order.id)
-                    p.signal((htmlResult, order, memo))
+            }
+            .then(on: .main, { htmlResult, order -> SOPFlowPromise in
+                guard let appId = core.network.client.authToken?.app_id else {
+                    return SOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                return p
-            }.then { htmlResult, order, memo -> Promise<(PaymentMemoIdentifier, OpenOrder)> in
+                let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
+                return SOPFlowPromise().signal((htmlResult, order, memo))
+            })
+            .then { htmlResult, order, memo -> Promise<(PaymentMemoIdentifier, OpenOrder)> in
                 try core.blockchain.startWatchingForNewPayments(with: memo)
                 let result = EarnResult(content: htmlResult)
                 let content = try JSONEncoder().encode(result)
@@ -111,7 +108,7 @@ struct Flows {
                     } .error({ (_) in
                         //in case of timeout, relay on server order verfication
                         logVerbose("waitForNewPayment timeout, waiting for order confirmation.")
-                    })
+                    }) 
                     .finally {
                         p.signal((memo, order))
                 }
@@ -266,10 +263,10 @@ struct Flows {
                         
                 }
             }.then { recipient, amount, order -> SDOPFlowPromise in
-                guard let _ = core.network.client.authToken?.app_id else {
+                guard let appId = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(id: order.id)
+                let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)",
                     method: .post)
                     .then { data -> Promise<Data> in
@@ -480,10 +477,10 @@ struct Flows {
                 }
             }
             .then { recipient, amount, order -> SDOPFlowPromise in
-                guard let _ = core.network.client.authToken?.app_id else {
+                guard let appId = core.network.client.authToken?.app_id else {
                     return SDOPFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(id: order.id)
+                let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
                     .then { data -> Promise<Data> in
                         Kin.track { try SpendOrderCompletionSubmitted(isNative: true, offerID: order.offer_id, orderID: order.id) }
@@ -734,10 +731,10 @@ struct Flows {
                 return SDOFlowPromise().signal((recipient, Decimal(order.amount), order))
                 
             }.then { recipient, amount, order -> POFlowPromise in
-                guard let _ = core.network.client.authToken?.app_id else {
+                guard let appId = core.network.client.authToken?.app_id else {
                     return POFlowPromise().signal(KinEcosystemError.client(.internalInconsistency, nil))
                 }
-                let memo = PaymentMemoIdentifier(id: order.id)
+                let memo = PaymentMemoIdentifier(appId: appId, id: order.id)
                 try core.blockchain.startWatchingForNewPayments(with: memo)
                 return core.network.dataAtPath("orders/\(order.id)", method: .post)
                     .then { data -> Promise<Data> in

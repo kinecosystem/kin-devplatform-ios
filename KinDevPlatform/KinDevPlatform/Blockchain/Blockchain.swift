@@ -9,15 +9,21 @@
 import StellarErrors
 import KinMigrationModule
 
-struct PaymentMemoIdentifier: Equatable, Hashable {
-    var hashValue: Int {
-        return id.hashValue
-    }
-
+struct PaymentMemoIdentifier: CustomStringConvertible, Equatable, Hashable {
+    let version = "1"
+    var appId: String
     var id: String
 
+    var hashValue: Int {
+        return description.hashValue
+    }
+
+    var description: String {
+        return "\(version)-\(appId)-\(id)"
+    }
+
     static func ==(lhs: PaymentMemoIdentifier, rhs: PaymentMemoIdentifier) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.description == rhs.description
     }
 }
 
@@ -193,10 +199,8 @@ class Blockchain {
         paymentsWatcher = try account?.watchPayments(cursor: "now")
         paymentsWatcher?.emitter.on(next: { [weak self] paymentInfo in
             guard let metadata = paymentInfo.memoText else { return }
-            guard let match = self?.paymentObservers.first(where: { (arg) -> Bool in
-                let (memoKey, _) = arg
-                // ???: is metadata.memoText now equal to memoKey.id ?
-                return memoKey.id == metadata
+            guard let match = self?.paymentObservers.first(where: { (memoKey, _) -> Bool in
+                memoKey.description == metadata
             })?.value else { return }
             logInfo("payment found in blockchain for \(metadata)...")
             match.next(paymentInfo.hash)

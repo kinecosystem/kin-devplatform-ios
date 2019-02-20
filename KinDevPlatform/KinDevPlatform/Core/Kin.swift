@@ -103,8 +103,28 @@ public class Kin: NSObject {
         }
     }
 
+    /**
+     The blockchain version being used.
+
+     After calling `Kin.start()` and the `kinMigrationIsReady()` delegate is called,
+     this property will return the value of the chosen blockchain.
+
+     - Returns: `nil` if the migration module is not ready, a `KinVersion` otherwise.
+     */
     public var blockchainVersion: KinVersion? {
         return core?.blockchain.migrationManager.version
+    }
+
+    /**
+     Did the migration happen.
+
+     After calling `Kin.start()` and the `kinMigrationIsReady()` delegate is called,
+     this property will return a `Bool`.
+
+     - Returns: `nil` if the migration module is not ready, a `Bool` otherwise.
+     */
+    public var isMigrated: Bool? {
+        return core?.blockchain.migrationManager.isMigrated
     }
 
     private var startData: StartData?

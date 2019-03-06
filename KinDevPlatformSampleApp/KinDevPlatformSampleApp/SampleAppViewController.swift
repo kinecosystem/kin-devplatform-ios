@@ -21,10 +21,9 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
 
     fileprivate var operationPromise: Promise<Void>?
     let loader = UIActivityIndicatorView(style: .whiteLarge)
+    var lastOfferId: String? = nil
 
     let environment: Environment = .playground
-    let localIp = "10.4.59.1"
-    var lastOfferId: String? = nil
 
     var appKey: String? {
         return configValue(for: "appKey", of: String.self)
@@ -134,38 +133,14 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
-    fileprivate func requestJWT(_ user: String, request: String, completion: @escaping (_ jwt: String) -> ()) {
-        let url = URL(string: "http://\(localIp):3002\(request)")!
-
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else {
-                return
-            }
-
-            print(String(data: data, encoding: .utf8)!)
-
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
-                if let jwt = json["jwt"] {
-                    print("generated jwt = " + jwt)
-                    completion(jwt)
-                }
-            } catch {
-                print(error)
-            }
-        }
-
-        task.resume()
-    }
     
     func jwtLoginWith(_ user: String, appId: String) throws {
-
         guard  let jwtPKey = privateKey else {
             alertConfigIssue()
             return
         }
 
+        // NOTE: This condition is for testing purposes
         if environment.name == Environment.production.name {
             requestJWT(user, request : "/register/token?user_id=\(user)") { jwt in
                 do {
@@ -229,42 +204,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
 
-    fileprivate func jsonToData(json: Any) -> Data? {
-        if JSONSerialization.isValidJSONObject(json) { // True
-            do {
-                return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            } catch {
-                print("spend JSONSerialization error" + "\(error)")
-            }
-        }
-        return nil
-    }
-
-    fileprivate func signJWT(_ signData: Data,completion: @escaping (_ jwt: String) -> ()) {
-        let endpoint = URL(string: "http://\(localIp):3002/sign")
-        var request = URLRequest(url: endpoint!)
-        request.httpMethod = "POST"
-        request.httpBody = signData
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
-                if let jwt = json["jwt"] {
-                    print("generated jwt = " + jwt)
-                    completion(jwt)
-                }
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-    }
-
     @IBAction func buyStickerTapped(_ sender: Any) {
         
         guard   let id = appId,
@@ -311,6 +250,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
+        // NOTE: This condition is for testing purposes
         if environment.name == Environment.production.name {
             let spendOffer = [
                 "subject" : "spend",
@@ -399,6 +339,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
+        // NOTE: This condition is for testing purposes
         if environment.name == Environment.production.name {
             let receipientUserId = "03b9f2e5-3783-49a9-a793-5a44fcaf90da"
 
@@ -500,6 +441,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
+        // NOTE: This condition is for testing purposes
         if environment.name == Environment.production.name {
             let earnOffer = [
                 "subject" : "earn",
@@ -637,9 +579,6 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationIsReady() {
-        // !!!: DEBUG
-//        Kin.shared.deleteKeystoreIfPossible()
-
         operationPromise?.signal(Void())
         operationPromise = nil
     }
@@ -647,5 +586,81 @@ extension SampleAppViewController: KinMigrationDelegate {
     func kinMigration(error: Error) {
         hideLoader()
         alertStartError(error)
+    }
+}
+
+// MARK: - Testing Production
+
+extension SampleAppViewController {
+    /**
+     The local IP for testing on the production environment.
+
+     Due to encryption limitations, using this sample app on production needs
+     additional functionality.
+
+     - Note: This code is not intended to be an example.
+     */
+    fileprivate var localIp: String {
+        return ""
+    }
+
+    fileprivate func requestJWT(_ user: String, request: String, completion: @escaping (_ jwt: String) -> ()) {
+        let url = URL(string: "http://\(localIp)\(request)")!
+
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else {
+                return
+            }
+
+            print(String(data: data, encoding: .utf8)!)
+
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
+                if let jwt = json["jwt"] {
+                    print("generated jwt = " + jwt)
+                    completion(jwt)
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+        task.resume()
+    }
+
+    fileprivate func jsonToData(json: Any) -> Data? {
+        if JSONSerialization.isValidJSONObject(json) { // True
+            do {
+                return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            } catch {
+                print("spend JSONSerialization error" + "\(error)")
+            }
+        }
+        return nil
+    }
+
+    fileprivate func signJWT(_ signData: Data,completion: @escaping (_ jwt: String) -> ()) {
+        let endpoint = URL(string: "http://\(localIp)/sign")
+        var request = URLRequest(url: endpoint!)
+        request.httpMethod = "POST"
+        request.httpBody = signData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
+
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
+                if let jwt = json["jwt"] {
+                    print("generated jwt = " + jwt)
+                    completion(jwt)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
     }
 }

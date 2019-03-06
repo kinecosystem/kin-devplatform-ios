@@ -5,7 +5,7 @@ PODS:
   - KinCoreSDK (0.7.18):
     - Sodium (= 0.7.0)
     - StellarKit (= 0.3.14)
-  - KinDevPlatform (1.0.1):
+  - KinDevPlatform (1.0.2):
     - KinMigrationModule
     - SimpleCoreDataStack (= 0.1.6)
   - KinMigrationModule (0.0.1):
@@ -50,7 +50,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
   KinCoreSDK: 98808062921d425703e8b8b042bae097b7271948
-  KinDevPlatform: e44d8969a57c25b8e25342aee4b1a5f095933e5c
+  KinDevPlatform: 147ef380700bfddeff24caef74055c033ddf1b14
   KinMigrationModule: 5f24881f7b24ba758aeb3a4483acbaeb3ff4818a
   KinSDK: 217e7f3dc328fd19a287528ad877ccc34a8a60b3
   KinUtil: 00442723f29cfa38f2410f9d4dba5a28937ed4ad

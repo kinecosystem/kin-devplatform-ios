@@ -140,7 +140,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        // NOTE: This condition is for testing purposes
+        // NOTE: This condition is for testing purposes.
+        // Always use the playground environment with this sample app.
         if environment.name == Environment.production.name {
             requestJWT(user, request : "/register/token?user_id=\(user)") { jwt in
                 do {
@@ -250,7 +251,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-        // NOTE: This condition is for testing purposes
+        // NOTE: This condition is for testing purposes.
+        // Always use the playground environment with this sample app.
         if environment.name == Environment.production.name {
             let spendOffer = [
                 "subject" : "spend",
@@ -339,7 +341,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-        // NOTE: This condition is for testing purposes
+        // NOTE: This condition is for testing purposes.
+        // Always use the playground environment with this sample app.
         if environment.name == Environment.production.name {
             let receipientUserId = "03b9f2e5-3783-49a9-a793-5a44fcaf90da"
 
@@ -441,7 +444,8 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-        // NOTE: This condition is for testing purposes
+        // NOTE: This condition is for testing purposes.
+        // Always use the playground environment with this sample app.
         if environment.name == Environment.production.name {
             let earnOffer = [
                 "subject" : "earn",
@@ -598,7 +602,8 @@ extension SampleAppViewController {
      Due to encryption limitations, using this sample app on production needs
      additional functionality.
 
-     - Note: This code is not intended to be an example.
+     - Note: This code is not intended to be an example. Always use the
+     playground environment with this sample app.
      */
     fileprivate var localIp: String {
         return ""

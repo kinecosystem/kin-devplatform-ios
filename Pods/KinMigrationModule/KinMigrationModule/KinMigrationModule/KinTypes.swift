@@ -17,6 +17,8 @@ public typealias Node = KinSDK.Stellar.Node
 public typealias TransactionId = KinSDK.TransactionId
 public typealias TransactionEnvelope = KinSDK.TransactionEnvelope
 public typealias WhitelistEnvelope = KinSDK.WhitelistEnvelope
+public typealias XDREncoder = KinSDK.XDREncoder
+public typealias XDRDecoder = KinSDK.XDRDecoder
 internal typealias KinSDKMemo = KinSDK.Memo
 
 public typealias LinkBag = KinUtil.LinkBag

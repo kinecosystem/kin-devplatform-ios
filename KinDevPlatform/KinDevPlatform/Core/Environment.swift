@@ -121,6 +121,10 @@ public enum Environment {
             return envProps.BIURL
         }
     }
+
+    public func whitelistURL(orderId: String) -> URL {
+        return URL(string: "\(marketplaceURL)/orders/\(orderId)/whitelist")!
+    }
     
     public var properties: EnvironmentProperties {
         return EnvironmentProperties(blockchainURL: blockchainURL,

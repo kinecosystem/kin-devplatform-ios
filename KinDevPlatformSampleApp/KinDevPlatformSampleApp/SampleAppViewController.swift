@@ -595,9 +595,6 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationIsReady() {
-        // !!!: DEBUG
-//        Kin.shared.deleteKeystoreIfPossible()
-
         operationPromise?.signal(Void())
         operationPromise = nil
     }

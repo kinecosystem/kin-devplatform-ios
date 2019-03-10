@@ -212,11 +212,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                 alertConfigIssue()
                 return
         }
-        do {
-            try jwtLoginWith(lastUser, appId: id)
-        } catch {
-            alertStartError(error)
-        }
+
         let offerID = "WOWOMGCRAZY"+"\(arc4random_uniform(999999))"
         lastOfferId = offerID
 
@@ -272,7 +268,9 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             let requestData = jsonToData(json: spendOffer)
             if (requestData != nil) {
                 signJWT(requestData!){ jwt in
-                    purchase(offerJWT: jwt)
+                    self.operationPromise = Promise().then {
+                        purchase(offerJWT: jwt)
+                    }
                 }
             }
         }
@@ -289,7 +287,16 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                                                 alertConfigIssue()
                                                 return
             }
-            purchase(offerJWT: encoded)
+
+            operationPromise = Promise().then {
+                purchase(offerJWT: encoded)
+            }
+        }
+
+        do {
+            try jwtLoginWith(lastUser, appId: id)
+        } catch {
+            alertStartError(error)
         }
     }
 
@@ -300,12 +307,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         guard let appId = appId, let jwtPKey = privateKey else {
             alertConfigIssue()
             return
-        }
-
-        do {
-            try jwtLoginWith(lastUser, appId: appId)
-        } catch {
-            alertStartError(error)
         }
 
         let offerID = "WOWOMGCRAZY"+"\(arc4random_uniform(999999))"
@@ -369,7 +370,9 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             let requestData = jsonToData(json: payToUserOffer)
             if (requestData != nil) {
                 signJWT(requestData!){ jwt in
-                    payToUser(offerJWT: jwt, receipientUserId: receipientUserId)
+                    self.operationPromise = Promise().then {
+                        payToUser(offerJWT: jwt, receipientUserId: receipientUserId)
+                    }
                 }
             }
         }
@@ -394,7 +397,16 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                                                 alertConfigIssue()
                                                 return
             }
-            payToUser(offerJWT: encoded, receipientUserId: receipientUserId)
+
+            operationPromise = Promise().then {
+                payToUser(offerJWT: encoded, receipientUserId: receipientUserId)
+            }
+        }
+
+        do {
+            try jwtLoginWith(lastUser, appId: appId)
+        } catch {
+            alertStartError(error)
         }
     }
 
@@ -406,12 +418,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         guard let appId = appId, let jwtPKey = privateKey else {
             alertConfigIssue()
             return
-        }
-
-        do {
-            try jwtLoginWith(lastUser, appId: appId)
-        } catch {
-            alertStartError(error)
         }
 
         spendIndicator.startAnimating()
@@ -490,6 +496,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             operationPromise = Promise().then {
                 requestPayment(offerJWT: encoded)
             }
+        }
+
+        do {
+            try jwtLoginWith(lastUser, appId: appId)
+        } catch {
+            alertStartError(error)
         }
     }
 
@@ -583,6 +595,9 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigrationIsReady() {
+        // !!!: DEBUG
+//        Kin.shared.deleteKeystoreIfPossible()
+
         operationPromise?.signal(Void())
         operationPromise = nil
     }

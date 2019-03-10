@@ -13,7 +13,7 @@ import KinMigrationModule
 
 public typealias KinVersion = KinMigrationModule.KinVersion
 
-let SDKVersion = "1.0.3"
+let SDKVersion = "1.0.4"
 
 public typealias ExternalOfferCallback = (String?, Error?) -> ()
 public typealias OrderConfirmationCallback = (ExternalOrderStatus?, Error?) -> ()

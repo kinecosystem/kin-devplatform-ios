@@ -305,8 +305,8 @@ struct Flows {
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.id,
-                                           whitelist: whitelist(environment: core.environment, orderId: order.id))
+                                           memo: memo.description,
+                                           whitelist: whitelist(client: core.network.client, environment: core.environment, orderId: order.id))
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")
@@ -511,8 +511,8 @@ struct Flows {
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.id,
-                                           whitelist: whitelist(environment: core.environment, orderId: order.id))
+                                           memo: memo.description,
+                                           whitelist: whitelist(client: core.network.client, environment: core.environment, orderId: order.id))
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")
@@ -929,24 +929,28 @@ struct Flows {
 
 @available(iOS 9.0, *)
 extension Flows {
-    static func whitelist(environment: Environment, orderId: String) -> WhitelistClosure {
+    static func whitelist(client: RestClient, environment: Environment, orderId: String) -> WhitelistClosure {
         return { transactionEnvelope -> Promise<TransactionEnvelope> in
             let promise: Promise<TransactionEnvelope> = Promise()
-            let whitelistEnvelope = WhitelistEnvelope(transactionEnvelope: transactionEnvelope, networkId: environment.blockchainPassphrase)
+            let whitelistEnvelope = WhitelistEnvelope(transactionEnvelope: transactionEnvelope, networkId: environment.mapToMigrationModuleNetwork.kinSDKId)
 
-            var request = URLRequest(url: environment.whitelistURL(orderId: orderId))
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
-            request.httpBody = try? JSONEncoder().encode(whitelistEnvelope)
+            client.buildRequest(path: "/orders/\(orderId)/whitelist", method: .post, body: try? JSONEncoder().encode(whitelistEnvelope))
+                .then { request in
+                    client.dataRequest(request)
+                }
+                .then { data in
+                    guard let data = Data(base64Encoded: data) else {
+                        promise.signal(KinEcosystemError.client(.internalInconsistency, nil))
+                        return
+                    }
 
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                do {
-                    promise.signal(try TransactionEnvelope.decodeResponse(data: data, error: error))
+                    do {
+                        promise.signal(try XDRDecoder.decode(TransactionEnvelope.self, data: data))
+                    }
+                    catch {
+                        promise.signal(error)
+                    }
                 }
-                catch {
-                    promise.signal(error)
-                }
-            }.resume()
 
             return promise
         }

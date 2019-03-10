@@ -5,14 +5,14 @@ PODS:
   - KinCoreSDK (0.7.18):
     - Sodium (= 0.7.0)
     - StellarKit (= 0.3.14)
-  - KinDevPlatform (1.0.2):
-    - KinMigrationModule
+  - KinDevPlatform (1.0.3):
+    - KinMigrationModule (= 0.0.3)
     - SimpleCoreDataStack (= 0.1.6)
-  - KinMigrationModule (0.0.1):
-    - KinCoreSDK
-    - KinSDK
+  - KinMigrationModule (0.0.3):
+    - KinCoreSDK (= 0.7.18)
+    - KinSDK (= 0.8.4)
     - Sodium (= 0.7.0)
-  - KinSDK (0.8.3):
+  - KinSDK (0.8.4):
     - KinUtil (= 0.0.16)
     - Sodium (= 0.7.0)
   - KinUtil (0.0.16)
@@ -26,7 +26,7 @@ PODS:
 DEPENDENCIES:
   - JWT (= 3.0.0-beta.11)
   - KinDevPlatform (from `./`)
-  - KinMigrationModule
+  - KinMigrationModule (from `../kin-migration-module-ios`)
   - SimpleCoreDataStack
 
 SPEC REPOS:
@@ -34,7 +34,6 @@ SPEC REPOS:
     - Base64
     - JWT
     - KinCoreSDK
-    - KinMigrationModule
     - KinSDK
     - KinUtil
     - SimpleCoreDataStack
@@ -45,20 +44,22 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   KinDevPlatform:
     :path: "./"
+  KinMigrationModule:
+    :path: "../kin-migration-module-ios"
 
 SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
   KinCoreSDK: 98808062921d425703e8b8b042bae097b7271948
-  KinDevPlatform: 147ef380700bfddeff24caef74055c033ddf1b14
-  KinMigrationModule: 5f24881f7b24ba758aeb3a4483acbaeb3ff4818a
-  KinSDK: 217e7f3dc328fd19a287528ad877ccc34a8a60b3
+  KinDevPlatform: 376c9a0fb78c5977a67d3aaa81d938b3d0e99825
+  KinMigrationModule: e1bb7aef387e799c26c4288eb23a1c31c747c028
+  KinSDK: 70abdf99ae85996ec77d591a5e1c43ea067f4301
   KinUtil: 00442723f29cfa38f2410f9d4dba5a28937ed4ad
   SimpleCoreDataStack: 80d9c5efd1861d77432477974b3be410a202bd2f
   Sodium: c5510cc6f5e1b27858e5f260b5cac80d4a3f9379
   StellarErrors: f9239fad02b05464fbc9845063195a87d28f57d1
   StellarKit: e9325dee370a10bda1a82ac7488900ddc697ef98
 
-PODFILE CHECKSUM: b7a4ae8d39b13a99937cb0189fbe10368a41843b
+PODFILE CHECKSUM: 75388b2297a8e1b23093a7d268ab2294cfe50843
 
 COCOAPODS: 1.6.0

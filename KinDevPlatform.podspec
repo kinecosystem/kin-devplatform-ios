@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
 
   s.dependency 'SimpleCoreDataStack', '0.1.6'
-  s.dependency 'KinMigrationModule', '0.0.2'
+  s.dependency 'KinMigrationModule', '0.0.3'
 end

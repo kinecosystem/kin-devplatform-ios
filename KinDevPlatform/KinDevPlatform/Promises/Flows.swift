@@ -302,15 +302,11 @@ struct Flows {
                         SDOPFlowPromise().signal((recipient, amount, order, memo))
                 }
             }.then { recipient, amount, order, memo -> KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)> in
-                guard let whitelistClosure = Kin.shared.whitelistClosure else {
-                    logError("The `whitelistClosure` has not been set.")
-                    return Promise(KinEcosystemError.client(.internalInconsistency, nil))
-                }
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.id,
-                                           whitelist: whitelistClosure)
+                                           memo: memo.description,
+                                           whitelist: whitelist(client: core.network.client, environment: core.environment, orderId: order.id))
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")
@@ -512,15 +508,11 @@ struct Flows {
                         SDOPFlowPromise().signal((recipient, amount, order, memo))
                 }
             }.then { recipient, amount, order, memo -> POFlowPromise in
-                guard let whitelistClosure = Kin.shared.whitelistClosure else {
-                    logError("The `whitelistClosure` has not been set.")
-                    return Promise(KinEcosystemError.client(.internalInconsistency, nil))
-                }
                 Kin.track { try SpendTransactionBroadcastToBlockchainSubmitted(offerID: order.offer_id, orderID: order.id) }
                 return core.blockchain.pay(to: recipient,
                                            kin: amount,
-                                           memo: memo.id,
-                                           whitelist: whitelistClosure)
+                                           memo: memo.description,
+                                           whitelist: whitelist(client: core.network.client, environment: core.environment, orderId: order.id))
                     .then { txId in
                         Kin.track { try SpendTransactionBroadcastToBlockchainSucceeded(offerID: order.offer_id, orderID: order.id, transactionID: txId) }
                         logVerbose("\(amount) kin sent to \(recipient)")
@@ -933,4 +925,34 @@ struct Flows {
         return jwtPromise
     }
     
+}
+
+@available(iOS 9.0, *)
+extension Flows {
+    static func whitelist(client: RestClient, environment: Environment, orderId: String) -> WhitelistClosure {
+        return { transactionEnvelope -> Promise<TransactionEnvelope> in
+            let promise: Promise<TransactionEnvelope> = Promise()
+            let whitelistEnvelope = WhitelistEnvelope(transactionEnvelope: transactionEnvelope, networkId: environment.mapToMigrationModuleNetwork.kinSDKId)
+
+            client.buildRequest(path: "/orders/\(orderId)/whitelist", method: .post, body: try? JSONEncoder().encode(whitelistEnvelope))
+                .then { request in
+                    client.dataRequest(request)
+                }
+                .then { data in
+                    guard let data = Data(base64Encoded: data) else {
+                        promise.signal(KinEcosystemError.client(.internalInconsistency, nil))
+                        return
+                    }
+
+                    do {
+                        promise.signal(try XDRDecoder.decode(TransactionEnvelope.self, data: data))
+                    }
+                    catch {
+                        promise.signal(error)
+                    }
+                }
+
+            return promise
+        }
+    }
 }

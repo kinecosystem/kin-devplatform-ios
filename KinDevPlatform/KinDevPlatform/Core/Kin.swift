@@ -13,7 +13,7 @@ import KinMigrationModule
 
 public typealias KinVersion = KinMigrationModule.KinVersion
 
-let SDKVersion = "1.0.2"
+let SDKVersion = "1.0.3"
 
 public typealias ExternalOfferCallback = (String?, Error?) -> ()
 public typealias OrderConfirmationCallback = (ExternalOrderStatus?, Error?) -> ()
@@ -59,7 +59,6 @@ public class Kin: NSObject {
     public static let shared = Kin()
 
     public weak var migrationDelegate: KinMigrationDelegate?
-    public var whitelistClosure: WhitelistClosure?
 
     fileprivate(set) var core: Core?
     fileprivate(set) var needsReset = false

@@ -271,6 +271,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                     self.operationPromise = Promise().then {
                         purchase(offerJWT: jwt)
                     }
+
+                    do {
+                        try self.jwtLoginWith(self.lastUser, appId: id)
+                    } catch {
+                        self.alertStartError(error)
+                    }
                 }
             }
         }
@@ -291,12 +297,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             operationPromise = Promise().then {
                 purchase(offerJWT: encoded)
             }
-        }
 
-        do {
-            try jwtLoginWith(lastUser, appId: id)
-        } catch {
-            alertStartError(error)
+            do {
+                try jwtLoginWith(lastUser, appId: id)
+            } catch {
+                alertStartError(error)
+            }
         }
     }
 
@@ -345,7 +351,7 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         // NOTE: This condition is for testing purposes.
         // Always use the playground environment with this sample app.
         if environment.name == Environment.production.name {
-            let receipientUserId = "03b9f2e5-3783-49a9-a793-5a44fcaf90da"
+            let receipientUserId = "user_26121_0"
 
             let payToUserOffer = [
                 "subject" : "pay_to_user",
@@ -372,6 +378,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                 signJWT(requestData!){ jwt in
                     self.operationPromise = Promise().then {
                         payToUser(offerJWT: jwt, receipientUserId: receipientUserId)
+                    }
+
+                    do {
+                        try self.jwtLoginWith(self.lastUser, appId: appId)
+                    } catch {
+                        self.alertStartError(error)
                     }
                 }
             }
@@ -401,12 +413,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             operationPromise = Promise().then {
                 payToUser(offerJWT: encoded, receipientUserId: receipientUserId)
             }
-        }
 
-        do {
-            try jwtLoginWith(lastUser, appId: appId)
-        } catch {
-            alertStartError(error)
+            do {
+                try jwtLoginWith(lastUser, appId: appId)
+            } catch {
+                alertStartError(error)
+            }
         }
     }
 
@@ -474,6 +486,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
                     self.operationPromise = Promise().then {
                         requestPayment(offerJWT: jwt)
                     }
+
+                    do {
+                        try self.jwtLoginWith(self.lastUser, appId: appId)
+                    } catch {
+                        self.alertStartError(error)
+                    }
                 }
             }
         }
@@ -496,12 +514,12 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             operationPromise = Promise().then {
                 requestPayment(offerJWT: encoded)
             }
-        }
 
-        do {
-            try jwtLoginWith(lastUser, appId: appId)
-        } catch {
-            alertStartError(error)
+            do {
+                try jwtLoginWith(lastUser, appId: appId)
+            } catch {
+                alertStartError(error)
+            }
         }
     }
 

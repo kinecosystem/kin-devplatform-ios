@@ -685,11 +685,11 @@ extension Kin {
         return false
     }
 
-    static func presentMigrationAlertIfNeeded(alert: MigrationAlert, _ presentingViewController: UIViewController? = nil) {
+    static func presentMigrationAlertIfNeeded(alert: MigrationAlert) {
         func presentMigrationAlert() {
             let alertController = UIAlertController(title: "Upgrading Kin", message: alert.rawValue, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            (presentingViewController ?? topViewController())?.present(alertController, animated: true)
+            topViewController()?.present(alertController, animated: true)
         }
 
         if Thread.isMainThread {

@@ -30,10 +30,7 @@ typealias POFlowPromise = KinUtil.Promise<(PaymentMemoIdentifier, OpenOrder)>
 @available(iOS 9.0, *)
 struct Flows {
     
-    static func earn(offerId: String,
-                     resultPromise: Promise<String>,
-                     core: Core,
-                     presentingViewController: UIViewController? = nil) {
+    static func earn(offerId: String, resultPromise: Promise<String>, core: Core) {
         
         var openOrder: OpenOrder?
         var canCancelOrder = true
@@ -47,7 +44,7 @@ struct Flows {
                 let blockchainVersionB = Kin.BlockchainVersion(order.blockchain_data?.blockchain_version)
 
                 if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
-                    Kin.presentMigrationAlertIfNeeded(alert: .default, presentingViewController)
+                    Kin.presentMigrationAlertIfNeeded(alert: .default)
                     return Promise(KinMigrationError.migrationNeeded)
                 }
 
@@ -85,7 +82,7 @@ struct Flows {
                         let blockchainVersionB = Kin.BlockchainVersion(d.blockchain_data?.blockchain_version)
 
                         if Kin.needsToMigrate(blockchainVersionA, blockchainVersionB) {
-                            Kin.presentMigrationAlertIfNeeded(alert: .saved, presentingViewController)
+                            Kin.presentMigrationAlertIfNeeded(alert: .saved)
                             return Promise(KinMigrationError.migrationNeeded)
                         }
 
@@ -218,8 +215,7 @@ struct Flows {
                       confirmPromise: Promise<Void>,
                       submissionPromise: Promise<Void>? = nil,
                       successPromise: Promise<String>? = nil,
-                      core: Core,
-                      presentingViewController: UIViewController? = nil) {
+                      core: Core) {
         
         var openOrder: OpenOrder?
         var canCancelOrder = true
@@ -430,9 +426,7 @@ struct Flows {
         
     }
     
-    static func nativeSpend(jwt: String,
-                            core: Core,
-                            presentingViewController: UIViewController? = nil) -> Promise<String> {
+    static func nativeSpend(jwt: String, core: Core) -> Promise<String> {
         let jwtPromise = KinUtil.Promise<String>()
         var jwtConfirmation: String?
         guard let jwtSubmission = try? JSONEncoder().encode(JWTOrderSubmission(jwt: jwt)) else {
@@ -688,9 +682,7 @@ struct Flows {
         return jwtPromise
     }
     
-    static func nativeEarn(jwt: String,
-                           core: Core,
-                           presentingViewController: UIViewController? = nil) -> Promise<String> {
+    static func nativeEarn(jwt: String, core: Core) -> Promise<String> {
         let jwtPromise = KinUtil.Promise<String>()
         var jwtConfirmation: String?
         guard let jwtSubmission = try? JSONEncoder().encode(JWTOrderSubmission(jwt: jwt)) else {

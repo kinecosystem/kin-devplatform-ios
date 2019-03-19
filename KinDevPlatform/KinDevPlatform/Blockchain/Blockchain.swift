@@ -145,13 +145,19 @@ class Blockchain {
                     switch error {
                     case .missingAccount:
                         do {
-                            try self.account?.watchCreation().then {
-                                self.account?.activate()
-                                }.then { _ in
-                                    Kin.track { try StellarKinTrustlineSetupSucceeded() }
-                                    Kin.track { try WalletCreationSucceeded() }
-                                    self.onboarded = true
-                                    p.signal(())
+                            try self.account?.watchCreation()
+                                .then {
+                                    self.account?.activate()
+                                        .then {
+                                            Kin.track { try StellarKinTrustlineSetupSucceeded() }
+                                            Kin.track { try WalletCreationSucceeded() }
+                                            self.onboarded = true
+                                            p.signal(())
+                                        }
+                                        .error { error in
+                                            Kin.track { try StellarKinTrustlineSetupFailed(errorReason: error.localizedDescription) }
+                                            p.signal(error)
+                                    }
                                 }.error { error in
                                     Kin.track { try StellarKinTrustlineSetupFailed(errorReason: error.localizedDescription) }
                                     p.signal(error)
@@ -160,11 +166,12 @@ class Blockchain {
                             p.signal(error)
                         }
                     case .missingBalance:
-                        self.account?.activate().then { _ in
-                            Kin.track { try StellarKinTrustlineSetupSucceeded() }
-                            Kin.track { try WalletCreationSucceeded() }
-                            self.onboarded = true
-                            p.signal(())
+                        self.account?.activate()
+                            .then { _ in
+                                Kin.track { try StellarKinTrustlineSetupSucceeded() }
+                                Kin.track { try WalletCreationSucceeded() }
+                                self.onboarded = true
+                                p.signal(())
                             }.error { error in
                                 Kin.track { try StellarKinTrustlineSetupFailed(errorReason: error.localizedDescription) }
                                 p.signal(error)

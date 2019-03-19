@@ -69,7 +69,9 @@ public class Kin: NSObject {
     fileprivate let psBalanceObsLock = NSLock()
     fileprivate let psNativeOLock = NSLock()
     fileprivate var didStartMigration = false
-    
+
+    fileprivate var onboardPromise: Promise<Void>?
+
     public var lastKnownBalance: Balance? {
         guard let core = Kin.shared.core else {
             return nil
@@ -204,24 +206,38 @@ public class Kin: NSObject {
 
         self.core = core
 
-        let tosAccepted = core.network.tosAccepted
-        network.authorize().then { [weak self] _ in
-            core.blockchain.onboard()
-                .then {
-                    logInfo("blockchain onboarded successfully")
+        onboardPromise = network.authorize()
+            .then { _ in
+                core.blockchain.onboard()
+                    .then {
+                        logInfo("blockchain onboarded successfully")
+                    }
+                    .error { error in
+                        logError("blockchain onboarding failed - \(error)")
                 }
-                .error { error in
-                    logError("blockchain onboarding failed - \(error)")
             }
-            self?.updateData(with: OffersList.self, from: "offers").error { error in
-                logError("data sync failed (\(error))")
+            .then {
+                core.network.acceptTOS()
+                    .then {
+                        logInfo("accepted tos successfully")
+                    }
+                    .error { error in
+                        if case let EcosystemNetError.server(errString) = error {
+                            logError("server returned bad answer: \(errString)")
+                        } else {
+                            logError("accepted tos failed - \(error)")
+                        }
+                }
             }
-            if tosAccepted {
+            .then { [weak self] _ in
                 self?.updateData(with: OrdersList.self, from: "orders").error { error in
                     logError("data sync failed (\(error))")
                 }
-            }
+                self?.updateData(with: OffersList.self, from: "offers").error { error in
+                    logError("data sync failed (\(error))")
+                }
         }
+
         psBalanceObsLock.lock()
         defer {
             psBalanceObsLock.unlock()
@@ -240,7 +256,7 @@ public class Kin: NSObject {
         })
         prestartNativeOffers.removeAll()
     }
-    
+
     public func balance(_ completion: @escaping (Balance?, Error?) -> ()) {
         guard let core = core else {
             logError("Kin not started")
@@ -566,6 +582,7 @@ extension Kin: KinMigrationManagerDelegate {
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
         needsReset = client.accounts.count > 1
+        onboardPromise = nil
 
         do {
             if let account = try startData?.blockchain.startAccount(with: client) {
@@ -581,7 +598,14 @@ extension Kin: KinMigrationManagerDelegate {
             migrationDelegate?.kinMigrationDidFinish()
         }
 
-        migrationDelegate?.kinMigrationIsReady()
+        if onboardPromise == nil {
+            migrationDelegate?.kinMigrationIsReady()
+        }
+        else {
+            onboardPromise?.then {
+                self.migrationDelegate?.kinMigrationIsReady()
+            }
+        }
     }
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, error: Error) {

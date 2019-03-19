@@ -602,9 +602,9 @@ extension Kin: KinMigrationManagerDelegate {
             migrationDelegate?.kinMigrationIsReady()
         }
         else {
-            onboardPromise?.then {
+            onboardPromise?.then(on: .main, { _ in
                 self.migrationDelegate?.kinMigrationIsReady()
-            }
+            })
         }
     }
 

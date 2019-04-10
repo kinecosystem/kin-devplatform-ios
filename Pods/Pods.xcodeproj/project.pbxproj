@@ -791,7 +791,6 @@
 		3E06097DC3A47C59C8525F4F84D7E1E9 /* JWTCryptoSecurity+Extraction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JWTCryptoSecurity+Extraction.m"; path = "Core/Algorithms/RSFamily/RSKeys/JWTCryptoSecurity+Extraction.m"; sourceTree = "<group>"; };
 		3ED25D65DCFE29757EDDDD6D80E76709 /* JWT-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JWT-dummy.m"; sourceTree = "<group>"; };
 		3EE4E6CD50A93591FB2D2A57D88334A5 /* KinDevPlatform-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KinDevPlatform-prefix.pch"; sourceTree = "<group>"; };
-		3EFD4F7C0693A60EC450D7A5A85C796A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		3F2698347C098AD2F4B830FBDCF5A500 /* JWTCryptoSecurity+Extraction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JWTCryptoSecurity+Extraction.h"; path = "Core/Algorithms/RSFamily/RSKeys/JWTCryptoSecurity+Extraction.h"; sourceTree = "<group>"; };
 		3F5ED4FBF274F87A04F399D3C4C9227B /* Sodium.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Sodium.modulemap; sourceTree = "<group>"; };
 		3F98B95A44EA7555CDB7A377FA0B36EF /* welcome_screen_page_viewed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = welcome_screen_page_viewed.swift; sourceTree = "<group>"; };
@@ -812,7 +811,6 @@
 		477A1F766A23AE0A84EB2FB07FAF36EB /* DeviceData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		48A00C61992DD913F275CA076B5F1FCE /* KinMigrationModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KinMigrationModule-dummy.m"; sourceTree = "<group>"; };
 		48A148258E371021BF12174C20179D23 /* KinDevPlatform-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KinDevPlatform-umbrella.h"; sourceTree = "<group>"; };
-		49559ADDFC4CDB570CAF78691278EEF7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		49A904B48CC27150F3D3092D601E74E8 /* migration_callback_failed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = migration_callback_failed.swift; sourceTree = "<group>"; };
 		4A042353DB60985C5D08A707BBD3A1DC /* KinMigrationModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KinMigrationModule-umbrella.h"; sourceTree = "<group>"; };
 		4B601FF3C48F4FFF6972331DA38E4B52 /* StellarKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "StellarKit-Info.plist"; sourceTree = "<group>"; };
@@ -870,6 +868,7 @@
 		68BF42C1872169CC0011F33EB2D0756E /* Operation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operation.swift; path = StellarKit/source/types/Operation.swift; sourceTree = "<group>"; };
 		69C141A3326C813827F3CDBE4C76D482 /* EarnOfferCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EarnOfferCell.swift; sourceTree = "<group>"; };
 		6A5064495AFB54333B8F1C6393AA9812 /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = KinUtil/KinUtil/source/Promise.swift; sourceTree = "<group>"; };
+		6A873D0AFCA8AB46246482D7295912A2 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
 		6A974C5ECCEC6F2CCC4D2DA6810BFFB3 /* confirm_purchase_page_viewed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = confirm_purchase_page_viewed.swift; sourceTree = "<group>"; };
 		6AB5C11956DB64DB6BEF21C1C2EA10D4 /* KinSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KinSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ABC35907977039C89044C2C3EDBD593 /* OrderCellTimelineView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrderCellTimelineView.swift; sourceTree = "<group>"; };
@@ -902,6 +901,7 @@
 		76281A474217A78064C13A7C48D79814 /* KinCoreSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "KinCoreSDK-Info.plist"; sourceTree = "<group>"; };
 		77410CF55089B5AC09BD9BF7E2782448 /* ShortHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShortHash.swift; path = Sodium/ShortHash.swift; sourceTree = "<group>"; };
 		77E387F3AACC4BF133142DC147AE5528 /* JWTAlgorithm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTAlgorithm.h; path = Core/Algorithms/Base/JWTAlgorithm.h; sourceTree = "<group>"; };
+		7816FB88A3F73FDAB62A066032DDC2AD /* KinDevPlatform.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = KinDevPlatform.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		78E1F8BF6BB6DF8FF968E78348D940B2 /* KinClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinClient.swift; path = KinSDK/KinSDK/source/KinClient.swift; sourceTree = "<group>"; };
 		793E90C9F5B77FCD716942BC9ACA3CC7 /* WrappedKinCoreWatchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WrappedKinCoreWatchers.swift; path = KinMigrationModule/KinMigrationModule/WrappedKinCore/WrappedKinCoreWatchers.swift; sourceTree = "<group>"; };
 		794724BD8520129C3B9E407FB31BA86F /* JWTCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTCoding.h; path = Core/Coding/JWTCoding.h; sourceTree = "<group>"; };
@@ -1014,7 +1014,6 @@
 		ADA7BB37FD974884109AD68C945A1FAE /* MarketplaceViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarketplaceViewController.swift; sourceTree = "<group>"; };
 		AE3F49430B8445F5DF72DB8F563CE81D /* JWTAlgorithmDataHolder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTAlgorithmDataHolder.h; path = Core/Algorithms/Holders/JWTAlgorithmDataHolder.h; sourceTree = "<group>"; };
 		AE5F577C4AABF390A24CBF4ABAAA5A35 /* KinServiceProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinServiceProvider.swift; path = KinMigrationModule/KinMigrationModule/KinServiceProvider.swift; sourceTree = "<group>"; };
-		AE768853E6C7AD8DD0FD272FCE696261 /* KinDevPlatform.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = KinDevPlatform.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AF2BAE28A042DD6758EAF19ECB76C8E0 /* KeyPairProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyPairProtocol.swift; path = Sodium/Generators/KeyPairProtocol.swift; sourceTree = "<group>"; };
 		AF9A07214C0BC73F91C08F67F0F70DFB /* spend_offer_tapped.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = spend_offer_tapped.swift; sourceTree = "<group>"; };
 		B0689EBE832D41F8078964705083F021 /* KinNetwork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinNetwork.swift; path = KinMigrationModule/KinMigrationModule/KinNetwork.swift; sourceTree = "<group>"; };
@@ -1043,6 +1042,7 @@
 		C01666D09E818BBD44EB95FCB5B9399D /* KinMigrationBI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinMigrationBI.swift; path = KinMigrationModule/KinMigrationModule/KinMigrationBI.swift; sourceTree = "<group>"; };
 		C08E13B8876BEB3502D94DFA57BDD330 /* SimpleCoreDataStack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimpleCoreDataStack-dummy.m"; sourceTree = "<group>"; };
 		C0E6652026CE9E38CF865AA58D72A9B2 /* StellarErrors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StellarErrors.swift; path = StellarKit/source/StellarErrors.swift; sourceTree = "<group>"; };
+		C148CCFBE33007372C225F5196425F81 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		C14A353DE5C22BB6F64687AAA208AE6F /* KeyPairGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyPairGenerator.swift; path = Sodium/Generators/KeyPairGenerator.swift; sourceTree = "<group>"; };
 		C15194216B23FDE5F405F624F65FBFFF /* KinDevPlatform-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KinDevPlatform-dummy.m"; sourceTree = "<group>"; };
 		C15DBEDD568B9C07D648C7FA39E5BFE6 /* back_button_on_welcome_screen_page_tapped.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = back_button_on_welcome_screen_page_tapped.swift; sourceTree = "<group>"; };
@@ -1322,16 +1322,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SimpleCoreDataStack";
-			sourceTree = "<group>";
-		};
-		1BEFFBC477D365E3DDCBB03F82498BC3 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				AE768853E6C7AD8DD0FD272FCE696261 /* KinDevPlatform.podspec */,
-				49559ADDFC4CDB570CAF78691278EEF7 /* LICENSE */,
-				3EFD4F7C0693A60EC450D7A5A85C796A /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		1EFBCD18A0199A4F898A881317241B85 /* ViewModel */ = {
@@ -1766,6 +1756,16 @@
 			path = KinDevPlatform/KinDevPlatform/Core;
 			sourceTree = "<group>";
 		};
+		93F1D4FE03444C838069899051D04CB8 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				7816FB88A3F73FDAB62A066032DDC2AD /* KinDevPlatform.podspec */,
+				6A873D0AFCA8AB46246482D7295912A2 /* LICENSE.md */,
+				C148CCFBE33007372C225F5196425F81 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		9BCA2A40099E50F8468901F57DD0A69F /* JWT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,7 +1853,7 @@
 				936CD4BABC27A53A6E4FFD849EC2A5F0 /* Core */,
 				59F35D8E3CC8C72740E771C075D9D893 /* extensions */,
 				CCBE431CC5F4AFB71D6032884C48F3FC /* Model */,
-				1BEFFBC477D365E3DDCBB03F82498BC3 /* Pod */,
+				93F1D4FE03444C838069899051D04CB8 /* Pod */,
 				34807C4444EBDFB376C7539E79F63CA2 /* Promises */,
 				71B4043DB998F6BACD26824E6CBCF9CA /* Resources */,
 				798F97CE639E10A03A76B69E94C8C31B /* Support Files */,

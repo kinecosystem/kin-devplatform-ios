@@ -91,6 +91,7 @@ class Blockchain {
         if Kin.shared.needsReset {
             lastBalance = nil
             try? client.deleteAccount(at: 0)
+            client.deleteKeystore()
         }
 
         let account: KinAccountProtocol

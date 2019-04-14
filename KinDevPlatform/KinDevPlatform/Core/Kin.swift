@@ -206,6 +206,9 @@ public class Kin: NSObject {
 
         self.core = core
 
+        // Needs to be reset after EcosystemNet()
+        needsReset = false
+
         onboardPromise = network.authorize()
             .then { _ in
                 core.blockchain.onboard()
@@ -581,7 +584,10 @@ extension Kin: KinMigrationManagerDelegate {
     }
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
-        needsReset = client.accounts.count > 1
+        if !needsReset {
+            needsReset = client.accounts.count > 1
+        }
+
         onboardPromise = nil
 
         do {

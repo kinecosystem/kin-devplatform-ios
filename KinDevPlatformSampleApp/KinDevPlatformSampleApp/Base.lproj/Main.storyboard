@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3vJ-qj-IoG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3vJ-qj-IoG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Sample App View Controller-->
         <scene sceneID="7lb-QA-QHP">
             <objects>
-                <viewController id="3vJ-qj-IoG" customClass="SampleAppViewController" customModule="EcosystemSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3vJ-qj-IoG" customClass="SampleAppViewController" customModule="KinDevPlatformSampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z7J-PU-Ssp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,14 +29,14 @@
                                         </constraints>
                                     </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="kinMarketplaceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2uH-gP-tyr">
-                                        <rect key="frame" x="107.5" y="7.5" width="160" height="156"/>
+                                        <rect key="frame" x="107.5" y="10.5" width="160" height="156"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="LBh-Sw-pBM"/>
                                             <constraint firstAttribute="height" constant="156" id="xEY-SF-Wxv"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDd-2H-tbS">
-                                        <rect key="frame" x="172.5" y="171.5" width="30" height="20.5"/>
+                                        <rect key="frame" x="172.5" y="177" width="30" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="sME-6W-dhg"/>
                                         </constraints>
@@ -45,7 +45,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRd-bx-wBE">
-                                        <rect key="frame" x="87.5" y="199.5" width="200" height="20.5"/>
+                                        <rect key="frame" x="87.5" y="208" width="200" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="Exk-pm-K7x"/>
                                             <constraint firstAttribute="width" constant="200" id="s7J-KF-4gc"/>
@@ -55,7 +55,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yO7-Yb-Spq">
-                                        <rect key="frame" x="47.5" y="228" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="239" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843140000001" green="0.58823529409999997" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dQj-1k-PDC"/>
@@ -74,7 +74,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="838-ZL-O1D">
-                                        <rect key="frame" x="47.5" y="285.5" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="299.5" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843140000001" green="0.58823529409999997" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Launch Marketplace">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,7 +89,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aty-Ph-D33">
-                                        <rect key="frame" x="47.5" y="343.5" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="360" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843137254902" green="0.58823529411764708" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="IDq-dW-XqI"/>
@@ -108,7 +108,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfX-g8-zPH">
-                                        <rect key="frame" x="47.5" y="401" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="420.5" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843140000001" green="0.58823529409999997" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="2AO-tk-IBT"/>
@@ -127,7 +127,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unZ-0P-rPL">
-                                        <rect key="frame" x="47.5" y="459" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="481" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843140000001" green="0.58823529409999997" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="rr3-K0-EAJ"/>
@@ -146,7 +146,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42f-Tx-1aU">
-                                        <rect key="frame" x="47.5" y="516.5" width="280" height="50"/>
+                                        <rect key="frame" x="47.5" y="541.5" width="280" height="50"/>
                                         <color key="backgroundColor" red="0.019607843140000001" green="0.58823529409999997" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="U3b-LD-bFx"/>
@@ -164,13 +164,6 @@
                                             <action selector="orderConfirmationTapped:" destination="3vJ-qj-IoG" eventType="touchUpInside" id="da0-5b-ZAQ"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-2O-gfe">
-                                        <rect key="frame" x="177.5" y="574.5" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="FvT-Cf-pDk"/>
-                                            <constraint firstAttribute="height" constant="20" id="u2c-C4-Gc6"/>
-                                        </constraints>
-                                    </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8D-ua-uIc">
                                         <rect key="frame" x="67.5" y="602" width="240" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,7 +193,6 @@
                         <outlet property="continueButton" destination="838-ZL-O1D" id="y6P-Nd-qwH"/>
                         <outlet property="currentUserLabel" destination="SRd-bx-wBE" id="CJM-o4-Cwn"/>
                         <outlet property="newUserButton" destination="yO7-Yb-Spq" id="vU7-xB-WY6"/>
-                        <outlet property="spendIndicator" destination="uM8-2O-gfe" id="qig-0d-l0H"/>
                         <outlet property="titleLabel" destination="VDd-2H-tbS" id="mna-Nn-5mK"/>
                     </connections>
                 </viewController>

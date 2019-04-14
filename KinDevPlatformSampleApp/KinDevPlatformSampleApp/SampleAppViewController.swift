@@ -15,7 +15,6 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var currentUserLabel: UILabel!
     @IBOutlet weak var newUserButton: UIButton!
-    @IBOutlet weak var spendIndicator: UIActivityIndicatorView!
     @IBOutlet weak var buyStickerButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -108,7 +107,10 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
 
         func launch() {
+            showLoader()
+
             operationPromise = Promise().then {
+                self.hideLoader()
                 self.launchMarketplace()
             }
         }
@@ -217,13 +219,13 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         lastOfferId = offerID
 
         buyStickerButton.isEnabled = false
-        spendIndicator.startAnimating()
+        showLoader()
 
         func purchase(offerJWT: String) {
             _ = Kin.shared.purchase(offerJWT: offerJWT) { jwtConfirmation, error in
                 DispatchQueue.main.async { [weak self] in
                     self?.buyStickerButton.isEnabled = true
-                    self?.spendIndicator.stopAnimating()
+                    self?.hideLoader()
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
                     if let confirm = jwtConfirmation {
                         alert.title = "Success"
@@ -318,13 +320,13 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         let offerID = "WOWOMGCRAZY"+"\(arc4random_uniform(999999))"
         lastOfferId = offerID
 
-        spendIndicator.startAnimating()
+        showLoader()
 
         func payToUser(offerJWT: String, receipientUserId: String) {
             _ = Kin.shared.payToUser(offerJWT: offerJWT) { jwtConfirmation, error in
                 DispatchQueue.main.async { [weak self] in
                     self?.buyStickerButton.isEnabled = true
-                    self?.spendIndicator.stopAnimating()
+                    self?.hideLoader()
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
                     if let confirm = jwtConfirmation {
                         alert.title = "Pay To User - Success"
@@ -432,13 +434,13 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        spendIndicator.startAnimating()
+        showLoader()
 
         func requestPayment(offerJWT: String) {
             _ = Kin.shared.requestPayment(offerJWT: offerJWT) { jwtConfirmation, error in
                 DispatchQueue.main.async { [weak self] in
                     self?.buyStickerButton.isEnabled = true
-                    self?.spendIndicator.stopAnimating()
+                    self?.hideLoader()
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
                     if let confirm = jwtConfirmation {
                         alert.title = "Native Earn - Success"

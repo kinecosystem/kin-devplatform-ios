@@ -126,6 +126,9 @@ struct Flows {
                                                         if networkOrder.orderStatus != .pending {
                                                             pending = false
                                                         }
+                                                        if let error = networkOrder.error {
+                                                            logError("earn order \(networkOrder.id) failed: \(error.code) \(error.message)")
+                                                        }
                                         }).then {
                                             if pending {
                                                 if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
@@ -325,6 +328,9 @@ struct Flows {
                                                         logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
                                                         if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                             pending = false
+                                                        }
+                                                        if let error = networkOrder.error {
+                                                            logError("spend order \(networkOrder.id) failed: \(error.code) \(error.message)")
                                                         }
                                         }).then {
                                             if pending {
@@ -531,6 +537,9 @@ struct Flows {
                                                                 if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                                     pending = false
                                                                 }
+                                                                if let error = networkOrder.error {
+                                                                    logError("spend order \(networkOrder.id) failed: \(error.code) \(error.message)")
+                                                                }
                                                 }).then {
                                                     if pending {
                                                         if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
@@ -613,6 +622,9 @@ struct Flows {
                                                         logVerbose("spend order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
                                                         if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                             pending = false
+                                                        }
+                                                        if let error = networkOrder.error {
+                                                            logError("spend order \(networkOrder.id) failed: \(error.code) \(error.message)")
                                                         }
                                                         }.then {
                                                             if pending {
@@ -770,6 +782,9 @@ struct Flows {
                                                                 if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                                     pending = false
                                                                 }
+                                                                if let error = networkOrder.error {
+                                                                    logError("earn order \(networkOrder.id) failed: \(error.code) \(error.message)")
+                                                                }
                                                 }).then {
                                                     if pending {
                                                         if attemptNumber == 5 || attemptNumber == intervals.count + 1 {
@@ -848,6 +863,9 @@ struct Flows {
                                                         logVerbose("earn order \(networkOrder.id) status: \(networkOrder.orderStatus), result: \(hasResult ? "👍🏼" : "nil")")
                                                         if (networkOrder.orderStatus != .pending && hasResult) || networkOrder.orderStatus == .failed {
                                                             pending = false
+                                                        }
+                                                        if let error = networkOrder.error {
+                                                            logError("earn order \(networkOrder.id) failed: \(error.code) \(error.message)")
                                                         }
                                                         }.then {
                                                             if pending {

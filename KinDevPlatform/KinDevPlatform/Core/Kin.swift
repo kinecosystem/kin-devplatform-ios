@@ -143,7 +143,7 @@ public class Kin: NSObject {
         let lastUser = UserDefaults.standard.string(forKey: KinPreferenceKey.lastSignedInUser.rawValue)
         let lastEnvironmentName = UserDefaults.standard.string(forKey: KinPreferenceKey.lastEnvironment.rawValue)
 
-        let isNewUser = lastUser != nil && lastUser != userId
+        let isNewUser = lastUser != userId
         let isNewEnvironmentName = lastEnvironmentName != nil && lastEnvironmentName != environment.name
 
         if isNewUser || isNewEnvironmentName {

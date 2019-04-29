@@ -525,7 +525,11 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    fileprivate func showLoader() {
+    private var presentedLoaders: Set<String> = Set()
+
+    fileprivate func showLoader(id: String = "default") {
+        presentedLoaders.insert(id)
+
         guard loader.isHidden else {
             return
         }
@@ -539,8 +543,10 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    fileprivate func hideLoader() {
-        guard !loader.isHidden else {
+    fileprivate func hideLoader(id: String = "default") {
+        presentedLoaders.remove(id)
+
+        guard !loader.isHidden && presentedLoaders.count == 0 else {
             return
         }
 
@@ -606,12 +612,16 @@ class SampleAppViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SampleAppViewController: KinMigrationDelegate {
+    private var loaderMigrationId: String {
+        return "migration"
+    }
+
     func kinMigrationDidStart() {
-        showLoader()
+        showLoader(id: loaderMigrationId)
     }
 
     func kinMigrationDidFinish() {
-        hideLoader()
+        hideLoader(id: loaderMigrationId)
     }
 
     func kinMigrationIsReady() {
@@ -620,7 +630,7 @@ extension SampleAppViewController: KinMigrationDelegate {
     }
 
     func kinMigration(error: Error) {
-        hideLoader()
+        hideLoader(id: loaderMigrationId)
         alertStartError(error)
     }
 }

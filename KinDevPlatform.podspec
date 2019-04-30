@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary     = 'Kin Developer Platform SDK for iOS'
   s.description = 'Kin Developer Platform SDK for iOS'
   s.homepage    = 'https://github.com/kinecosystem/kin-devplatform-ios'
-  s.license     = { :type => 'MIT', :file => 'LICENSE.md' }
+  s.license     = { :type => 'Kin Ecosystem SDK License', :file => 'LICENSE.pdf' }
   s.author      = { 'Kin' => 'info@kin.org' }
   s.source      = { :git => 'https://github.com/kinecosystem/kin-devplatform-ios.git', :tag => s.version.to_s }
 

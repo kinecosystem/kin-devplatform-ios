@@ -70,10 +70,14 @@ class WrappedKinSDKAccount: KinAccountProtocol {
         let promise = Promise<TransactionId>()
 
         account.generateTransaction(to: recipient, kin: kin, memo: memo, fee: fee)
-            .then { transactionEnvelope -> Promise<TransactionEnvelope> in
+            .then { transactionEnvelope -> Promise<TransactionEnvelope?> in
                 return whitelist(transactionEnvelope)
             }
             .then { [weak self] transactionEnvelope -> Promise<TransactionId> in
+                guard let transactionEnvelope = transactionEnvelope else {
+                    return promise.signal("")
+                }
+
                 guard let strongSelf = self else {
                     return promise.signal(KinError.internalInconsistency)
                 }

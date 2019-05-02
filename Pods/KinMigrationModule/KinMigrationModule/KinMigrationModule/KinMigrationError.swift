@@ -15,6 +15,7 @@ public enum KinMigrationError: Error {
     case responseEmpty
     case responseFailed (Error)
     case decodingFailed (Error)
+    case invalidPublicAddress
     case migrationFailed (code: Int, message: String)
     case migrationNeeded
     case unexpectedCondition
@@ -35,6 +36,8 @@ extension KinMigrationError: LocalizedError {
             return "Response failed."
         case .decodingFailed:
             return "Decoding response failed."
+        case .invalidPublicAddress:
+            return "The public address doesn't match any `kinClient.accounts`."
         case .migrationFailed:
             return "Migrating account failed."
         case .migrationNeeded:

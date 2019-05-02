@@ -940,8 +940,8 @@ struct Flows {
 @available(iOS 9.0, *)
 extension Flows {
     static func whitelist(client: RestClient, environment: Environment, orderId: String) -> WhitelistClosure {
-        return { transactionEnvelope -> Promise<TransactionEnvelope> in
-            let promise: Promise<TransactionEnvelope> = Promise()
+        return { transactionEnvelope -> Promise<TransactionEnvelope?> in
+            let promise: Promise<TransactionEnvelope?> = Promise()
             let whitelistEnvelope = WhitelistEnvelope(transactionEnvelope: transactionEnvelope, networkId: environment.mapToMigrationModuleNetwork.kinSDKId)
 
             client.buildRequest(path: "/orders/\(orderId)/whitelist", method: .post, body: try? JSONEncoder().encode(whitelistEnvelope))

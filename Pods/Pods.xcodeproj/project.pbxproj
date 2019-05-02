@@ -666,6 +666,7 @@
 /* Begin PBXFileReference section */
 		00CEF1DCD88FB39F4DFAC28B652EB5AF /* Transaction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = StellarKit/source/types/Transaction.swift; sourceTree = "<group>"; };
 		00E9E31D9BA89F160B704E447B0F4F9B /* StellarKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = StellarKit.modulemap; sourceTree = "<group>"; };
+		012D222CD01EE83F465C08D51506C015 /* KinDevPlatform.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = KinDevPlatform.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		01703AD78D050901165FEB73D816A2AE /* crypto_core_hchacha20.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypto_core_hchacha20.h; path = Sodium/libsodium/crypto_core_hchacha20.h; sourceTree = "<group>"; };
 		01881FAA7E85EC215264DED444C54BAD /* export.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = export.h; path = Sodium/libsodium/export.h; sourceTree = "<group>"; };
 		01CB89210DF56C3EAA3011E359C30D48 /* KBIMapping.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KBIMapping.swift; sourceTree = "<group>"; };
@@ -780,6 +781,7 @@
 		37476B4CF4C3FE04307CBC4B97A45414 /* Pods-KinDevPlatformSampleApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KinDevPlatformSampleApp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		37C83784B3599AAC993DD4B1221842C3 /* randombytes_sysrandom.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = randombytes_sysrandom.h; path = Sodium/libsodium/randombytes_sysrandom.h; sourceTree = "<group>"; };
 		37D18FE0A14D0E0F0F856EB60F2BBDD7 /* crypto_stream_salsa2012.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa2012.h; path = Sodium/libsodium/crypto_stream_salsa2012.h; sourceTree = "<group>"; };
+		37FA8DC11BC1DD86B7D873B0B038ACEE /* LICENSE.pdf */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.pdf; sourceTree = "<group>"; };
 		38BAA1912D403ED8C571659AE0CE56C5 /* Data+extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+extensions.swift"; path = "KinSDK/KinSDK/source/blockchain/Data+extensions.swift"; sourceTree = "<group>"; };
 		3910E936AA72362568F758C6629FD35B /* crypto_scalarmult_ed25519.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult_ed25519.h; path = Sodium/libsodium/crypto_scalarmult_ed25519.h; sourceTree = "<group>"; };
 		3922F773C070AC398797B7C0E551DAD8 /* JWTBase64Coder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTBase64Coder.h; path = Core/Supplement/JWTBase64Coder.h; sourceTree = "<group>"; };
@@ -868,7 +870,6 @@
 		68BF42C1872169CC0011F33EB2D0756E /* Operation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operation.swift; path = StellarKit/source/types/Operation.swift; sourceTree = "<group>"; };
 		69C141A3326C813827F3CDBE4C76D482 /* EarnOfferCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EarnOfferCell.swift; sourceTree = "<group>"; };
 		6A5064495AFB54333B8F1C6393AA9812 /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = KinUtil/KinUtil/source/Promise.swift; sourceTree = "<group>"; };
-		6A873D0AFCA8AB46246482D7295912A2 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
 		6A974C5ECCEC6F2CCC4D2DA6810BFFB3 /* confirm_purchase_page_viewed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = confirm_purchase_page_viewed.swift; sourceTree = "<group>"; };
 		6AB5C11956DB64DB6BEF21C1C2EA10D4 /* KinSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KinSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ABC35907977039C89044C2C3EDBD593 /* OrderCellTimelineView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrderCellTimelineView.swift; sourceTree = "<group>"; };
@@ -901,7 +902,6 @@
 		76281A474217A78064C13A7C48D79814 /* KinCoreSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "KinCoreSDK-Info.plist"; sourceTree = "<group>"; };
 		77410CF55089B5AC09BD9BF7E2782448 /* ShortHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShortHash.swift; path = Sodium/ShortHash.swift; sourceTree = "<group>"; };
 		77E387F3AACC4BF133142DC147AE5528 /* JWTAlgorithm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTAlgorithm.h; path = Core/Algorithms/Base/JWTAlgorithm.h; sourceTree = "<group>"; };
-		7816FB88A3F73FDAB62A066032DDC2AD /* KinDevPlatform.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = KinDevPlatform.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		78E1F8BF6BB6DF8FF968E78348D940B2 /* KinClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinClient.swift; path = KinSDK/KinSDK/source/KinClient.swift; sourceTree = "<group>"; };
 		793E90C9F5B77FCD716942BC9ACA3CC7 /* WrappedKinCoreWatchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WrappedKinCoreWatchers.swift; path = KinMigrationModule/KinMigrationModule/WrappedKinCore/WrappedKinCoreWatchers.swift; sourceTree = "<group>"; };
 		794724BD8520129C3B9E407FB31BA86F /* JWTCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JWTCoding.h; path = Core/Coding/JWTCoding.h; sourceTree = "<group>"; };
@@ -974,6 +974,7 @@
 		97D9B615DC786B7F804A13FCF5A62723 /* migration_request_account_migration_succeeded.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = migration_request_account_migration_succeeded.swift; sourceTree = "<group>"; };
 		98837941C5CA9282C0082816F16C66D3 /* UIColor+KinStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+KinStyle.swift"; sourceTree = "<group>"; };
 		98D408E66CB7CE9F1DD9F943A0486233 /* CoreDataStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98F9F66E503C031FB6B73F899C85AED9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		9A252874DB2A7109E725FFF0DE00143C /* NetworkId.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkId.swift; path = KinSDK/KinSDK/source/NetworkId.swift; sourceTree = "<group>"; };
 		9A58FA88882A15B049961FA1BA3E7F63 /* MarketplaceViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = MarketplaceViewController.xib; sourceTree = "<group>"; };
 		9AC67ADC1FB8584349A0909B82E28FB0 /* TxBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TxBuilder.swift; path = KinSDK/KinSDK/source/blockchain/TxBuilder.swift; sourceTree = "<group>"; };
@@ -1042,7 +1043,6 @@
 		C01666D09E818BBD44EB95FCB5B9399D /* KinMigrationBI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KinMigrationBI.swift; path = KinMigrationModule/KinMigrationModule/KinMigrationBI.swift; sourceTree = "<group>"; };
 		C08E13B8876BEB3502D94DFA57BDD330 /* SimpleCoreDataStack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimpleCoreDataStack-dummy.m"; sourceTree = "<group>"; };
 		C0E6652026CE9E38CF865AA58D72A9B2 /* StellarErrors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StellarErrors.swift; path = StellarKit/source/StellarErrors.swift; sourceTree = "<group>"; };
-		C148CCFBE33007372C225F5196425F81 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		C14A353DE5C22BB6F64687AAA208AE6F /* KeyPairGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyPairGenerator.swift; path = Sodium/Generators/KeyPairGenerator.swift; sourceTree = "<group>"; };
 		C15194216B23FDE5F405F624F65FBFFF /* KinDevPlatform-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KinDevPlatform-dummy.m"; sourceTree = "<group>"; };
 		C15DBEDD568B9C07D648C7FA39E5BFE6 /* back_button_on_welcome_screen_page_tapped.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = back_button_on_welcome_screen_page_tapped.swift; sourceTree = "<group>"; };
@@ -1440,6 +1440,16 @@
 			path = "../Target Support Files/KinCoreSDK";
 			sourceTree = "<group>";
 		};
+		42E686F4B8C4E2A044A77F28B3041277 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				012D222CD01EE83F465C08D51506C015 /* KinDevPlatform.podspec */,
+				37FA8DC11BC1DD86B7D873B0B038ACEE /* LICENSE.pdf */,
+				98F9F66E503C031FB6B73F899C85AED9 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		4537C2A9F580FD922CC4187F8EBE8499 /* KinCoreSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1756,16 +1766,6 @@
 			path = KinDevPlatform/KinDevPlatform/Core;
 			sourceTree = "<group>";
 		};
-		93F1D4FE03444C838069899051D04CB8 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				7816FB88A3F73FDAB62A066032DDC2AD /* KinDevPlatform.podspec */,
-				6A873D0AFCA8AB46246482D7295912A2 /* LICENSE.md */,
-				C148CCFBE33007372C225F5196425F81 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 		9BCA2A40099E50F8468901F57DD0A69F /* JWT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,7 +1853,7 @@
 				936CD4BABC27A53A6E4FFD849EC2A5F0 /* Core */,
 				59F35D8E3CC8C72740E771C075D9D893 /* extensions */,
 				CCBE431CC5F4AFB71D6032884C48F3FC /* Model */,
-				93F1D4FE03444C838069899051D04CB8 /* Pod */,
+				42E686F4B8C4E2A044A77F28B3041277 /* Pod */,
 				34807C4444EBDFB376C7539E79F63CA2 /* Promises */,
 				71B4043DB998F6BACD26824E6CBCF9CA /* Resources */,
 				798F97CE639E10A03A76B69E94C8C31B /* Support Files */,
@@ -3381,41 +3381,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0112278706DCD5D5BBA37D5352943CE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A32159749492027EEE2F478AE5043155 /* KinMigrationModule.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinMigrationModule/KinMigrationModule-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule.modulemap";
-				PRODUCT_MODULE_NAME = KinMigrationModule;
-				PRODUCT_NAME = KinMigrationModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		03DF6FC0C0B6E062B1A21A8DD0276C7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25D42C60459B08655CDE1063C7FC6795 /* Pods-KinDevPlatform.debug.xcconfig */;
@@ -3517,360 +3482,7 @@
 			};
 			name = Debug;
 		};
-		0A92ADAC83F98E2DF90E78630470B5F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A1DF4551EC0CED72B7C4400C2FB7D9E /* Sodium.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Sodium/Sodium-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Sodium/Sodium-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Sodium/Sodium.modulemap";
-				PRODUCT_MODULE_NAME = Sodium;
-				PRODUCT_NAME = Sodium;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		1D3D452D090BC74553291319FB1E410C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0DBE418EC90FE68BC206BB06A9E8075 /* JWT.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/JWT/JWT-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JWT/JWT-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/JWT/JWT.modulemap";
-				PRODUCT_MODULE_NAME = JWT;
-				PRODUCT_NAME = JWT;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		43E9A8EC6F98F237566B579F1D8C1A62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDFFF6927A97DC040305524AB780CA3A /* SimpleCoreDataStack.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack.modulemap";
-				PRODUCT_MODULE_NAME = CoreDataStack;
-				PRODUCT_NAME = CoreDataStack;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		4A6CCD86282170BEA610D4F18CDFA95C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FB30026085397536B38450267F45E4E /* KinDevPlatform.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinDevPlatform/KinDevPlatform-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform.modulemap";
-				PRODUCT_MODULE_NAME = KinDevPlatform;
-				PRODUCT_NAME = KinDevPlatform;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4BA0EC110D386371C8619FF3E8576CE4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 944FE4C7966246E6176EF58635C45A0C /* KinUtil.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinUtil/KinUtil-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinUtil/KinUtil-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinUtil/KinUtil.modulemap";
-				PRODUCT_MODULE_NAME = KinUtil;
-				PRODUCT_NAME = KinUtil;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		51803FC3198D79B4B78D62364504FA98 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24E3085A8DA305B253E7A20765637692 /* KinSDK.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinSDK/KinSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinSDK/KinSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinSDK/KinSDK.modulemap";
-				PRODUCT_MODULE_NAME = KinSDK;
-				PRODUCT_NAME = KinSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		548009585EEAFE43D710CD0CB9C97491 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A1DF4551EC0CED72B7C4400C2FB7D9E /* Sodium.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Sodium/Sodium-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Sodium/Sodium-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Sodium/Sodium.modulemap";
-				PRODUCT_MODULE_NAME = Sodium;
-				PRODUCT_NAME = Sodium;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		62A7D3F7820A3AD1BB41BE83A6961BC3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AA1C8A2E4946A8EC47E64D4F0BC72A4 /* StellarKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/StellarKit/StellarKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/StellarKit/StellarKit-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/StellarKit/StellarKit.modulemap";
-				PRODUCT_MODULE_NAME = StellarKit;
-				PRODUCT_NAME = StellarKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7CEC3D7EAEFC201CE54D4FBF90E09E25 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 688D5595F90E1B3D4D17EE46F8D6CCF5 /* KinCoreSDK.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinCoreSDK/KinCoreSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK.modulemap";
-				PRODUCT_MODULE_NAME = KinCoreSDK;
-				PRODUCT_NAME = KinCoreSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7DB49BF17F5C90DFE06F54405659EA4A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5B184F7FCBA45BCDFFF5C8E9523D9F /* Base64.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Base64/Base64-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Base64/Base64-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Base64/Base64.modulemap";
-				PRODUCT_MODULE_NAME = Base64;
-				PRODUCT_NAME = Base64;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8B43341B09C0703C91BBE9D0658AB5BD /* Debug */ = {
+		077E35DCA42747FDE379D186F9479A2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B214AEDE8D688D2B31A9523608779CBB /* StellarErrors.xcconfig */;
 			buildSettings = {
@@ -3898,14 +3510,228 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		07FB2065556F9FB509D2B620051E76F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FB30026085397536B38450267F45E4E /* KinDevPlatform.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinDevPlatform/KinDevPlatform-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform.modulemap";
+				PRODUCT_MODULE_NAME = KinDevPlatform;
+				PRODUCT_NAME = KinDevPlatform;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		9A36C0DE681614738DDD21FCB4E9BB3F /* Release */ = {
+		0C01E18817F94CC5AE8AF6E16C699657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AA1C8A2E4946A8EC47E64D4F0BC72A4 /* StellarKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/StellarKit/StellarKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StellarKit/StellarKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/StellarKit/StellarKit.modulemap";
+				PRODUCT_MODULE_NAME = StellarKit;
+				PRODUCT_NAME = StellarKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		19D3D7D70C23FA6FF9D80C12BBC84045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A32159749492027EEE2F478AE5043155 /* KinMigrationModule.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinMigrationModule/KinMigrationModule-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule.modulemap";
+				PRODUCT_MODULE_NAME = KinMigrationModule;
+				PRODUCT_NAME = KinMigrationModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		34605C15C9C1F3E74D5D858990B26E15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 688D5595F90E1B3D4D17EE46F8D6CCF5 /* KinCoreSDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinCoreSDK/KinCoreSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK.modulemap";
+				PRODUCT_MODULE_NAME = KinCoreSDK;
+				PRODUCT_NAME = KinCoreSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		36E5A3146FD0AA533E08FA24F12D3A6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0DBE418EC90FE68BC206BB06A9E8075 /* JWT.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JWT/JWT-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JWT/JWT-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/JWT/JWT.modulemap";
+				PRODUCT_MODULE_NAME = JWT;
+				PRODUCT_NAME = JWT;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3B3CA28C0629BA8B3EEB2F0C37473552 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D5B184F7FCBA45BCDFFF5C8E9523D9F /* Base64.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Base64/Base64-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Base64/Base64-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Base64/Base64.modulemap";
+				PRODUCT_MODULE_NAME = Base64;
+				PRODUCT_NAME = Base64;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4FF297F1CE7D7B2555F5FAB8A5ABA20A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 944FE4C7966246E6176EF58635C45A0C /* KinUtil.xcconfig */;
 			buildSettings = {
@@ -3933,13 +3759,258 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		564755F5B404828E87B0F073AFFC2250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24E3085A8DA305B253E7A20765637692 /* KinSDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinSDK/KinSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinSDK/KinSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinSDK/KinSDK.modulemap";
+				PRODUCT_MODULE_NAME = KinSDK;
+				PRODUCT_NAME = KinSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5AF46F1EB4385C7709049E1D888B5647 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D5B184F7FCBA45BCDFFF5C8E9523D9F /* Base64.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Base64/Base64-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Base64/Base64-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Base64/Base64.modulemap";
+				PRODUCT_MODULE_NAME = Base64;
+				PRODUCT_NAME = Base64;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		628FE9B5D007C187834AF9248CD376E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDFFF6927A97DC040305524AB780CA3A /* SimpleCoreDataStack.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack.modulemap";
+				PRODUCT_MODULE_NAME = CoreDataStack;
+				PRODUCT_NAME = CoreDataStack;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		73854DC4546613B1ED43C78ECE972642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A32159749492027EEE2F478AE5043155 /* KinMigrationModule.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinMigrationModule/KinMigrationModule-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule.modulemap";
+				PRODUCT_MODULE_NAME = KinMigrationModule;
+				PRODUCT_NAME = KinMigrationModule;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		73F4C0FFE97B3962BD07045F90C7A3B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 688D5595F90E1B3D4D17EE46F8D6CCF5 /* KinCoreSDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinCoreSDK/KinCoreSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK.modulemap";
+				PRODUCT_MODULE_NAME = KinCoreSDK;
+				PRODUCT_NAME = KinCoreSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D90C9239E2988F19269B705BB4D1046 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B214AEDE8D688D2B31A9523608779CBB /* StellarErrors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/StellarErrors/StellarErrors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StellarErrors/StellarErrors-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/StellarErrors/StellarErrors.modulemap";
+				PRODUCT_MODULE_NAME = StellarErrors;
+				PRODUCT_NAME = StellarErrors;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		880273F672A062FA39696F58DDD6AE06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDFFF6927A97DC040305524AB780CA3A /* SimpleCoreDataStack.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack.modulemap";
+				PRODUCT_MODULE_NAME = CoreDataStack;
+				PRODUCT_NAME = CoreDataStack;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		A1962E6FF39BBAC201A2E5DDF99557DF /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -4001,115 +4072,7 @@
 			};
 			name = Release;
 		};
-		A7325278286AB1E195C6F9BED2099485 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5B184F7FCBA45BCDFFF5C8E9523D9F /* Base64.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Base64/Base64-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Base64/Base64-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Base64/Base64.modulemap";
-				PRODUCT_MODULE_NAME = Base64;
-				PRODUCT_NAME = Base64;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A9229605A22E081846DB72E5F8A47D5B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A32159749492027EEE2F478AE5043155 /* KinMigrationModule.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinMigrationModule/KinMigrationModule-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinMigrationModule/KinMigrationModule.modulemap";
-				PRODUCT_MODULE_NAME = KinMigrationModule;
-				PRODUCT_NAME = KinMigrationModule;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		ADE45DAB46B1F904C1DD98D4C7116E0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 688D5595F90E1B3D4D17EE46F8D6CCF5 /* KinCoreSDK.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinCoreSDK/KinCoreSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinCoreSDK/KinCoreSDK.modulemap";
-				PRODUCT_MODULE_NAME = KinCoreSDK;
-				PRODUCT_NAME = KinCoreSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BE0301DAEB51856AD76F8AB98BF1F0B0 /* Debug */ = {
+		A2DA87862C15478EFA82DFEF60AA532F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24E3085A8DA305B253E7A20765637692 /* KinSDK.xcconfig */;
 			buildSettings = {
@@ -4137,14 +4100,51 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		CF1D3000D31A51022CB08A172E74568C /* Release */ = {
+		AD2F4F89FF8F2630B3DC4C0540B6591A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FB30026085397536B38450267F45E4E /* KinDevPlatform.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KinDevPlatform/KinDevPlatform-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform.modulemap";
+				PRODUCT_MODULE_NAME = KinDevPlatform;
+				PRODUCT_NAME = KinDevPlatform;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C4A5BEDA8131E360852F1D8AA1514861 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0DBE418EC90FE68BC206BB06A9E8075 /* JWT.xcconfig */;
 			buildSettings = {
@@ -4172,7 +4172,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4180,9 +4180,9 @@
 			};
 			name = Release;
 		};
-		D3E7DDFAD794A86852F7F6D378136F82 /* Release */ = {
+		D10286FCBEEAE4FE7DC0D80CD0A60C45 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B214AEDE8D688D2B31A9523608779CBB /* StellarErrors.xcconfig */;
+			baseConfigurationReference = 944FE4C7966246E6176EF58635C45A0C /* KinUtil.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4193,8 +4193,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/StellarErrors/StellarErrors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/StellarErrors/StellarErrors-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/KinUtil/KinUtil-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KinUtil/KinUtil-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4202,13 +4202,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/StellarErrors/StellarErrors.modulemap";
-				PRODUCT_MODULE_NAME = StellarErrors;
-				PRODUCT_NAME = StellarErrors;
+				MODULEMAP_FILE = "Target Support Files/KinUtil/KinUtil.modulemap";
+				PRODUCT_MODULE_NAME = KinUtil;
+				PRODUCT_NAME = KinUtil;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4253,9 +4253,9 @@
 			};
 			name = Debug;
 		};
-		DB931CC61FDAABF8FA8E8C9D750AB61A /* Debug */ = {
+		D659D5338128DE676D05773A1AEA3790 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDFFF6927A97DC040305524AB780CA3A /* SimpleCoreDataStack.xcconfig */;
+			baseConfigurationReference = 5AA1C8A2E4946A8EC47E64D4F0BC72A4 /* StellarKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4266,8 +4266,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/StellarKit/StellarKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StellarKit/StellarKit-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4275,48 +4275,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/SimpleCoreDataStack/SimpleCoreDataStack.modulemap";
-				PRODUCT_MODULE_NAME = CoreDataStack;
-				PRODUCT_NAME = CoreDataStack;
+				MODULEMAP_FILE = "Target Support Files/StellarKit/StellarKit.modulemap";
+				PRODUCT_MODULE_NAME = StellarKit;
+				PRODUCT_NAME = StellarKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E8AD0C31947C58E846E3E43C1A43BE57 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FB30026085397536B38450267F45E4E /* KinDevPlatform.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KinDevPlatform/KinDevPlatform-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/KinDevPlatform/KinDevPlatform.modulemap";
-				PRODUCT_MODULE_NAME = KinDevPlatform;
-				PRODUCT_NAME = KinDevPlatform;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4362,9 +4327,9 @@
 			};
 			name = Release;
 		};
-		F268D8C0B55F72433B77A158844F1AE5 /* Release */ = {
+		F7BD7EAC04EC606FD52F0D8E61AF4953 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AA1C8A2E4946A8EC47E64D4F0BC72A4 /* StellarKit.xcconfig */;
+			baseConfigurationReference = 3A1DF4551EC0CED72B7C4400C2FB7D9E /* Sodium.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4375,8 +4340,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/StellarKit/StellarKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/StellarKit/StellarKit-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Sodium/Sodium-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Sodium/Sodium-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4384,19 +4349,54 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/StellarKit/StellarKit.modulemap";
-				PRODUCT_MODULE_NAME = StellarKit;
-				PRODUCT_NAME = StellarKit;
+				MODULEMAP_FILE = "Target Support Files/Sodium/Sodium.modulemap";
+				PRODUCT_MODULE_NAME = Sodium;
+				PRODUCT_NAME = Sodium;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		FCCBA3CC9754B03125BE6F28C180A6C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A1DF4551EC0CED72B7C4400C2FB7D9E /* Sodium.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Sodium/Sodium-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Sodium/Sodium-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Sodium/Sodium.modulemap";
+				PRODUCT_MODULE_NAME = Sodium;
+				PRODUCT_NAME = Sodium;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		FE0FC26DA404F267754C6B8849EB0DB1 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -4442,8 +4442,8 @@
 		0898D619134E5F45A3865AB7CFF5D8DA /* Build configuration list for PBXNativeTarget "KinMigrationModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0112278706DCD5D5BBA37D5352943CE1 /* Debug */,
-				A9229605A22E081846DB72E5F8A47D5B /* Release */,
+				73854DC4546613B1ED43C78ECE972642 /* Debug */,
+				19D3D7D70C23FA6FF9D80C12BBC84045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4451,8 +4451,8 @@
 		1EFFAF143A612BDD0D7A75C4741BF603 /* Build configuration list for PBXNativeTarget "Base64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7DB49BF17F5C90DFE06F54405659EA4A /* Debug */,
-				A7325278286AB1E195C6F9BED2099485 /* Release */,
+				5AF46F1EB4385C7709049E1D888B5647 /* Debug */,
+				3B3CA28C0629BA8B3EEB2F0C37473552 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4460,8 +4460,8 @@
 		27C3ED2108BC6E06D52D83B9CD8D3659 /* Build configuration list for PBXNativeTarget "JWT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D3D452D090BC74553291319FB1E410C /* Debug */,
-				CF1D3000D31A51022CB08A172E74568C /* Release */,
+				36E5A3146FD0AA533E08FA24F12D3A6F /* Debug */,
+				C4A5BEDA8131E360852F1D8AA1514861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4469,8 +4469,8 @@
 		3D72D55560B3F0EE65C1815D79F64C57 /* Build configuration list for PBXNativeTarget "KinDevPlatform" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4A6CCD86282170BEA610D4F18CDFA95C /* Debug */,
-				E8AD0C31947C58E846E3E43C1A43BE57 /* Release */,
+				07FB2065556F9FB509D2B620051E76F1 /* Debug */,
+				AD2F4F89FF8F2630B3DC4C0540B6591A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4478,8 +4478,8 @@
 		3D8832478476008667C5CA76201DC3D6 /* Build configuration list for PBXNativeTarget "KinSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE0301DAEB51856AD76F8AB98BF1F0B0 /* Debug */,
-				51803FC3198D79B4B78D62364504FA98 /* Release */,
+				564755F5B404828E87B0F073AFFC2250 /* Debug */,
+				A2DA87862C15478EFA82DFEF60AA532F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4514,8 +4514,8 @@
 		74B79500F1C1288974C8F07C9D6926BD /* Build configuration list for PBXNativeTarget "SimpleCoreDataStack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DB931CC61FDAABF8FA8E8C9D750AB61A /* Debug */,
-				43E9A8EC6F98F237566B579F1D8C1A62 /* Release */,
+				880273F672A062FA39696F58DDD6AE06 /* Debug */,
+				628FE9B5D007C187834AF9248CD376E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4523,8 +4523,8 @@
 		968837525B6242E1C9C26FB3D1D94FD6 /* Build configuration list for PBXNativeTarget "KinCoreSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CEC3D7EAEFC201CE54D4FBF90E09E25 /* Debug */,
-				ADE45DAB46B1F904C1DD98D4C7116E0D /* Release */,
+				73F4C0FFE97B3962BD07045F90C7A3B1 /* Debug */,
+				34605C15C9C1F3E74D5D858990B26E15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4532,8 +4532,8 @@
 		9DDDC251393DABEA23631BDA4A21DF79 /* Build configuration list for PBXNativeTarget "StellarErrors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8B43341B09C0703C91BBE9D0658AB5BD /* Debug */,
-				D3E7DDFAD794A86852F7F6D378136F82 /* Release */,
+				7D90C9239E2988F19269B705BB4D1046 /* Debug */,
+				077E35DCA42747FDE379D186F9479A2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4541,8 +4541,8 @@
 		A1062DAD23B553E90B1ADC2EFDAD7DBB /* Build configuration list for PBXNativeTarget "KinUtil" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4BA0EC110D386371C8619FF3E8576CE4 /* Debug */,
-				9A36C0DE681614738DDD21FCB4E9BB3F /* Release */,
+				4FF297F1CE7D7B2555F5FAB8A5ABA20A /* Debug */,
+				D10286FCBEEAE4FE7DC0D80CD0A60C45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4550,8 +4550,8 @@
 		AB45E489B42D614668803280D6B04E7B /* Build configuration list for PBXNativeTarget "StellarKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				62A7D3F7820A3AD1BB41BE83A6961BC3 /* Debug */,
-				F268D8C0B55F72433B77A158844F1AE5 /* Release */,
+				0C01E18817F94CC5AE8AF6E16C699657 /* Debug */,
+				D659D5338128DE676D05773A1AEA3790 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4559,8 +4559,8 @@
 		BBA1C753997D83BD32B6C56F02430897 /* Build configuration list for PBXNativeTarget "Sodium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				548009585EEAFE43D710CD0CB9C97491 /* Debug */,
-				0A92ADAC83F98E2DF90E78630470B5F1 /* Release */,
+				FCCBA3CC9754B03125BE6F28C180A6C2 /* Debug */,
+				F7BD7EAC04EC606FD52F0D8E61AF4953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

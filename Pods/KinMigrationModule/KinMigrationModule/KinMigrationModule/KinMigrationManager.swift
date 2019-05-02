@@ -60,6 +60,11 @@ public class KinMigrationManager {
      */
     public weak var biDelegate: KinMigrationBIDelegate?
 
+    /**
+     The `KinVersion` being used by the migration manager.
+
+     The version received from the `kinMigrationManagerNeedsVersion(_:)` delegate.
+     */
     public fileprivate(set) var version: KinVersion?
     
     public let serviceProvider: ServiceProviderProtocol
@@ -78,34 +83,60 @@ public class KinMigrationManager {
     }
 
     private var didStart = false
+    private var migratePublicAddress: String?
 
-    fileprivate lazy var kinCoreClient: KinClientProtocol = {
+    private lazy var kinCoreClient: KinClientProtocol = {
         return self.createClient(version: .kinCore)
     }()
 
-    fileprivate lazy var kinSDKClient: KinClientProtocol = {
+    private lazy var kinSDKClient: KinClientProtocol = {
         return self.createClient(version: .kinSDK)
     }()
+
+    /**
+     Get a `KinClientProtocol` for a specific version.
+
+     The version should be the same as your servers.
+
+     - Parameter version: The `KinVersion` for which `KinClientProtocol` to receive.
+
+     - Returns: A `KinClientProtocol` for the given `KinVersion`.
+     */
+    public func kinClient(version: KinVersion) -> KinClientProtocol {
+        switch version {
+        case .kinCore:
+            return kinCoreClient
+        case .kinSDK:
+            return kinSDKClient
+        }
+    }
+
+    /**
+     Check if a `kinAccount` has been migrated.
+
+     - Parameter publicAddress: The `kinAccount.publicAddress` to be checked.
+
+     - Returns: True if the `kinAccount` with the given `publicAddress` has been migrated.
+     */
+    public func isAccountMigrated(publicAddress: String) -> Bool {
+        return kinSDKClient.accounts.makeIterator().first { $0.publicAddress == publicAddress } != nil
+    }
 }
 
 // MARK: - State
 
 extension KinMigrationManager {
-    public fileprivate(set) var isMigrated: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: "KinMigrationDidMigrateToKin3")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "KinMigrationDidMigrateToKin3")
-        }
-    }
-
     /**
-     Tell the migration manager to start the process.
+     Tell the migration manager to start the migration process.
+
+     If the `publicAddress` is omitted the migration manager will still request a version and
+     call the `readyWithClient` delegate function, returning the correct client.
+
+     - Parameter publicAddress: The `kinAccount.publicAddress` to be migrated.
 
      - Throws: An error if the `delegate` was not set.
      */
-    public func start() throws {
+    public func start(with publicAddress: String? = nil) throws {
         guard !didStart else {
             return
         }
@@ -114,11 +145,12 @@ extension KinMigrationManager {
             throw KinMigrationError.missingDelegate
         }
 
+        migratePublicAddress = publicAddress
         didStart = true
 
         biDelegate?.kinMigrationMethodStarted()
 
-        if isMigrated {
+        if let publicAddress = publicAddress, isAccountMigrated(publicAddress: publicAddress) {
             version = .kinSDK
             completed(biReadyReason: .alreadyMigrated)
         }
@@ -133,22 +165,24 @@ extension KinMigrationManager {
             return
         }
 
+        guard let account = kinCoreClient.accounts.makeIterator().first(where: { $0.publicAddress == migratePublicAddress }) else {
+            failed(error: KinMigrationError.invalidPublicAddress)
+            return
+        }
+
         biDelegate?.kinMigrationCallbackStart()
         delegate?.kinMigrationManagerDidStart(self)
 
-        burnAccounts()
+        startBurningAccount(account)
     }
 
     fileprivate func completed(biReadyReason: KinMigrationBIReadyReason) {
         didStart = false
+        migratePublicAddress = nil
 
         guard let version = version else {
             failed(error: KinMigrationError.unexpectedCondition)
             return
-        }
-
-        if version == .kinSDK {
-            isMigrated = true
         }
 
         biDelegate?.kinMigrationCallbackReady(reason: biReadyReason, version: version)
@@ -167,6 +201,7 @@ extension KinMigrationManager {
 
     fileprivate func failed(error: Error) {
         didStart = false
+        migratePublicAddress = nil
 
         biDelegate?.kinMigrationCallbackFailed(error: error)
         delegate?.kinMigrationManager(self, error: error)
@@ -215,19 +250,17 @@ extension KinMigrationManager {
 // MARK: - Account
 
 extension KinMigrationManager {
-    fileprivate func burnAccounts() {
+    fileprivate func startBurningAccount(_ account: KinAccountProtocol) {
         guard version == .kinSDK else {
             failed(error: KinMigrationError.unexpectedCondition)
             return
         }
 
-        let promises = kinCoreClient.accounts.makeIterator().map { burnAccount($0) }
-
         DispatchQueue.global(qos: .background).async {
-            await(promises)
-                .then { accounts in
+            self.burnAccount(account)
+                .then { account in
                     DispatchQueue.main.async {
-                        self.migrateAccounts(accounts)
+                        self.startMigratingAccount(account)
                     }
                 }
                 .error { error in
@@ -274,16 +307,14 @@ extension KinMigrationManager {
         return promise
     }
 
-    private func migrateAccounts(_ accounts: [KinAccountProtocol]) {
+    private func startMigratingAccount(_ account: KinAccountProtocol) {
         guard version == .kinSDK else {
             failed(error: KinMigrationError.unexpectedCondition)
             return
         }
 
-        let promises = accounts.map { migrateAccount($0) }
-
         DispatchQueue.global(qos: .background).async {
-            await(promises)
+            self.migrateAccount(account)
                 .then { _ in
                     DispatchQueue.main.async {
                         self.completed(biReadyReason: .migrated)
@@ -365,11 +396,12 @@ extension KinMigrationManager {
         }
 
         let json = try account.export(passphrase: "")
-        let _ = try kinSDKClient.importAccount(json, passphrase: "")
+        var importedAccount = try kinSDKClient.importAccount(json, passphrase: "")
+        importedAccount.extra = account.extra
     }
 }
 
-// MARK: Debugging
+// MARK: Keystore
 
 extension KinMigrationManager {
     public func deleteKeystore() {

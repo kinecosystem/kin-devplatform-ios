@@ -25,10 +25,8 @@ PODS:
 
 DEPENDENCIES:
   - JWT (= 3.0.0-beta.11)
-  - KinCoreSDK (= 0.8.1)
   - KinDevPlatform (from `./`)
-  - KinMigrationModule (= 0.1.1)
-  - KinSDK (= 0.9.1)
+  - KinMigrationModule
   - SimpleCoreDataStack
 
 SPEC REPOS:
@@ -61,6 +59,6 @@ SPEC CHECKSUMS:
   StellarErrors: 58d5b1f5ed99b17d4b6fb53f8b214f85333cdaa7
   StellarKit: a6b009027ddf18de0cbad88ff174950cc64f9df9
 
-PODFILE CHECKSUM: 5d7b4623e4a8611adcbde25d8658126cf1097538
+PODFILE CHECKSUM: b7a4ae8d39b13a99937cb0189fbe10368a41843b
 
 COCOAPODS: 1.6.1

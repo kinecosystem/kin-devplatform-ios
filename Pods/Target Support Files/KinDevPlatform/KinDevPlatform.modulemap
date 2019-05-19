@@ -1,6 +1,0 @@
-framework module KinDevPlatform {
-  umbrella header "KinDevPlatform-umbrella.h"
-
-  export *
-  module * { export * }
-}

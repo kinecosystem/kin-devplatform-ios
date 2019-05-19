@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'KinDevPlatform'
-  s.version     = '1.1.0'
+  s.version     = '1.1.1'
   s.summary     = 'Kin Developer Platform SDK for iOS'
   s.description = 'Kin Developer Platform SDK for iOS'
   s.homepage    = 'https://github.com/kinecosystem/kin-devplatform-ios'
@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.dependency 'SimpleCoreDataStack', '0.1.6'
-  s.dependency 'KinMigrationModule', '0.1.0'
+  s.dependency 'KinMigrationModule', '0.1.1'
 end

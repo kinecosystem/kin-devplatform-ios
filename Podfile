@@ -10,7 +10,9 @@ target 'KinDevPlatform' do
   project 'KinDevPlatform/KinDevPlatform.xcodeproj'
 
   pod 'SimpleCoreDataStack'
-  pod 'KinMigrationModule'
+  pod 'KinMigrationModule', :path => '../kin-migration-module-ios'
+  pod 'KinSDK', :path => '../kin-sdk-ios'
+  pod 'KinCoreSDK', :path => '../kin-core-ios'
 end
 
 target 'KinDevPlatformSampleApp' do

@@ -87,6 +87,14 @@ class Blockchain {
         migrationManager = KinMigrationManager(serviceProvider: serviceProvider, appId: appId)
     }
 
+    func getAccount(with client: KinClientProtocol) -> KinAccountProtocol? {
+        if client.accounts.count > 0, let account = client.accounts[client.accounts.count - 1] {
+            return account
+        }
+
+        return nil
+    }
+
     func startAccount(with client: KinClientProtocol) throws -> KinAccountProtocol {
         if Kin.shared.needsReset {
             lastBalance = nil
@@ -94,7 +102,7 @@ class Blockchain {
 
         let account: KinAccountProtocol
 
-        if let acc = client.accounts[0] {
+        if let acc = getAccount(with: client) {
             account = acc
         } else {
             Kin.track { try StellarAccountCreationRequested() }

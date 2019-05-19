@@ -183,7 +183,19 @@ public class Kin: NSObject {
                                   store: store,
                                   blockchain: chain)
 
-            try chain.migrationManager.start()
+            func address(in version: KinVersion) -> String? {
+                let kinClient = chain.migrationManager.kinClient(version: version)
+
+                if kinClient.accounts.count > 0, needsReset {
+                    kinClient.deleteKeystore()
+                    return nil
+                }
+
+                return chain.getAccount(with: kinClient)?.publicAddress
+            }
+
+            let publicAddress = address(in: .kinSDK) ?? address(in: .kinCore)
+            try chain.migrationManager.start(with: publicAddress)
         }
         catch {
             logError("prepare start failed")
@@ -598,17 +610,6 @@ extension Kin: KinMigrationManagerDelegate {
 
     public func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
         onboardPromise = nil
-
-        // If we need to reset at this point, it's because the user switched accounts.
-        if needsReset {
-            client.deleteKeystore()
-        }
-
-        // Setting reset here is needed during the migration.
-        if client.accounts.count > 1 {
-            try? client.deleteAccount(at: 0)
-            needsReset = true
-        }
 
         do {
             if let account = try startData?.blockchain.startAccount(with: client) {
